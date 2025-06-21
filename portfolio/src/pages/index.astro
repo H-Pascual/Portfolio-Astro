@@ -1,5 +1,9 @@
 ---
-
+import '../styles/global.css'
+import '../styles/index.css'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import Languages from '../components/Languages.astro'
 ---
 
 <html lang="es">
@@ -15,6 +19,7 @@
 		<meta name="author" content="Héctor Pascual Marín" />
 		<meta name="language" content="es" />
 		<meta name="robots" content="index, follow" />
+		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 
 		<!-- Revisar código a partir de aquí -->
 		<!-- Open Graph (para redes sociales) -->
@@ -60,6 +65,10 @@
 		<link rel="alternate" hreflang="es" href="https://www.hectorpascual.com/" />
 	</head>
 	<body>
-		<h1>Portfolio de Héctor Pascual</h1>
+		<Header></Header>
+		<main>
+			<Hero></Hero>
+			<Languages></Languages>
+		</main>
 	</body>
 </html>
