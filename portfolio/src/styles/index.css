@@ -134,4 +134,7 @@ body {
 /* SUMMARY */
 .languages {
     background-color: var(--primary-color);
+    h2 {
+        margin: 0;
+    }
 }
