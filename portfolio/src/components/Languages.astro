@@ -1,54 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import ReactLogo from '../assets/react.png'
+import CSSLogo from '../assets/css.svg'
+import TypeScriptLogo from '../assets/typescript.png'
+import HTMLLogo from '../assets/html.png'
+import MongoDBLogo from '../assets/mongodb.png'
+import SQLLogo from '../assets/sql.webp'
+import GitLogo from '../assets/git.webp'
+import DockerLogo from '../assets/docker_logo.png'
+import CSharpLogo from '../assets/csharp.svg'
+import PythonLogo from '../assets/python.png'
+
+---
+
 <section id="languages-carousel" class="languages-carousel" aria-label="Lenguajes y tecnologías conocidas">
   <div class="carousel-viewport">
     <ul class="carousel-track" id="carousel-track">
       <li class="carousel-slide">
         <a href="https://es.react.dev/" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/react.png" alt="React Logo" title="React" />
+          <Image loading="lazy" src={ReactLogo} alt="React Logo" title="React" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/typescript.png" alt="Typescript Logo" title="TypeScript" />
+          <Image loading="lazy" src={TypeScriptLogo} alt="Typescript Logo" title="TypeScript" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://dotnet.microsoft.com/es-es/languages/csharp" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/csharp.svg" alt="CSharp Logo" title="C#" />
+          <Image loading="lazy" src={CSharpLogo} alt="CSharp Logo" title="C#" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/python.png" alt="Python Logo" title="Python" />
+          <Image loading="lazy" src={PythonLogo} alt="Python Logo" title="Python" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://es.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/sql.webp" alt="SQL Logo" title="SQL" />
+          <Image loading="lazy" src={SQLLogo} alt="SQL Logo" title="SQL" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://www.mongodb.com/es" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/mongodb.png" alt="MongoDB Logo" title="MongoDB" />
+          <Image loading="lazy" src={MongoDBLogo} alt="MongoDB Logo" title="MongoDB" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/docker_logo.png" alt="Docker Logo" title="Docker" />
+          <Image loading="lazy" src={DockerLogo} alt="Docker Logo" title="Docker" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/git.webp" alt="Git Logo" title="Git" />
+          <Image loading="lazy" src={GitLogo} alt="Git Logo" title="Git" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/html.png" alt="HTML Logo" title="HTML" />
+          <Image loading="lazy" src={HTMLLogo} alt="HTML Logo" title="HTML" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
-          <img loading="lazy" src="/assets/css.svg" alt="CSS Logo" title="CSS" />
+          <Image loading="lazy" src={CSSLogo} alt="CSS Logo" title="CSS" />
         </a>
       </li>
     </ul>
