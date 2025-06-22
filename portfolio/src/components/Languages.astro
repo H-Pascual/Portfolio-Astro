@@ -1,27 +1,115 @@
----
-interface ILanguage {
-    ID: string,
-    Name: string,
-    URL: string,
-    ImageURL: string
-}
-
-const languages: ILanguage[] = [ 
-    { ID: 'react', Name: 'React', URL: 'https://es.react.dev/', ImageURL: 'a' },
-    { ID: 'typescript', Name: 'TypeScript', URL: 'https://www.typescriptlang.org/', ImageURL: 'a' },
-    { ID: 'c_sharp', Name: 'C#', URL: 'https://dotnet.microsoft.com/es-es/languages/csharp', ImageURL: 'a' },
-    { ID: 'python', Name: 'Python', URL: '', ImageURL: ''},
-    { ID: 'sql', Name: 'SQL', URL: '', ImageURL: ''},
-    { ID: 'mongodb', Name: 'MongoDB', URL: '', ImageURL: ''},
-    { ID: 'docker', Name: 'Docker', URL: '', ImageURL: ''},
-    { ID: 'git', Name: 'Git', URL: '', ImageURL: ''},
-    { ID: 'sql', Name: 'SQL', URL: '', ImageURL: ''},
-    { ID: 'css', Name: 'CSS', URL: '', ImageURL: ''},
-    { ID: 'html', Name: 'HTML', URL: '', ImageURL: ''},
-    { ID: 'sass', Name: 'SASS', URL: '', ImageURL: ''}
-]
-
----
-<section id="lenguajes" class="languages">
-    <h2>Conocimientos</h2>
+<section id="languages-carousel" class="languages-carousel" aria-label="Lenguajes y tecnologías conocidas">
+  <div class="carousel-viewport">
+    <ul class="carousel-track" id="carousel-track">
+      <li class="carousel-slide">
+        <a href="https://es.react.dev/" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/react.png" alt="React Logo" title="React" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/typescript.png" alt="Typescript Logo" title="TypeScript" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://dotnet.microsoft.com/es-es/languages/csharp" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/csharp.svg" alt="CSharp Logo" title="C#" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/python.png" alt="Python Logo" title="Python" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://es.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/sql.webp" alt="SQL Logo" title="SQL" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://www.mongodb.com/es" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/mongodb.png" alt="MongoDB Logo" title="MongoDB" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/docker_logo.png" alt="Docker Logo" title="Docker" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/git.webp" alt="Git Logo" title="Git" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/html.png" alt="HTML Logo" title="HTML" />
+        </a>
+      </li>
+      <li class="carousel-slide">
+        <a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
+          <img loading="lazy" src="/assets/css.svg" alt="CSS Logo" title="CSS" />
+        </a>
+      </li>
+    </ul>
+  </div>
 </section>
+
+<style>
+  .languages-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--primary-color);
+  }
+
+  .carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .carousel-track {
+    padding: 0 10px;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: max-content;
+    list-style: none;
+    margin: 0;
+  }
+
+  .carousel-slide {
+    flex: 0 0 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carousel-slide img {
+    max-height: 20px;
+    max-width: 100px;
+    object-fit: contain;
+  }
+</style>
+
+<script>
+  const track = document.getElementById('carousel-track');
+  const visibleItems = 5;
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    if (!!track) {
+        const offset = currentIndex * (100 / track.children.length);
+        track.style.transform = `translateX(-${offset}%)`;
+    }
+  }
+
+  function autoSlide() {
+    if (!!track) {
+        currentIndex = (currentIndex + 1) % (track.children.length - visibleItems + 1);
+        updateCarousel();
+    }
+  }
+
+  updateCarousel();
+  setInterval(autoSlide, 3000);
+</script>

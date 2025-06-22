@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import HectorSuitPicture from '../assets/hector-suit-picture.webp'
 ---
 <section id='inicio' class="hero">
     <div class="hero-content">
@@ -6,7 +8,7 @@
         <p class="hero-description">Soy Héctor Pascual, un <span class="bold">FullStack Developer</span> especializado en la creación de páginas web de calidad. Cuento con experiencia en tecnologías como <span class="bold">React</span> con <span class="bold">TypeScript</span> para el Frontend y <span class="bold">C#</span> en el Backend.</p>
         <a href="#contacto" title="Contáctame" class="hero-button">Contáctame</a>
     </div>
-        <img src="/assets/hector-suit-picture.webp" 
+        <Image src={HectorSuitPicture}
         class="hero-image"
         alt="Héctor Pascual Marín en traje posando">
 </section>

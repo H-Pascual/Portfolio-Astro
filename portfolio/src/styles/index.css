@@ -131,8 +131,8 @@ body {
     }
 }
 
-/* SUMMARY */
-.languages {
+/* Languages Carousel */
+.languages-carousel {
     background-color: var(--primary-color);
     h2 {
         margin: 0;
