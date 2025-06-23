@@ -18,93 +18,57 @@ import PythonLogo from '../assets/python.png'
     <ul class="carousel-track" id="carousel-track">
       <li class="carousel-slide">
         <a href="https://es.react.dev/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={ReactLogo} alt="React Logo" title="React" />
+          <Image loading="lazy" src={ReactLogo} loading="eager" alt="React Logo" title="React" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={TypeScriptLogo} alt="Typescript Logo" title="TypeScript" />
+          <Image loading="lazy" src={TypeScriptLogo} loading="eager" alt="Typescript Logo" title="TypeScript" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://dotnet.microsoft.com/es-es/languages/csharp" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={CSharpLogo} alt="CSharp Logo" title="C#" />
+          <Image loading="lazy" src={CSharpLogo} loading="eager" alt="CSharp Logo" title="C#" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={PythonLogo} alt="Python Logo" title="Python" />
+          <Image loading="lazy" src={PythonLogo} loading="eager" alt="Python Logo" title="Python" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://es.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={SQLLogo} alt="SQL Logo" title="SQL" />
+          <Image loading="lazy" src={SQLLogo} loading="eager" alt="SQL Logo" title="SQL" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://www.mongodb.com/es" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={MongoDBLogo} alt="MongoDB Logo" title="MongoDB" />
+          <Image loading="lazy" src={MongoDBLogo} loading="eager" alt="MongoDB Logo" title="MongoDB" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={DockerLogo} alt="Docker Logo" title="Docker" />
+          <Image loading="lazy" src={DockerLogo} loading="eager" alt="Docker Logo" title="Docker" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={GitLogo} alt="Git Logo" title="Git" />
+          <Image loading="lazy" src={GitLogo} loading="eager" alt="Git Logo" title="Git" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={HTMLLogo} alt="HTML Logo" title="HTML" />
+          <Image loading="lazy" src={HTMLLogo} loading="eager" alt="HTML Logo" title="HTML" />
         </a>
       </li>
       <li class="carousel-slide">
         <a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={CSSLogo} alt="CSS Logo" title="CSS" />
+          <Image loading="lazy" src={CSSLogo} loading="eager" alt="CSS Logo" title="CSS" />
         </a>
       </li>
     </ul>
   </div>
 </section>
-
-<style>
-  .languages-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    background: var(--primary-color);
-  }
-
-  .carousel-viewport {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .carousel-track {
-    padding: 0 10px;
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: max-content;
-    list-style: none;
-    margin: 0;
-  }
-
-  .carousel-slide {
-    flex: 0 0 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .carousel-slide img {
-    max-height: 20px;
-    max-width: 100px;
-    object-fit: contain;
-  }
-</style>
 
 <script>
   const track = document.getElementById('carousel-track');

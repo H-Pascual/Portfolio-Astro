@@ -38,3 +38,23 @@ ul {
 a:hover:not(.active) {
 
 }
+
+
+.button {
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    font-family: 'Raleway', serif;
+    border: 0;
+}
+
+.primary-button {
+    background-color: var(--bold-color);
+}
+
+.primary-button:hover {
+    background-color: var(--secondary-color);
+}
