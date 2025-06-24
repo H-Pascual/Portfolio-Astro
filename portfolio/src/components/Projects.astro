@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets'
+import HectorDarkImage from '../assets/hector-dark-shirt.png'
+import CapturaWebCerveza from '../assets/captura-web-cerveza.png'
+---
+
+<!-- Quitar imagen o cambiarla -->
+<section id="proyectos" class="projects" aria-label="Projectos personales destacados">
+    <!-- <Image src={HectorDarkImage} loading="lazy" width="600" alt="Persona de pie en sudadera negra con fondo oscuro" /> -->
+    <div class="projects-items">
+        <h2 class="projects-title">Proyectos Destacados</h2>
+        <div class="projects-preview">
+            <Image src={CapturaWebCerveza} loading="lazy" class="project-image" alt="Captura de página web sobre cervezas" />
+            <!-- <span>Cervezas Marin</span> -->
+            <Image src={CapturaWebCerveza} loading="lazy" class="project-image" alt="Captura de página web sobre cervezas" />
+            <!-- <span>Cervezas Marin</span> -->
+            <Image src={CapturaWebCerveza} loading="lazy" class="project-image" alt="Captura de página web sobre cervezas" />
+            <!-- <span>Cervezas Marin</span> -->
+            <Image src={CapturaWebCerveza} loading="lazy" class="project-image" alt="Captura de página web sobre cervezas" />
+            <!-- <span>Cervezas Marin</span> -->
+        </div>
+        <button class="button primary-button">Ver más</button>
+    </div>
+</section>
