@@ -1,47 +1,59 @@
-# Astro Starter Kit: Minimal
+# Portfolio de Héctor Pascual Marín 🌐
 
-```sh
-npm create astro@latest -- --template minimal
-```
+**FullStack Developer | Programador Freelance en Alicante**
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Este es mi portfolio personal creado con [Astro](https://astro.build/). Aquí presento mi experiencia, proyectos, habilidades y formas de contacto. Está optimizado para SEO y diseñado para ofrecer una experiencia profesional a empresas y clientes potenciales.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tecnologías utilizadas
 
-## 🚀 Project Structure
+- **Astro 5.10.0**
+- **HTML5 + CSS3**
+- **JavaScript / TypeScript**
+- **React (experiencia profesional reflejada en proyectos)**
+- **Diseño responsive y accesible**
+- Integración con redes sociales y SEO enriquecido (Open Graph, Twitter Cards, Schema.org)
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📂 Estructura del proyecto
 
-```text
 /
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+├── components/           # Componentes Astro (Header, Hero, Projects, etc.)
+├── styles/               # Hojas de estilo globales y específicas
+├── public/               # Recursos públicos (favicon, imágenes, etc.)
+├── pages/                # Páginas del sitio si aplica (en este caso, estructura en un solo archivo)
+├── package.json          # Configuración del proyecto y dependencias
+└── astro.config.mjs      # Configuración de Astro
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 📜 Scripts disponibles
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- `npm run dev` – Inicia el servidor de desarrollo
+- `npm run build` – Genera la versión estática para producción
+- `npm run preview` – Previsualiza el sitio estático localmente
+- `npm run astro` – Ejecuta comandos personalizados de Astro
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🌍 SEO y Metadatos
 
-## 🧞 Commands
+Incluye:
 
-All commands are run from the root of the project, from a terminal:
+- Meta etiquetas optimizadas
+- Open Graph (Facebook, LinkedIn, etc.)
+- Twitter Cards
+- Etiquetas Schema.org para resultados enriquecidos en Google
+- Verificaciones de buscadores (Google/Bing)
+- URL canónica y configuración de idioma (`es`)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 👨‍💻 Sobre mí
 
-## 👀 Want to learn more?
+Soy Héctor Pascual Marín, FullStack Developer especializado en React y JavaScript. Trabajo como programador freelance en Alicante y me dedico a crear soluciones tecnológicas personalizadas para empresas.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+🔗 Sitio web: [www.hectorpascual.com](https://www.hectorpascualmarin.com)  
+💼 LinkedIn: [linkedin.com/in/hectorpascual](https://es.linkedin.com/in/h%C3%A9ctor-pascual-mar%C3%ADn-953787232)  
+🐙 GitHub: [github.com/hectorpascual](https://github.com/H-Pascual/)
+
+## 📧 Contacto
+
+Sección de contacto integrada en la web. Puedes escribirme directamente desde el formulario o a través de mis redes profesionales.
+
+    hector.pascual.marin@gmail.com
+---
+
+> Este portfolio es un proyecto en constante evolución. ¡Gracias por visitar!
