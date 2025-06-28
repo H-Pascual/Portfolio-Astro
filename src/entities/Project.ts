@@ -11,7 +11,8 @@ export class Project {
     EndDate: Date
     HasDemo: boolean
     DemoLink?: Link
+    GithubLink: Link
     Languages: Language[]
-    CoverUrl: Image
+    CoverImage: Image
     Images: Image[]
 }

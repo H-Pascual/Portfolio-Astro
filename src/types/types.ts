@@ -3,3 +3,8 @@ export enum DifficultyTypes {
     Medium,
     Hard
 }
+
+export enum AllowedLanguages {
+    Spanish,
+    English
+}
