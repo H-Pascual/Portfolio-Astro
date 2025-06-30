@@ -10,6 +10,10 @@ import MongoDbLogo from '../assets/languages/mongodb.png'
 import SqlLogo from '../assets/languages/sql.webp'
 import TypeScriptLogo from '../assets/languages/typescript.png'
 import AngularLogo from '../assets/languages/angular.png'
+import NodeJSLogo from '../assets/languages/node.png'
+import MariaDBLogo from '../assets/languages/mariadb.svg'
+import JavaScriptLogo from '../assets/languages/javascript.png'
+import ViteLogo from '../assets/languages/vite.png'
 
 export const Languages : Language[] = [
     {
@@ -81,25 +85,25 @@ export const Languages : Language[] = [
     {
         ID: "4edaf72d-8d4a-48f5-8b65-16a9feca532f",
         Name: "MariaDB",
-        Link: { },
-        Logo: { Image: , Alt: "Logo de MariaDB" }
+        Link: { Href: "https://mariadb.org/", Title: "MariaDB - Sistema de gestión de bases de datos relacional", Target: true },
+        Logo: { Image: MariaDBLogo, Alt: "Logo de MariaDB" }
     },
     {
         ID: "09a32624-3a70-48fa-98b6-e6b972d55188",
         Name: "Node.js",
-        Link: { },
-        Logo: { Image: , Alt: "Logo de Node JS" }
+        Link: { Href: "https://nodejs.org/en", Title: "Node.js - Entorno de ejecución para JavaScript en el servidor", Target: true },
+        Logo: { Image: NodeJSLogo, Alt: "Logo de Node JS" }
     },
     {
         ID: "d3bdd649-b928-458d-9495-6770e510020c",
         Name: "JavaScript",
-        Link: { },
-        Logo: { Image: , Alt: "Logo de JavaScript" }
+        Link: { Href: "https://developer.mozilla.org/es/docs/Web/JavaScript", Title: "JavaScript - Lenguaje de programación para la web", Target: true },
+        Logo: { Image: JavaScriptLogo, Alt: "Logo de JavaScript" }
     },
     {
         ID: "bc13def4-8308-48db-b1e7-e86203f320af",
         Name: "Vite",
-        Link: { },
-        Logo: { Image: , Alt: "Logo de Vite" }
+        Link: { Href: "https://vite.dev/", Title: "Vite - Herramienta de build rápida para proyectos frontend", Target: true },
+        Logo: { Image: ViteLogo, Alt: "Logo de Vite" }
     }
 ]
