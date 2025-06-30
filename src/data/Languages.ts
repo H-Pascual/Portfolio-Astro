@@ -77,5 +77,29 @@ export const Languages : Language[] = [
         Name: "Angular", 
         Link: { Href: "https://angular.io/", Title: "Angular - Framework de desarrollo web frontend", Target: true },
         Logo: { Image: AngularLogo, Alt: "Logo de Angular" }
+    },
+    {
+        ID: "4edaf72d-8d4a-48f5-8b65-16a9feca532f",
+        Name: "MariaDB",
+        Link: { },
+        Logo: { Image: , Alt: "Logo de MariaDB" }
+    },
+    {
+        ID: "09a32624-3a70-48fa-98b6-e6b972d55188",
+        Name: "Node.js",
+        Link: { },
+        Logo: { Image: , Alt: "Logo de Node JS" }
+    },
+    {
+        ID: "d3bdd649-b928-458d-9495-6770e510020c",
+        Name: "JavaScript",
+        Link: { },
+        Logo: { Image: , Alt: "Logo de JavaScript" }
+    },
+    {
+        ID: "bc13def4-8308-48db-b1e7-e86203f320af",
+        Name: "Vite",
+        Link: { },
+        Logo: { Image: , Alt: "Logo de Vite" }
     }
 ]
