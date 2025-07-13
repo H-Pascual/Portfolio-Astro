@@ -35,11 +35,27 @@ ul {
 .active {
     text-decoration: dashed;
 }
-
-a:hover:not(.active) {
-
+a {
+  position: relative;
+  text-decoration: none;
+  color: black;
+  
 }
 
+a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+a:hover:not(.active)::after {
+  width: 102%;
+}
 
 .button {
     color: #fff;

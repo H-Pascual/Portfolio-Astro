@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import HectorDarkImage from '../assets/content/hector-dark-shirt.png'
 import CapturaWebCerveza from '../assets/projects/cervezas-marin/cervezas-marin-home.png'
+import { FeaturedProjectsList } from '../data';
 ---
 
 <!-- Quitar imagen o cambiarla -->
@@ -10,14 +11,17 @@ import CapturaWebCerveza from '../assets/projects/cervezas-marin/cervezas-marin-
     <div class="projects-items">
         <h2 class="projects-title">Proyectos Destacados</h2>
         <div class="projects-preview">
-            <Image src={CapturaWebCerveza} loading="lazy" class="project-image" alt="Captura de página web sobre cervezas" />
-            <!-- <span>Cervezas Marin</span> -->
-            <Image src={CapturaWebCerveza} loading="lazy" class="project-image" alt="Captura de página web sobre cervezas" />
-            <!-- <span>Cervezas Marin</span> -->
-            <Image src={CapturaWebCerveza} loading="lazy" class="project-image" alt="Captura de página web sobre cervezas" />
-            <!-- <span>Cervezas Marin</span> -->
-            <Image src={CapturaWebCerveza} loading="lazy" class="project-image" alt="Captura de página web sobre cervezas" />
-            <!-- <span>Cervezas Marin</span> -->
+            {
+                FeaturedProjectsList.map(project => (
+            <Image 
+              src={project.CoverImage.Image} 
+              alt={project.CoverImage.Alt} 
+              class="project-image"
+              loading="lazy"
+            />
+            <span class="project-name">{project.Name}</span>
+        ))
+            }
         </div>
         <button class="button primary-button">Ver más</button>
     </div>
