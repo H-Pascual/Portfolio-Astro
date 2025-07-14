@@ -12,7 +12,7 @@ header {
     grid-template-columns: 1fr auto;
     padding: 0px 1em;
     gap: 0;
-    opacity: 90%;
+    opacity: 95%;
 }
 
 .header-title {
@@ -119,46 +119,86 @@ body {
 
 /* Languages Carousel */
 .languages-carousel {
-    background-color: var(--primary-color);
-    h2 {
-        margin: 0;
-    }
+  background-color: var(--primary-color);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
 }
 
-.languages-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    background: var(--primary-color);
-  }
+.languages-carousel::before,
+.languages-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
 
-  .carousel-viewport {
-    overflow: hidden;
-    width: 100%;
-  }
+.languages-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--primary-color), transparent);
+}
 
-  .carousel-track {
-    padding: 0 10px;
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: max-content;
-    list-style: none;
-    margin: 0;
-  }
+.languages-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--primary-color), transparent);
+}
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+}
 
-  .carousel-slide {
-    flex: 0 0 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .carousel-slide img {
-    max-height: 20px;
-    max-width: 100px;
-    object-fit: contain;
-  }
+.carousel-slide {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0;
+}
 
+.carousel-slide a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.carousel-slide img {
+  max-height: 40px;
+  max-width: 50px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.carousel-bottom-fade {
+  width: 100%;
+  height: 10px;
+  opacity: 0.8;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    var(--background-color) 0%,
+    rgba(255, 255, 255, 0.5) 40%,
+    var(--primary-color) 100%
+  );
+}
   /* Contact */
 
   .contact {
@@ -266,9 +306,7 @@ body {
     overflow: hidden;
 
 }
-
 /* Projects */
-
 .projects {
     background-color: var(--dark-color);
 }
@@ -284,21 +322,82 @@ body {
     color: var(--background-color);
 }
 
-.project-image {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    opacity: 60%;
-}
-
 .projects-items {
     display: flex;
     flex-direction: column;
-    align-items: center;      /* Centrado horizontal */
-    justify-content: center;  /* Centrado vertical */
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    .button {
-        margin: 13px;
-        width: 13%;
-    }
+}
+
+.projects-items .button {
+    margin: 13px;
+    width: 13%;
+}
+
+.project-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.project-image {
+    width: 100%;
+    max-width: 450px;
+    max-height: 230px;
+    object-fit: cover;
+    opacity: 60%;
+    transition: all 0.2s ease-in-out;
+}
+
+.project-image:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.project-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+.project-toolbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+.project-toolbar img {
+    height: 20px;
+    width: auto;
+}
+
+.project-image-container:hover .project-name,
+.project-image-container:hover .project-toolbar {
+    opacity: 1;
+    cursor: pointer;
 }

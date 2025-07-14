@@ -1,7 +1,5 @@
 ---
 import { Image } from 'astro:assets'
-import HectorDarkImage from '../assets/content/hector-dark-shirt.png'
-import CapturaWebCerveza from '../assets/projects/cervezas-marin/cervezas-marin-home.png'
 import { FeaturedProjectsList } from '../data';
 ---
 
@@ -13,13 +11,31 @@ import { FeaturedProjectsList } from '../data';
         <div class="projects-preview">
             {
                 FeaturedProjectsList.map(project => (
-            <Image 
-              src={project.CoverImage.Image} 
-              alt={project.CoverImage.Alt} 
-              class="project-image"
-              loading="lazy"
-            />
-            <span class="project-name">{project.Name}</span>
+            <div class="project-image-container">
+    <Image 
+        class="project-image"
+        src={project.CoverImage.Image}
+        alt={project.CoverImage.Alt}
+        loading="lazy"
+    />
+    <span class="project-name">{project.Name}</span>
+
+    <div class="project-toolbar">
+        <span>{project.Difficulty}</span>
+        <div style={{ display: "flex", gap: "5px" }}>
+            {
+                project.Languages.map(lang => (
+                    <Image 
+                        src={lang.Logo.Image}
+                        alt={lang.Logo.Alt}
+                        title={lang.Name}
+                        style={{ height: '20px' }}
+                    />
+                ))
+            }
+        </div>
+    </div>
+</div>
         ))
             }
         </div>

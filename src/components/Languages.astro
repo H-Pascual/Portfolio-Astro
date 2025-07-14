@@ -1,94 +1,49 @@
 ---
 import { Image } from 'astro:assets';
-import ReactLogo from '../assets/languages/react.png'
-import CSSLogo from '../assets/languages/css.svg'
-import TypeScriptLogo from '../assets/languages/typescript.png'
-import HTMLLogo from '../assets/languages/html.png'
-import MongoDBLogo from '../assets/languages/mongodb.png'
-import SQLLogo from '../assets/languages/sql.webp'
-import GitLogo from '../assets/languages/git.webp'
-import DockerLogo from '../assets/languages/docker-logo.png'
-import CSharpLogo from '../assets/languages/csharp.svg'
-import PythonLogo from '../assets/languages/python.png'
-
+import { FeaturedLanguages } from '../data';
 ---
 
 <section id="languages-carousel" class="languages-carousel" aria-label="Lenguajes y tecnologías conocidas">
   <div class="carousel-viewport">
     <ul class="carousel-track" id="carousel-track">
+        {
+          FeaturedLanguages.map(lang => (
       <li class="carousel-slide">
-        <a href="https://es.react.dev/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={ReactLogo} loading="eager" alt="React Logo" title="React" />
+        <a href={lang.Link.Href} title={lang.Link.Title} 
+        target={lang.Link.Target ? '_blank' : '_self'} rel={lang.Link.Target ? 'noopener noreferrer' : undefined}>
+            <Image loading="lazy" src={lang.Logo.Image} alt={lang.Logo.Alt} title={lang.Name} />
         </a>
       </li>
-      <li class="carousel-slide">
-        <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={TypeScriptLogo} loading="eager" alt="Typescript Logo" title="TypeScript" />
-        </a>
-      </li>
-      <li class="carousel-slide">
-        <a href="https://dotnet.microsoft.com/es-es/languages/csharp" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={CSharpLogo} loading="eager" alt="CSharp Logo" title="C#" />
-        </a>
-      </li>
-      <li class="carousel-slide">
-        <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={PythonLogo} loading="eager" alt="Python Logo" title="Python" />
-        </a>
-      </li>
-      <li class="carousel-slide">
-        <a href="https://es.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={SQLLogo} loading="eager" alt="SQL Logo" title="SQL" />
-        </a>
-      </li>
-      <li class="carousel-slide">
-        <a href="https://www.mongodb.com/es" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={MongoDBLogo} loading="eager" alt="MongoDB Logo" title="MongoDB" />
-        </a>
-      </li>
-      <li class="carousel-slide">
-        <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={DockerLogo} loading="eager" alt="Docker Logo" title="Docker" />
-        </a>
-      </li>
-      <li class="carousel-slide">
-        <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={GitLogo} loading="eager" alt="Git Logo" title="Git" />
-        </a>
-      </li>
-      <li class="carousel-slide">
-        <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={HTMLLogo} loading="eager" alt="HTML Logo" title="HTML" />
-        </a>
-      </li>
-      <li class="carousel-slide">
-        <a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
-          <Image loading="lazy" src={CSSLogo} loading="eager" alt="CSS Logo" title="CSS" />
-        </a>
-      </li>
+          ))
+        }
     </ul>
   </div>
 </section>
+<div class="carousel-bottom-fade"></div>
 
 <script>
-  const track = document.getElementById('carousel-track');
+  const track = document.getElementById('carousel-track')!;
   const visibleItems = 5;
+  const totalItems = track?.children.length;
   let currentIndex = 0;
 
   function updateCarousel() {
-    if (!!track) {
-        const offset = currentIndex * (100 / track.children.length);
-        track.style.transform = `translateX(-${offset}%)`;
-    }
+    const slideWidth = (track.children[0] as HTMLElement).offsetWidth;
+    const offset = currentIndex * slideWidth;
+    track.style.transform = `translateX(-${offset}px)`;
   }
 
   function autoSlide() {
-    if (!!track) {
-        currentIndex = (currentIndex + 1) % (track.children.length - visibleItems + 1);
-        updateCarousel();
+    currentIndex = (currentIndex + 1) % totalItems;
+    if (currentIndex > totalItems - visibleItems) {
+      currentIndex = 0;
     }
+    updateCarousel();
   }
 
-  updateCarousel();
-  setInterval(autoSlide, 3000);
+  // Esperar a que se cargue todo
+  window.addEventListener('load', () => {
+    updateCarousel();
+    setInterval(autoSlide, 3000);
+  });
 </script>
