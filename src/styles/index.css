@@ -404,7 +404,7 @@ body {
 /* Wave Container */
 .wave-container {  
   height: 14vh;
-  background-color: #120a03;
+  background-color: var(--secondary-background-color);
   position: relative;
 }
 
