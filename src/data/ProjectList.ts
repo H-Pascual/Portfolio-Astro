@@ -41,6 +41,7 @@ export const ProjectList : Project[] = [
         Difficulty: DifficultyTypes.Hard, 
         EndDate: new Date("2024-05-13"),
         HasDemo: false, 
+        DetailsLink: { },
         GithubLink: { Href: "https://github.com/H-Pascual/Brokey_FrontEnd", Title: "Repositorio de Brokey FrontEnd en GitHub", Target: true},
         Languages: [
             {
@@ -87,6 +88,7 @@ export const ProjectList : Project[] = [
         Difficulty: DifficultyTypes.Medium, 
         EndDate: new Date("2024-02-05"),
         HasDemo: false, //true when deployed
+        DetailsLink: { },
         GithubLink: {Href: "https://github.com/H-Pascual/CervezasMarin", Title: "Repositorio de CervezasMarin en GitHub", Target: true },
         Languages: [
             {
@@ -115,6 +117,7 @@ export const ProjectList : Project[] = [
         Difficulty: DifficultyTypes.Easy, 
         EndDate: new Date("2023-03-23"),
         HasDemo: false, //true when deployed
+        DetailsLink: { },
         GithubLink: {Href: "https://github.com/H-Pascual/BrawlStars", Title: "Repositorio del proyecto BrawlStars en GitHub", Target: true},
         Languages: [
             {
@@ -135,6 +138,7 @@ export const ProjectList : Project[] = [
         Difficulty: DifficultyTypes.Medium, 
         EndDate: new Date("2023-05-17"),
         HasDemo: false,  
+        DetailsLink: { },
         GithubLink: {Href: "https://github.com/H-Pascual/QuienEsQuienLOL", Title: "Repositorio de ¿Quién es quién? LoL en GitHub", Target: true},
         Languages: [
             {

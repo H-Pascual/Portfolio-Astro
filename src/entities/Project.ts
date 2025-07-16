@@ -12,6 +12,7 @@ export class Project {
     HasDemo: boolean
     DemoLink?: Link
     GithubLink: Link
+    DetailsLink: Link
     Languages: Language[]
     CoverImage: Image
     Images: Image[]
