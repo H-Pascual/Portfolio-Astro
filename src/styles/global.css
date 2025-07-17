@@ -87,3 +87,9 @@ html, body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+.secondary-button {
+    background-color: transparent;
+    color: var(--text-contrast-color);
+    border: 1px solid var(--text-contrast-color) !important;
+}

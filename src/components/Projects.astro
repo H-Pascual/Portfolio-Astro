@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets'
 import { FeaturedProjectsList } from '../data';
 ---
-
+<!-- Cambiar dificultad y permitir que al hacer click vayas directamente a los detalles -->
 <section id="proyectos" class="projects" aria-label="Projectos personales destacados">
     <div class="projects-items">
         <h2 class="projects-title">Proyectos Destacados</h2>
@@ -37,7 +37,7 @@ import { FeaturedProjectsList } from '../data';
         ))
             }
         </div>
-        <button class="button primary-button">Ver más</button>
+        <a href="/projects" title="Ver más" class="see-more primary-button button">Ver más</a>
     </div>
 </section>
  <div class="wave-container"></div>

@@ -1,48 +1,58 @@
----
-import Curriculum from '../assets/content/Curriculum.pdf'
----
-
 <section id="resumen" class="summary">
-    <h2>Resumen</h2>
-    <section class="curriculum-container">
-         <iframe
-      src={Curriculum}
-      width="100%"
-      class="pdf-frame"
-      title="Currículum PDF"
-    ></iframe>
-    </section>
-    <section class="linkedin-container">
+  <h2>Resumen</h2>
+  <section class="curriculum-section-container">
+    <!-- contenido principal -->
+    <div class="summary-content">
+  <div class="summary-title">
+    <span>📁</span>
+    <h3>Experiencia laboral</h3>
+  </div>
 
-    </section>
+  <div class="summary-item">
+    <div class="summary-item-top">
+      <div class="summary-left">
+        <h4>FullStack Developer</h4>
+        <div class="summary-subtitle">Eurobanan | Julio 2024 - Actualidad</div>
+      </div>
+      <img src="ruta-a-la-imagen.jpg" alt="Imagen Eurobanan">
+    </div>
+    <span>Holassadasd Holassadasd Holassadasd Holassadasd Holassadasd Holassadasd</span>
+  </div>
+
+  <div class="summary-item">
+    <div class="summary-item-top">
+      <h4>Eurobanan</h4>
+      <img src="ruta-a-la-imagen.jpg" alt="Imagen Eurobanan">
+    </div>
+    <span>Holassadasd Holassadasd Holassadasd Holassadasd Holassadasd Holassadasd</span>
+  </div>
+</div>
+     <h3>Estudios</h3>
+     <div>
+
+     </div>
+     <h3>Logros destacados</h3>
+     <div>
+
+     </div>
+     <h3>Certificaciones</h3>
+     <div>
+
+     </div>
+     <h3>Conocimientos</h3>
+     <div>
+
+     </div>
+     <h3>Idiomas</h3>
+     <h3>Mas información</h3>
+     <h3>Contacto</h3>
+    <div>
+        <a>Linkedin</a>
+        <a>Github</a>
+     </div>
+     <div>
+        <a>Curriculum</a>
+        <a>Contactar</a>
+     </div>
+  </section>
 </section>
-<style>
-  .summary {
-    padding: 2rem;
-    background-color: #f9f9f9;
-  }
-
-  .curriculum-container {
-    background-color: #ffffff;
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .pdf-frame {
-    width: 100%;
-    height: 85vh; /* Altura adaptable, puedes ajustar según diseño */
-    border: none;
-    border-radius: 0.75rem;
-  }
-
-  @media (max-width: 768px) {
-    .pdf-frame {
-      height: 70vh;
-    }
-  }
-</style>
