@@ -1,8 +1,15 @@
+---
+import EurobananLogo from '../assets/companies/eurobanan-logo.png'
+import InetumLogo from '../assets/companies/inetum-logo.png'
+import SanVicenteLogo from '../assets/companies/ies-san-vicente-logo.png'
+import MariaBlascoLogo from '../assets/companies/ies-maria-blasco-logo.jpg'
+import LaCaixaLogo from '../assets/companies/la-caixa-logo.png'
+import { Image } from 'astro:assets'
+---
 <section id="resumen" class="summary">
   <h2>Resumen</h2>
   <section class="curriculum-section-container">
-    <!-- contenido principal -->
-    <div class="summary-content">
+    <div class="summary-content work-experience">
   <div class="summary-title">
     <span>📁</span>
     <h3>Experiencia laboral</h3>
@@ -11,48 +18,184 @@
   <div class="summary-item">
     <div class="summary-item-top">
       <div class="summary-left">
-        <h4>FullStack Developer</h4>
+        <h4>Full Stack Developer</h4>
         <div class="summary-subtitle">Eurobanan | Julio 2024 - Actualidad</div>
       </div>
-      <img src="ruta-a-la-imagen.jpg" alt="Imagen Eurobanan">
+      <Image src={EurobananLogo} loading="eager" 
+      style={{width: 'auto'}}
+      alt="Imagen de la compañia Eurobanan" />
     </div>
-    <span>Holassadasd Holassadasd Holassadasd Holassadasd Holassadasd Holassadasd</span>
+    <span class="summary-description">
+      Trabajé en el proyecto Altaïr, cuyo objetivo es unificar la lógica de negocio en una plataforma web completa.
+      <br/><br/>
+      • Participación activa en desarrollo FullStack (frontend + backend).
+      <br/>
+      • Uso de React con TypeScript y backend en C#/.NET.
+      <br/>
+      • Colaboración en la mejora de la interfaz, rendimiento y experiencia de usuario.
+      <br/>
+      • Gestión integral de proyectos: desde user stories hasta desarrollo e implementación.
+      <br/>
+      • Diseño de arquitecturas de software, desarrollo de backend y frontend.
+      <br/>
+      • Revisión y control de calidad mediante pull requests.
+      <br/>
+      • Creación de proyectos con IA en Python, orientados a la automatización y eficiencia.
+      <br/>
+      • Participación en el comité interno de inteligencia artificial.
+      <br/>
+      • Impartición de charlas técnicas sobre aplicaciones de la IA en el entorno laboral.
+    </span>
   </div>
 
   <div class="summary-item">
     <div class="summary-item-top">
-      <h4>Eurobanan</h4>
-      <img src="ruta-a-la-imagen.jpg" alt="Imagen Eurobanan">
+      <div class="summary-left">
+        <h4>Trainee Backend Developer</h4>
+        <div class="summary-subtitle">Inetum | Marzo 2024 - Junio 2024</div>
+      </div>
+      <Image src={InetumLogo} loading="eager" 
+      style={{width: 'auto'}}
+      alt="Imagen de la compañia Inetum" />
     </div>
-    <span>Holassadasd Holassadasd Holassadasd Holassadasd Holassadasd Holassadasd</span>
+    <span class="summary-description">
+      Formé parte del equipo de Quirón Salud, en el apartado de automatización de procesos.
+      <br/><br/>
+      • Desarrollo de funcionalidades backend en C# dentro de una arquitectura basada en microservicios.
+      <br/>
+      • Diseño e implementación de microservicios orientados a la automatización de tareas repetitivas y operativas.
+      <br/>
+      • Optimización del rendimiento del sistema y mejora de la eficiencia de procesos críticos.
+    </span>
+  </div>
+
+</div>
+<div class="summary-content studies">
+  <div class="summary-title">
+    <span>🎓</span>
+    <h3>Estudios</h3>
+  </div>
+
+  <div class="summary-item">
+    <div class="summary-item-top">
+      <div class="summary-left">
+        <h4>Especialización Inteligencia Artificial y Big Data</h4>
+        <div class="summary-subtitle">IES San Vicente | Sep. 2024 - Jun. 2025</div>
+      </div>
+      <Image src={SanVicenteLogo} loading="eager" 
+      style={{width: 'auto'}}
+      alt="Imagen del instituto IES San Vicente" />
+    </div>
+  </div>
+
+  <div class="summary-item">
+    <div class="summary-item-top">
+      <div class="summary-left">
+        <h4>Grado Superior en Desarrollo de Aplicaciones Web</h4>
+        <div class="summary-subtitle">IES San Vicente | Sep. 2022 - Jun. 2024</div>
+      </div>
+      <Image src={SanVicenteLogo} loading="eager" 
+      style={{width: 'auto'}}
+      alt="Imagen del instituto IES San Vicente" />
+    </div>
+  </div>
+
+   <div class="summary-item">
+    <div class="summary-item-top">
+      <div class="summary-left">
+        <h4>Bachillerato Técnico Científico</h4>
+        <div class="summary-subtitle">IES María Blasco | Sep. 2020 - Jun. 2022</div>
+      </div>
+      <Image src={MariaBlascoLogo} loading="eager" 
+      style={{width: 'auto'}}
+      alt="Imagen del instituto IES María Blasco" />
+    </div>
+  </div>
+
+</div>
+<div class="summary-content achievements">
+  <div class="summary-title">
+    <span>🎯</span>
+    <h3>Logros destacados</h3>
+  </div>
+
+  <div class="summary-item">
+    <div class="summary-item-top">
+      <div class="summary-left">
+        <h4>Tercer Puesto en la 8va Edición de FemFutur</h4>
+        <div class="summary-subtitle">La Caixa | Mayo 2024</div>
+      </div>
+      <Image src={LaCaixaLogo} loading="eager" 
+      style={{width: 'auto'}}
+      alt="Imagen de la compañia Inetum" />
+    </div>
+    <span class="summary-description">
+      Participé en el concurso FemFutur, organizado por la Generalitat, La Caixa y SECOT, donde desarrollé y presenté mi proyecto empresarial YoTeLimpio, una plataforma web que simplifica la búsqueda de limpiadores para el hogar. Avancé a través de varias etapas contra más de 200 participantes hasta llegar a la final en Valencia, donde tuve la oportunidad de presentar mi proyecto ante una gran audiencia y logré obtener finalmente el tercer puesto.
+    </span>
+  </div>
+
+</div>
+<div class="summary-content certifications">
+  <div class="summary-title">
+    <span>📜</span>
+    <h3>Certificaciones</h3>
   </div>
 </div>
-     <h3>Estudios</h3>
-     <div>
+<div class="summary-content knowledge">
+  <div class="summary-title">
+    <span>🧠</span>
+    <h3>Conocimientos</h3>
+  </div>
+</div>
+<div class="summary-content languages">
+  <div class="summary-title">
+    <span>🗣️</span>
+    <h3>Idiomas</h3>
+  </div>
 
-     </div>
-     <h3>Logros destacados</h3>
-     <div>
+  <div class="summary-item">
+    <div class="summary-item-top">
+      <div class="summary-left">
+        <h4>Castellano: Nativo</h4>
+      </div>
+  </div>
+  </div>
 
-     </div>
-     <h3>Certificaciones</h3>
-     <div>
+  <div class="summary-item">
+    <div class="summary-item-top">
+      <div class="summary-left">
+        <h4>Valenciano: B2</h4>
+      </div>
+  </div>
+  </div>
 
-     </div>
-     <h3>Conocimientos</h3>
-     <div>
-
-     </div>
-     <h3>Idiomas</h3>
-     <h3>Mas información</h3>
-     <h3>Contacto</h3>
-    <div>
+  <div class="summary-item">
+    <div class="summary-item-top">
+      <div class="summary-left">
+        <h4>Inglés: B2</h4>
+      </div>
+  </div>
+  </div>
+</div>
+<div class="summary-content more-info">
+  <div class="summary-title">
+    <span>📌</span>
+    <h3>Más información</h3>
+  </div>
+</div>
+<div class="summary-content summary-contact">
+  <div class="summary-title">
+    <span>✉️</span>
+    <h3>Contacto</h3>
+  </div>
+</div>
+    <!-- <div>
         <a>Linkedin</a>
         <a>Github</a>
      </div>
      <div>
         <a>Curriculum</a>
         <a>Contactar</a>
-     </div>
+     </div> -->
   </section>
 </section>

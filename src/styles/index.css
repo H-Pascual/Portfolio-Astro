@@ -433,13 +433,14 @@ body {
     text-align: center;
 }
 .summary-content {
-  background-color: #8B4513;
+  background-color: var(--subtitle-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 10px;
   color: #fff;
+  width: 100%;
   max-width: 700px;
-  margin: 20px auto;
+  margin: 10px auto;
   font-family: Arial, sans-serif;
 }
 
@@ -464,6 +465,7 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .summary-item-top {
@@ -475,6 +477,7 @@ body {
 .summary-left {
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
 }
 
 .summary-item h4 {
@@ -485,9 +488,8 @@ body {
 
 .summary-subtitle {
   font-size: 14px;
-  color: #ddd;
+  color: var(--third-text-color);
   font-style: italic;
-  margin-top: 4px;
 }
 
 .summary-item img {
@@ -495,7 +497,6 @@ body {
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
-  background-color: #ccc;
   margin-left: 20px;
 }
 
@@ -503,6 +504,55 @@ body {
   display: block;
   font-size: 16px;
   margin-top: 10px;
+}
+
+.summary-description {
+  text-align: left;
+  padding: 5px;
+}
+
+.curriculum-section-container {
+  display: grid;
+  grid-template-areas: "work-experience work-experience achievements"
+  "work-experience work-experience languages"
+  "studies studies summary-contact"
+  "studies studies more-info"
+  "studies studies knowledge"
+  "certifications certifications certifications";
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 20px;
+}
+
+.work-experience {
+  grid-area: work-experience;
+}
+
+.achievements {
+  grid-area: achievements;
+}
+
+.studies {
+  grid-area: studies;
+}
+
+.languages {
+ grid-area: languages
+}
+
+.summary-contact {
+  grid-area: summary-contact;
+}
+
+.knowledge {
+ grid-area: knowledge;
+}
+
+.certifications {
+  grid-area: certifications;
+}
+
+.more-info {
+  grid-area: more-info;
 }
 
 /* LINKEDIN */
