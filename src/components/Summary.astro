@@ -21,13 +21,12 @@ import { Image } from 'astro:assets'
         <h4>Full Stack Developer</h4>
         <div class="summary-subtitle">Eurobanan | Julio 2024 - Actualidad</div>
       </div>
-      <Image src={EurobananLogo} loading="eager" 
+      <Image src={EurobananLogo} 
+      loading="lazy" 
       style={{width: 'auto'}}
       alt="Imagen de la compañia Eurobanan" />
     </div>
     <span class="summary-description">
-      Trabajé en el proyecto Altaïr, cuyo objetivo es unificar la lógica de negocio en una plataforma web completa.
-      <br/><br/>
       • Participación activa en desarrollo FullStack (frontend + backend).
       <br/>
       • Uso de React con TypeScript y backend en C#/.NET.
@@ -54,13 +53,11 @@ import { Image } from 'astro:assets'
         <h4>Trainee Backend Developer</h4>
         <div class="summary-subtitle">Inetum | Marzo 2024 - Junio 2024</div>
       </div>
-      <Image src={InetumLogo} loading="eager" 
+      <Image src={InetumLogo} loading="lazy" 
       style={{width: 'auto'}}
       alt="Imagen de la compañia Inetum" />
     </div>
     <span class="summary-description">
-      Formé parte del equipo de Quirón Salud, en el apartado de automatización de procesos.
-      <br/><br/>
       • Desarrollo de funcionalidades backend en C# dentro de una arquitectura basada en microservicios.
       <br/>
       • Diseño e implementación de microservicios orientados a la automatización de tareas repetitivas y operativas.
@@ -82,7 +79,7 @@ import { Image } from 'astro:assets'
         <h4>Especialización Inteligencia Artificial y Big Data</h4>
         <div class="summary-subtitle">IES San Vicente | Sep. 2024 - Jun. 2025</div>
       </div>
-      <Image src={SanVicenteLogo} loading="eager" 
+      <Image src={SanVicenteLogo} loading="lazy" 
       style={{width: 'auto'}}
       alt="Imagen del instituto IES San Vicente" />
     </div>
@@ -94,7 +91,7 @@ import { Image } from 'astro:assets'
         <h4>Grado Superior en Desarrollo de Aplicaciones Web</h4>
         <div class="summary-subtitle">IES San Vicente | Sep. 2022 - Jun. 2024</div>
       </div>
-      <Image src={SanVicenteLogo} loading="eager" 
+      <Image src={SanVicenteLogo} loading="lazy" 
       style={{width: 'auto'}}
       alt="Imagen del instituto IES San Vicente" />
     </div>
@@ -106,7 +103,7 @@ import { Image } from 'astro:assets'
         <h4>Bachillerato Técnico Científico</h4>
         <div class="summary-subtitle">IES María Blasco | Sep. 2020 - Jun. 2022</div>
       </div>
-      <Image src={MariaBlascoLogo} loading="eager" 
+      <Image src={MariaBlascoLogo} loading="lazy" 
       style={{width: 'auto'}}
       alt="Imagen del instituto IES María Blasco" />
     </div>
@@ -125,7 +122,7 @@ import { Image } from 'astro:assets'
         <h4>Tercer Puesto en la 8va Edición de FemFutur</h4>
         <div class="summary-subtitle">La Caixa | Mayo 2024</div>
       </div>
-      <Image src={LaCaixaLogo} loading="eager" 
+      <Image src={LaCaixaLogo} loading="lazy" 
       style={{width: 'auto'}}
       alt="Imagen de la compañia Inetum" />
     </div>
@@ -187,15 +184,17 @@ import { Image } from 'astro:assets'
   <div class="summary-title">
     <span>✉️</span>
     <h3>Contacto</h3>
+    <div class="summary-item">
+    <span class="summary-description">
+      +34 65 3039 281
+      hector.pascual.marin@gmail.com
+    </span>
+    </div>
   </div>
+      <span>Linkedin</span>
+    <span>Github</span>
+    <span>Contactar</span>
+    <span>Ver Curriculum</span>
 </div>
-    <!-- <div>
-        <a>Linkedin</a>
-        <a>Github</a>
-     </div>
-     <div>
-        <a>Curriculum</a>
-        <a>Contactar</a>
-     </div> -->
   </section>
 </section>
