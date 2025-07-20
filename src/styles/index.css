@@ -433,7 +433,7 @@ body {
     text-align: center;
 }
 .summary-content {
-  background-color: var(--subtitle-color);
+  background-color: var(--container-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 10px;
@@ -519,7 +519,7 @@ body {
   "studies studies more-info"
   "studies studies knowledge"
   "certifications certifications certifications";
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   margin: 20px;
 }
 
