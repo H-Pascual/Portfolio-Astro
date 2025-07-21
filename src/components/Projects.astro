@@ -10,6 +10,9 @@ import { FeaturedProjectsList } from '../data';
             {
                 FeaturedProjectsList.map(project => (
             <div class="project-image-container">
+                <a href={project.DetailsLink.Href} class="invisible-link"
+                title={project.DetailsLink.Title}
+                target={project.DetailsLink.Target ? '_blank' : '_self'}>
     <Image 
         class="project-image"
         src={project.CoverImage.Image}
@@ -33,6 +36,7 @@ import { FeaturedProjectsList } from '../data';
             }
         </div>
     </div>
+    </a>
 </div>
         ))
             }

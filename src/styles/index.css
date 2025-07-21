@@ -429,132 +429,40 @@ body {
 }
 
 /* SUMMARY */
-.summary {
-    text-align: center;
-}
-.summary-content {
-  background-color: var(--container-color);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  border-radius: 10px;
-  color: #fff;
-  width: 100%;
-  max-width: 700px;
-  margin: 10px auto;
-  font-family: Arial, sans-serif;
-}
 
 .summary-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.summary-title span {
-  font-size: 24px;
-}
-
-.summary-title h3 {
-  margin: 0;
-  font-size: 28px;
-}
-
-.summary-item {
-  margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.summary-item-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
+  margin: 2rem 0;
+  font-size: 1.5rem;
 }
 
 .summary-left {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
+  padding-left: 11rem;
 }
 
-.summary-item h4 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: bold;
+.summary-left::before {
+  right: calc(100% - 10rem);
+  left: 0;
 }
 
-.summary-subtitle {
-  font-size: 14px;
-  color: var(--third-text-color);
-  font-style: italic;
+.summary-right {
+  text-align: right;
+  padding-right: 11rem;
 }
 
-.summary-item img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-left: 20px;
+.summary-right::before {
+  left: calc(100% - 10rem);
+  right: 0;
 }
 
-.summary-item span {
-  display: block;
-  font-size: 16px;
-  margin-top: 10px;
+.summary-title::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  height: 2px;
+  background-color: var(--bold-color);
+  transform: translateY(-50%);
 }
-
-.summary-description {
-  text-align: left;
-  padding: 5px;
-}
-
-.curriculum-section-container {
-  display: grid;
-  grid-template-areas: "work-experience work-experience achievements"
-  "work-experience work-experience languages"
-  "studies studies summary-contact"
-  "studies studies more-info"
-  "studies studies knowledge"
-  "certifications certifications certifications";
-  grid-template-columns: 1fr 1fr;
-  margin: 20px;
-}
-
-.work-experience {
-  grid-area: work-experience;
-}
-
-.achievements {
-  grid-area: achievements;
-}
-
-.studies {
-  grid-area: studies;
-}
-
-.languages {
- grid-area: languages
-}
-
-.summary-contact {
-  grid-area: summary-contact;
-}
-
-.knowledge {
- grid-area: knowledge;
-}
-
-.certifications {
-  grid-area: certifications;
-}
-
-.more-info {
-  grid-area: more-info;
-}
-
 /* LINKEDIN */
 .linkedin-container {
   display: flex;
@@ -590,4 +498,64 @@ body {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* FEATURED */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  z-index: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 600px;
+  padding: 60px;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.hero-text p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+.hero-text.left {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.hero-text.right {
+  text-align: right;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.hero-text.center {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
 }
