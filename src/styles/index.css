@@ -38,6 +38,7 @@ header {
         padding-left: 0;
         margin: 0;
         margin-right: 15px;
+        padding-right: 1em;
     }
         li {
         margin-right: 20px;
@@ -429,6 +430,15 @@ body {
 }
 
 /* SUMMARY */
+
+.linkedin {
+  color: var(--background-color);
+  background-color: #0077B5;
+  font-weight: 700;
+}
+.linkedin:hover {
+  background-color: #005482;
+}
 
 .summary {
   position: relative;

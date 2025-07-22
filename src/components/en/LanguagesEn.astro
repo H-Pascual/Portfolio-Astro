@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { FeaturedLanguages } from '../../data';
+---
+
+<section id="languages-carousel" class="languages-carousel" aria-label="Known languages and technologies">
+  <div class="carousel-viewport">
+    <ul class="carousel-track" id="carousel-track">
+        {
+          FeaturedLanguages.map(lang => (
+      <li class="carousel-slide">
+        <a href={lang.Link.Href} title={lang.Link.Title} 
+        target={lang.Link.Target ? '_blank' : '_self'} rel={lang.Link.Target ? 'noopener noreferrer' : undefined}>
+            <Image loading="lazy" src={lang.Logo.Image} alt={lang.Logo.Alt} title={lang.Name} />
+        </a>
+      </li>
+          ))
+        }
+    </ul>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('carousel-track')!;
+  const visibleItems = 5;
+  const totalItems = track?.children.length;
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const slideWidth = (track.children[0] as HTMLElement).offsetWidth;
+    const offset = currentIndex * slideWidth;
+    track.style.transform = `translateX(-${offset}px)`;
+  }
+
+  function autoSlide() {
+    currentIndex = (currentIndex + 1) % totalItems;
+    if (currentIndex > totalItems - visibleItems) {
+      currentIndex = 0;
+    }
+    updateCarousel();
+  }
+
+  window.addEventListener('load', () => {
+    updateCarousel();
+    setInterval(autoSlide, 3000);
+  });
+</script>
