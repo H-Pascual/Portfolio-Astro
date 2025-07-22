@@ -3,6 +3,7 @@ import '../styles/global.css'
 import '../styles/index.css'
 import HeaderEn from '../components/en/HeaderEn.astro'
 import 'flag-icon-css/css/flag-icons.min.css'
+import { SpeedInsights } from "@vercel/speed-insights/astro"
 const { title } = Astro.props
 ---
 
@@ -25,7 +26,7 @@ const { title } = Astro.props
 		<!-- Open Graph (para redes sociales) -->
 		<meta property="og:title" content="Héctor Pascual Marín - Full Stack Developer | Freelance Programmer in Alicante" />
 		<meta property="og:description" content="I'm Héctor Pascual Marín, a FullStack Developer specializing in React and JavaScript. As a freelance programmer in Alicante, I help companies build custom web applications and technological solutions." />
-		<meta property="og:image" content="https://www.hectorpascual.com/images/hector-suit-picture.webp" />
+		<meta property="og:image" content="https://www.hectorpascual.com/images/preview.png" />
 		<meta property="og:url" content="https://www.hectorpascual.com/" />
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="en_GB" />
@@ -33,7 +34,7 @@ const { title } = Astro.props
 		<!-- Twitter Cards (para Twitter) -->
 		<meta name="twitter:title" content="Héctor Pascual Marín - Full Stack Developer | Freelance Programmer in Alicante" />
 		<meta name="twitter:description" content="I'm Héctor Pascual Marín, a FullStack Developer specializing in React and JavaScript. As a freelance programmer in Alicante, I help companies build custom web applications and technological solutions." />
-		<meta name="twitter:image" content="https://www.hectorpascual.com/images/hector-suit-picture.webp" />
+		<meta name="twitter:image" content="https://www.hectorpascual.com/images/preview.png" />
 
 		<!-- Schema.org (para enriquecer los resultados en Google) -->
 		<script type="application/ld+json">
@@ -42,7 +43,7 @@ const { title } = Astro.props
 				"@type": "Person",
 				"name": "Héctor Pascual Marín",
 				"url": "https://www.hectorpascual.com",
-				"image": "https://www.hectorpascual.com/images/hector-suit-picture.webp",
+				"image": "https://www.hectorpascual.com/images/preview.png",
 				"jobTitle": "FullStack Developer",
 				"sameAs": [
 					"https://www.linkedin.com/in/hectorpascual",
@@ -61,6 +62,8 @@ const { title } = Astro.props
 
 		<!-- Evitar que los motores de búsqueda indexen contenido duplicado -->
 		<link rel="alternate" hreflang="en" href="https://www.hectorpascual.com/" />
+
+        <SpeedInsights />
 	</head>
 	<body>
 		<HeaderEn></HeaderEn>

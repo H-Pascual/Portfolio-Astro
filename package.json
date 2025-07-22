@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.2.3",
+    "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.10.0",
     "flag-icon-css": "^4.1.7"
   }
