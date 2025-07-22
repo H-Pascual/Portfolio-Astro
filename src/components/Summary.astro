@@ -4,206 +4,223 @@ import InetumLogo from '../assets/companies/inetum-logo.png'
 import SanVicenteLogo from '../assets/companies/ies-san-vicente-logo.png'
 import MariaBlascoLogo from '../assets/companies/ies-maria-blasco-logo.jpg'
 import LaCaixaLogo from '../assets/companies/la-caixa-logo.png'
+import OpenWebinarsLogo from '../assets/companies/openwebinars-logo.png'
+import CambridgeLogo from '../assets/companies/cambridge-logo.png'
 import { Image } from 'astro:assets'
 ---
 <section id="resumen" class="summary">
+  <div class="content">
   <h3 class="summary-title summary-left">Experiencia laboral</h3>
-  <h3 class="summary-title summary-right">Logros destacados</h3>
-  <h3 class="summary-title summary-left">Estudios</h3>
-  <h3 class="summary-title summary-right">Certificaciones</h3>
-  <h3 class="summary-title summary-left">Conocimientos</h3>
-  <h3 class="summary-title summary-right">Idiomas</h3>
-  <h3 class="summary-title summary-left">Más Información</h3>
-  <h3 class="summary-title summary-right">Contacto</h3>
-</section>
-<!-- <section id="resumen" class="summary">
-  <h2>Resumen</h2>
-  <section class="curriculum-section-container">
-    <div class="summary-content work-experience">
-  <div class="summary-title">
-    <span>📁</span>
-    <h3>Experiencia laboral</h3>
-  </div>
-  <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Full Stack Developer</h4>
-        <div class="summary-subtitle">Eurobanan | Julio 2024 - Actualidad</div>
-      </div>
-      <Image src={EurobananLogo} 
-      loading="lazy" 
-      style={{width: 'auto'}}
-      alt="Imagen de la compañia Eurobanan" />
-    </div>
-    <span class="summary-description">
-      • Participación activa en desarrollo FullStack (frontend + backend).
-      <br/>
-      • Uso de React con TypeScript y backend en C#/.NET.
-      <br/>
-      • Colaboración en la mejora de la interfaz, rendimiento y experiencia de usuario.
-      <br/>
-      • Gestión integral de proyectos: desde user stories hasta desarrollo e implementación.
-      <br/>
-      • Diseño de arquitecturas de software, desarrollo de backend y frontend.
-      <br/>
-      • Revisión y control de calidad mediante pull requests.
-      <br/>
-      • Creación de proyectos con IA en Python, orientados a la automatización y eficiencia.
-      <br/>
-      • Participación en el comité interno de inteligencia artificial.
-      <br/>
-      • Impartición de charlas técnicas sobre aplicaciones de la IA en el entorno laboral.
-    </span>
-  </div>
 
-  <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Trainee Backend Developer</h4>
-        <div class="summary-subtitle">Inetum | Marzo 2024 - Junio 2024</div>
-      </div>
-      <Image src={InetumLogo} loading="lazy" 
-      style={{width: 'auto'}}
-      alt="Imagen de la compañia Inetum" />
-    </div>
-    <span class="summary-description">
-      • Desarrollo de funcionalidades backend en C# dentro de una arquitectura basada en microservicios.
-      <br/>
-      • Diseño e implementación de microservicios orientados a la automatización de tareas repetitivas y operativas.
-      <br/>
-      • Optimización del rendimiento del sistema y mejora de la eficiencia de procesos críticos.
-    </span>
-  </div>
-</div>
-
-<div class="summary-content studies">
-  <div class="summary-title">
-    <span>🎓</span>
-    <h3>Estudios</h3>
-  </div>
-
-  <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Especialización Inteligencia Artificial y Big Data</h4>
-        <div class="summary-subtitle">IES San Vicente | Sep. 2024 - Jun. 2025</div>
-      </div>
-      <Image src={SanVicenteLogo} loading="lazy" 
-      style={{width: 'auto'}}
-      alt="Imagen del instituto IES San Vicente" />
-    </div>
-  </div>
-
-  <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Grado Superior en Desarrollo de Aplicaciones Web</h4>
-        <div class="summary-subtitle">IES San Vicente | Sep. 2022 - Jun. 2024</div>
-      </div>
-      <Image src={SanVicenteLogo} loading="lazy" 
-      style={{width: 'auto'}}
-      alt="Imagen del instituto IES San Vicente" />
-    </div>
-  </div>
-
-   <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Bachillerato Técnico Científico</h4>
-        <div class="summary-subtitle">IES María Blasco | Sep. 2020 - Jun. 2022</div>
-      </div>
-      <Image src={MariaBlascoLogo} loading="lazy" 
-      style={{width: 'auto'}}
-      alt="Imagen del instituto IES María Blasco" />
-    </div>
-  </div>
-
-</div>
-<div class="summary-content achievements">
-  <div class="summary-title">
-    <span>🎯</span>
-    <h3>Logros destacados</h3>
-  </div>
-
-  <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Tercer Puesto en la 8va Edición de FemFutur</h4>
-        <div class="summary-subtitle">La Caixa | Mayo 2024</div>
-      </div>
-      <Image src={LaCaixaLogo} loading="lazy" 
-      style={{width: 'auto'}}
-      alt="Imagen de la compañia Inetum" />
-    </div>
-    <span class="summary-description">
-      Participé en el concurso FemFutur, organizado por la Generalitat, La Caixa y SECOT, donde desarrollé y presenté mi proyecto empresarial YoTeLimpio, una plataforma web que simplifica la búsqueda de limpiadores para el hogar. Avancé a través de varias etapas contra más de 200 participantes hasta llegar a la final en Valencia, donde tuve la oportunidad de presentar mi proyecto ante una gran audiencia y logré obtener finalmente el tercer puesto.
-    </span>
-  </div>
-
-</div>
-<div class="summary-content certifications">
-  <div class="summary-title">
-    <span>📜</span>
-    <h3>Certificaciones</h3>
-  </div>
-</div>
-<div class="summary-content knowledge">
-  <div class="summary-title">
-    <span>🧠</span>
-    <h3>Conocimientos</h3>
-  </div>
-</div>
-<div class="summary-content languages">
-  <div class="summary-title">
-    <span>🗣️</span>
-    <h3>Idiomas</h3>
-  </div>
-
-  <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Castellano: Nativo</h4>
-      </div>
-  </div>
-  </div>
-
-  <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Valenciano: B2</h4>
-      </div>
-  </div>
-  </div>
-
-  <div class="summary-item">
-    <div class="summary-item-top">
-      <div class="summary-left">
-        <h4>Inglés: B2</h4>
-      </div>
-  </div>
-  </div>
-</div>
-<div class="summary-content more-info">
-  <div class="summary-title">
-    <span>📌</span>
-    <h3>Más información</h3>
-  </div>
-</div>
-<div class="summary-content summary-contact">
-  <div class="summary-title">
-    <span>✉️</span>
-    <h3>Contacto</h3>
+  <div class="timeline">
     <div class="summary-item">
-    <span class="summary-description">
-      +34 65 3039 281
-      hector.pascual.marin@gmail.com
-    </span>
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">FullStack Developer</h4>
+            <span class="summary-subtitle">Eurobanan | Julio 2024 - Actualidad</span>
+          </div>
+          <Image src={EurobananLogo} class="summary-image" alt="Logo de la empresa Eurobanan" loading="eager" />
+        </div>
+        <p class="summary-description">
+          · Desarrollo y mantenimiento de Altair, un sistema interno de gestión general de todo el negocio.
+          <br/>· Desarrollo de test unitarios.
+          <br/>· Diseño y desarrollo de un chatbot de inteligencia artificial para soporte web.
+          <br/>· Elaboración de documentación técnica para garantizar la mantenibilidad del sistema.
+          <br/>· Implementación de React con TypeScript, Vite y DevExpress en el FrontEnd.
+          <br/>· Desarrollo del BackEnd en C# y .NET Core, asegurando escalabilidad y rendimiento.
+          <br/>· Colaboración en la definición de arquitectura (Clean Architecture) y mejora de procesos internos.
+          <br/>· Creación de API Rest comunicadas con el BackEnd. 
+          <br/>· Creación y gestión de User Stories y Pull Requests (PRs) para optimizar el flujo de trabajo en el equipo de desarrollo.
+        </p>
+      </div>
+    </div>
+
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">BackEnd Developer</h4>
+            <span class="summary-subtitle">Inetum | Marzo 2024 - Junio 2024</span>
+          </div>
+          <Image src={InetumLogo} class="summary-image" alt="Logo de la consultora Inetum" loading="eager" />
+        </div>
+        <p class="summary-description">
+          · Desarrollo y gestión de microservicios en C# y .NET Core para el ámbito sanitario.
+          <br/>· Automatización de flujos de trabajo con Azure Logic Apps.
+          <br/>· Colaboración con un equipo multidisciplinario en un sistema con más de200 profesionales involucrados.
+        </p>
+      </div>
     </div>
   </div>
-      <span>Linkedin</span>
-    <span>Github</span>
-    <span>Contactar</span>
-    <span>Ver Curriculum</span>
-</div>
-  </section>
-</section> -->
+   <h3 class="summary-title summary-left">Estudios</h3>
+  <div class="timeline">
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">Especialización en Inteligencia Artificial y Big Data</h4>
+            <span class="summary-subtitle">IES San Vicente | Septiembre 2024 - Junio 2025</span>
+          </div>
+          <Image src={SanVicenteLogo} class="summary-image" alt="Logo del instituto IES San Vicente" loading="eager" />
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">Técnico Superior en Desarrollo de Aplicaciones Web</h4>
+            <span class="summary-subtitle">IES San Vicente | Septiembre 2022 - Junio 2024</span>
+          </div>
+          <Image src={SanVicenteLogo} class="summary-image" alt="Logo del instituto IES San Vicente" loading="eager" />
+        </div>
+      </div>
+    </div>
+
+  <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">Bachillerato Técnico Científico</h4>
+            <span class="summary-subtitle">ES María Blasco | Septiembre 2020 - Junio 2022</span>
+          </div>
+          <Image src={MariaBlascoLogo} class="summary-image" alt="Logo del instituto IES María Blasco" loading="eager" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <h3 class="summary-title contact-title summary-left">Contacto</h3>
+  <div class="timeline">
+
+        <p class="summary-description">
+          <br/>hector.pascual.marin@gmail.com
+          <br/>+34 65 3039 281
+        </p>
+        <div id="action-buttons">
+        <a href="#contacto" title="Contáctame" class="hero-button primary-button button">Contáctame</a>
+        <a href="/curriculum" title="Ver Currículum" class="secondary-button button">Ver Curriculum</a>
+        </div>
+  </div>
+  </div>
+    <div class="side-item">
+  <h3 class="summary-title summary-right">Logros destacados</h3>
+  <div class="timeline">
+    <div class="summary-item">
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">3er Premio de FemFutur</h4>
+            <span class="summary-subtitle">Caixa Popular | Mayo 2024</span>
+          </div>
+        </div>
+        <p class="summary-description">
+          Creación de plataforma web para la búsqueda de limpiadores domésticos. Finalista en FemFutur Caixa Popular 2024, obteniendo el 3er puesto entremás de 200 participantes.
+        </p>
+      </div>
+    </div>
+  </div>
+  <h3 class="summary-title summary-right">Conocimientos</h3>
+  <div class="timeline">
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">FrontEnd</h4>
+          </div>
+        </div>
+        <p class="summary-description">
+         HTML, CSS, Bootstrap, JavaScript, TypeScript, React, SASS, AngularJS
+        </p>
+      </div>
+    </div>
+
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">BackEnd</h4>
+          </div>
+        </div>
+        <p class="summary-description">
+          C#, .NET Core, PHP, Python
+        </p>
+      </div>
+    </div>
+  </div>
+  <h3 class="summary-title summary-right contact-title">Idiomas</h3>
+  <div class="timeline">
+    <div class="summary-item">
+      <div class="summary-content-box">
+        <p class="summary-description">
+          <span class="bold">Castellano:</span> Nativo
+          <br/>
+          <span class="bold">Valenciano:</span> Alto (B2)
+          <br/>
+          <span class="bold">Inglés:</span> Alto (B2)
+        </p>
+      </div>
+    </div>
+  </div>
+    <h3 class="summary-title summary-right">Certificaciones</h3>
+  <div class="timeline">
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">Curso de .NET Framework (10 horas)</h4>
+            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
+          </div>
+          <Image src={OpenWebinarsLogo} class="summary-image" alt="Logo de la empresa OpenWebinars" loading="eager" />
+        </div>
+      </div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">Curso de TypeScript (14 horas)</h4>
+            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
+          </div>
+          <Image src={OpenWebinarsLogo} class="summary-image" alt="Logo de la empresa OpenWebinars" loading="eager" />
+        </div>
+      </div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">Curso de C# Intermedio (8 horas)</h4>
+            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
+          </div>
+          <Image src={OpenWebinarsLogo} class="summary-image" alt="Logo de la empresa OpenWebinars" loading="eager" />
+        </div>
+      </div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-marker"></div>
+      <div class="summary-content-box">
+        <div class="summary-header">
+          <div class="summary-text">
+            <h4 class="summary-job-title">Inglés Nivel B2 (Score 168)</h4>
+            <span class="summary-subtitle">Cambridge University | Agosto 2021</span>
+          </div>
+          <Image src={CambridgeLogo} class="summary-image" alt="Logo de la Cambridge University" loading="eager" />
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

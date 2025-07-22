@@ -2,13 +2,14 @@
 import '../styles/global.css'
 import '../styles/index.css'
 import Header from '../components/Header.astro'
-const { title } = Astro.props;
+import 'flag-icon-css/css/flag-icons.min.css'
+const { title } = Astro.props
 ---
 
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href='/src/assets/content/favicon.svg' />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content="Astro" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,17 +25,15 @@ const { title } = Astro.props;
 		<!-- Open Graph (para redes sociales) -->
 		<meta property="og:title" content="Héctor Pascual Marín - FullStack Developer | Programador Freelance en Alicante" />
 		<meta property="og:description" content="Soy Héctor Pascual Marín, FullStack Developer especializado en React y JavaScript. Como programador freelance en Alicante, ayudo a empresas a crear aplicaciones web a medida y soluciones tecnológicas personalizadas." />
-		<meta property="og:image" content="/path-to-your-image.jpg" />
+		<meta property="og:image" content="https://www.hectorpascual.com/images/hector-suit-picture.webp" />
 		<meta property="og:url" content="https://www.hectorpascual.com/" />
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="es_ES" />
 
 		<!-- Twitter Cards (para Twitter) -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:site" content="@hectorpascual" />
 		<meta name="twitter:title" content="Héctor Pascual Marín - FullStack Developer | Programador Freelance en Alicante" />
 		<meta name="twitter:description" content="Soy Héctor Pascual Marín, FullStack Developer especializado en React y JavaScript. Como programador freelance en Alicante, ayudo a empresas a crear aplicaciones web a medida y soluciones tecnológicas personalizadas." />
-		<meta name="twitter:image" content="/path-to-your-image.jpg" />
+		<meta name="twitter:image" content="https://www.hectorpascual.com/images/hector-suit-picture.webp" />
 
 		<!-- Schema.org (para enriquecer los resultados en Google) -->
 		<script type="application/ld+json">
@@ -43,7 +42,7 @@ const { title } = Astro.props;
 				"@type": "Person",
 				"name": "Héctor Pascual Marín",
 				"url": "https://www.hectorpascual.com",
-				"image": "https://www.hectorpascual.com/path-to-your-image.jpg",
+				"image": "https://www.hectorpascual.com/images/hector-suit-picture.webp",
 				"jobTitle": "FullStack Developer",
 				"sameAs": [
 					"https://www.linkedin.com/in/hectorpascual",
@@ -53,8 +52,8 @@ const { title } = Astro.props;
 		</script>
 
 		<!-- Verificación de la propiedad del sitio (Google, Bing, etc.) -->
-		<meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
-		<meta name="msvalidate.01" content="YOUR_VERIFICATION_CODE" />
+		<!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> -->
+		<!-- <meta name="msvalidate.01" content="YOUR_VERIFICATION_CODE" /> -->
 
 		<!-- Otras etiquetas importantes -->
 		<link rel="canonical" href="https://www.hectorpascual.com/" />

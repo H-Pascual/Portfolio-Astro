@@ -430,39 +430,124 @@ body {
 
 /* SUMMARY */
 
+.summary {
+  position: relative;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
 .summary-title {
   position: relative;
   margin: 2rem 0;
   font-size: 1.5rem;
+  max-width: var(--max-left-width);
 }
 
 .summary-left {
-  padding-left: 11rem;
+  padding-left: 7rem;
+  max-width: var(--max-left-width);
 }
 
 .summary-left::before {
-  right: calc(100% - 10rem);
-  left: 0;
-}
-
-.summary-right {
-  text-align: right;
-  padding-right: 11rem;
-}
-
-.summary-right::before {
-  left: calc(100% - 10rem);
-  right: 0;
-}
-
-.summary-title::before {
   content: "";
   position: absolute;
   top: 60%;
+  right: calc(100% - 6rem);
+  left: 0;
   height: 1px;
   background-color: var(--bold-color);
   transform: translateY(-50%);
 }
+
+.side-item {
+  position: static;
+  max-width: 550px;
+}
+
+.side-item .timeline {
+  padding-left: 4rem !important;
+}
+
+.summary-right {
+  text-align: left;
+  padding-right: 0;
+  padding-left: 2rem;
+}
+
+.timeline, .summary-left {
+  flex: 1 1 60%;
+  max-width: var(--max-left-width);
+  padding-left: 7rem;
+  position: relative;
+}
+
+.contact-title {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+.summary-item {
+  position: relative;
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+
+.summary-marker {
+  position: absolute;
+  left: -1.1rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.summary-content-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: var(--max-left-width);
+}
+
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.summary-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-job-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.summary-subtitle {
+  font-size: 0.9rem;
+  color: var(--soft-color);
+}
+
+.summary-description {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.summary-image {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  margin-left: 1rem;
+}
+
 /* LINKEDIN */
 .linkedin-container {
   display: flex;

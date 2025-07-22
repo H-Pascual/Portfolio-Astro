@@ -12,6 +12,9 @@
     --bold-color: #5f320a;
     --black-text-color: #333;
     --dark-color: black;
+
+    --max-left-width: 650px;
+    --max-right-width: 250px;
 }
 
 body {

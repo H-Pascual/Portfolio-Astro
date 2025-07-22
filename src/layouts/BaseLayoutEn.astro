@@ -1,0 +1,71 @@
+---
+import '../styles/global.css'
+import '../styles/index.css'
+import HeaderEn from '../components/en/HeaderEn.astro'
+import 'flag-icon-css/css/flag-icons.min.css'
+const { title } = Astro.props
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href='/src/assets/content/favicon.svg' />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content="Astro" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>{title ?? 'Héctor Pascual Marín - FullStack Developer | Alicante Programmer'}</title>
+		<meta name="description" content="I'm Héctor Pascual Marín, a FullStack Developer specializing in React and JavaScript. As a programmer in Alicante, I help companies build custom web applications and technological solutions." />
+		<meta name="keywords" content="Héctor Pascual, Héctor Pascual Marín, FullStack Developer, Freelance Programmer, Alicante, React, Web Development, Website Creation, Hire a Programmer, Programmer in Alicante" />
+		<meta name="author" content="Héctor Pascual Marín" />
+		<meta name="language" content="en" />
+		<meta name="robots" content="index, follow" />
+		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+
+		<!-- Revisar código a partir de aquí -->
+		<!-- Open Graph (para redes sociales) -->
+		<meta property="og:title" content="Héctor Pascual Marín - Full Stack Developer | Freelance Programmer in Alicante" />
+		<meta property="og:description" content="I'm Héctor Pascual Marín, a FullStack Developer specializing in React and JavaScript. As a freelance programmer in Alicante, I help companies build custom web applications and technological solutions." />
+		<meta property="og:image" content="https://www.hectorpascual.com/images/hector-suit-picture.webp" />
+		<meta property="og:url" content="https://www.hectorpascual.com/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en_GB" />
+
+		<!-- Twitter Cards (para Twitter) -->
+		<meta name="twitter:title" content="Héctor Pascual Marín - Full Stack Developer | Freelance Programmer in Alicante" />
+		<meta name="twitter:description" content="I'm Héctor Pascual Marín, a FullStack Developer specializing in React and JavaScript. As a freelance programmer in Alicante, I help companies build custom web applications and technological solutions." />
+		<meta name="twitter:image" content="https://www.hectorpascual.com/images/hector-suit-picture.webp" />
+
+		<!-- Schema.org (para enriquecer los resultados en Google) -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Héctor Pascual Marín",
+				"url": "https://www.hectorpascual.com",
+				"image": "https://www.hectorpascual.com/images/hector-suit-picture.webp",
+				"jobTitle": "FullStack Developer",
+				"sameAs": [
+					"https://www.linkedin.com/in/hectorpascual",
+					"https://github.com/hectorpascual"
+				]
+			}
+		</script>
+
+		<!-- Verificación de la propiedad del sitio (Google, Bing, etc.) -->
+		<!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> -->
+		<!-- <meta name="msvalidate.01" content="YOUR_VERIFICATION_CODE" /> -->
+
+		<!-- Otras etiquetas importantes -->
+		<link rel="canonical" href="https://www.hectorpascual.com/" />
+		<link rel="stylesheet" href="styles.css" />
+
+		<!-- Evitar que los motores de búsqueda indexen contenido duplicado -->
+		<link rel="alternate" hreflang="en" href="https://www.hectorpascual.com/" />
+	</head>
+	<body>
+		<HeaderEn></HeaderEn>
+		<main>
+            <slot />
+		</main>
+	</body>
+</html>

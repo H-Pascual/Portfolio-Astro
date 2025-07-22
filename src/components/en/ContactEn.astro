@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets'
+import HectorStandWhiteShirt from '../../assets/content/hector-stand-white-shirt.png'
+---
+
+<section id="contact" aria-label="">
+    <div class="contact">
+    <h2>Contact me!</h2>
+    <form action="" class="contact-form">
+        <div class="name label">
+            <input id="name" type="text" placeholder=" ">
+            <label for="name">Name/Company</label>
+        </div>
+        <div class="email label">
+            <input id="email" type="email" placeholder=" ">
+            <label for="email">Email</label>
+        </div>
+        <div class="subject label">
+            <input id="subject" type="text" placeholder=" ">
+            <label for="subject">Subject</label>
+        </div>
+        <div class="content label">
+            <input id="content" class="content-input" type="text" placeholder=" ">
+            <label for="content">Content</label>
+        </div>
+        <div class="buttons">
+        <input type="submit" value="Send" class="submit-button button primary-button">
+        <input type="button" value="Delete" class="secondary-button button">
+        </div>
+    </form>
+    </div>
+    <Image loading={"lazy"} src={HectorStandWhiteShirt} class="contact-image" alt="Hector standing in a white sweatshirt" />
+</section>

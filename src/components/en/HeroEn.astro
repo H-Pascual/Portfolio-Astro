@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets'
+import HectorSuitPicture from '../../assets/content/hector-suit-picture.webp'
+---
+<section id='inicio' class="hero" aria-label="Looking for a Full Stack Developer? Contact me.">
+    <div class="hero-content">
+        <h2 class="hero-title">Are you looking for a FullStack Developer?</h2>
+        <p class="hero-description">I'm Héctor Pascual, <span class="bold">FullStack Developer</span> from Alicante specialized in the creation of quality websites. I have experience in technologies such as <span class="bold">React</span> and <span class="bold">TypeScript</span> in the Frontend and <span class="bold">C#</span> in Backend.</p>
+        <div id="action-buttons">
+        <a href="#contacto" title="Contact me" class="hero-button primary-button button">Contact me</a>
+        <a href="/curriculum" title="See Curriculum" class="secondary-button button">See Curriculum</a>
+        </div>
+    </div>
+        <Image src={HectorSuitPicture}
+        class="hero-image"
+        loading="eager"
+        alt="Héctor Pascual Marín posing in a suit" />
+</section>

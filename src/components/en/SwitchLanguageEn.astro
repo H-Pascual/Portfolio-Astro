@@ -3,7 +3,7 @@ const languages = [
   { code: 'es', label: 'Castellano', flagCode: 'es' },
   { code: 'en', label: 'Inglés', flagCode: 'gb' },
 ];
-const defaultLang = 'es';
+const defaultLang = 'en';
 ---
 
 <style>
@@ -65,7 +65,7 @@ const defaultLang = 'es';
 }
 </style>
 
-<div class="language-switch" id="language-switch" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-label="Seleccionar idioma">
+<div class="language-switch" id="language-switch" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
   <div class="selected" id="selected-language" aria-live="polite">
     <span class={`flag-icon flag-icon-${languages.find(lang => lang.code === defaultLang).flagCode}`}></span>
   </div>
@@ -104,18 +104,15 @@ const defaultLang = 'es';
     const path = url.pathname;
 
     if (lang === 'en') {
-      // Si no empieza con /en/, lo añadimos
       if (!path.startsWith('/en/')) {
         url.pathname = '/en' + (path === '/' ? '/' : path);
       }
     } else {
-      // Español: quitamos /en/ si está
       if (path.startsWith('/en/')) {
         url.pathname = path.replace(/^\/en/, '');
       }
     }
 
-    // Redirigimos sólo si la URL cambió
     if (window.location.href !== url.toString()) {
       window.location.href = url.toString();
     }
@@ -136,11 +133,9 @@ const defaultLang = 'es';
       const lang = option.getAttribute('data-lang');
       currentLang = lang;
 
-      // Actualiza la bandera visible con ambas clases
       const flagCode = option.querySelector('span').className.split(' ').find(c => c.startsWith('flag-icon-'));
       selectedEl.innerHTML = `<span class="flag-icon ${flagCode}"></span>`;
 
-      // Actualiza aria-selected en opciones
       optionsEl.querySelectorAll('.option').forEach(opt => {
         opt.setAttribute('aria-selected', opt === option ? 'true' : 'false');
       });
