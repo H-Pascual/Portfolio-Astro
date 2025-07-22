@@ -1,0 +1,28 @@
+---
+const { difficulty = 0 } = Astro.props;
+const level = Math.max(0, Math.min(3, difficulty));
+---
+
+<svg viewBox="0 0 100 100" width="20" height="20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="display: block;">
+  <defs>
+    <clipPath id="clip-triangle">
+      <polygon points="0,100 100,100 100,0" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-triangle)">
+    <rect 
+      x="0" y="0" width="30" height="100"
+      fill={level >= 1 ? "var(--primary-color)" : "var(--background-color)"}
+    />
+    <rect x="30" y="0" width="1" height="100" fill="transparent" />
+    <rect 
+      x="33" y="0" width="28" height="100"
+      fill={level >= 2 ? "var(--primary-color)" : "var(--background-color)"}
+    />
+    <rect x="63" y="0" width="1" height="100" fill="transparent" />
+    <rect 
+      x="66" y="0" width="28" height="100"
+      fill={level >= 3 ? "var(--primary-color)" : "var(--background-color)"}
+    />
+  </g>
+</svg>

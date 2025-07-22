@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import { FeaturedProjectsList } from '../data';
+import TriangleDifficulty from './TriangleDifficulty.astro';
 ---
 <!-- Cambiar dificultad y permitir que al hacer click vayas directamente a los detalles -->
 <section id="proyectos" class="projects" aria-label="Projectos personales destacados">
@@ -22,7 +23,7 @@ import { FeaturedProjectsList } from '../data';
     <span class="project-name">{project.Name}</span>
 
     <div class="project-toolbar">
-        <span>{project.Difficulty}</span>
+        <span><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></span>
         <div style={{ display: "flex", gap: "5px" }}>
             {
                 project.Languages.map(lang => (
