@@ -234,7 +234,7 @@ body {
 
   .contact {
     position: absolute;
-    width: 80%;
+    width: 70%;
     height: 70%;
     margin-left: 280px;
     margin-top: 50px;
@@ -343,7 +343,7 @@ body {
     overflow: hidden;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 900px) {
   .contact-image {
     display: none;
   }
@@ -393,8 +393,8 @@ body {
 }
 
 .projects-items .button {
-    margin: 13px;
-    width: 10%;
+    margin: 15px;
+    width: 20%;
 }
 
 .project-image-container {
@@ -689,7 +689,7 @@ body {
 .hero-container {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
