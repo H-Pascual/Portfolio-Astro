@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets'
+import { FeaturedProjectsList } from '../../data';
+import TriangleDifficulty from './../TriangleDifficulty.astro';
+---
+
+<section id="proyectos" class="projects" aria-label="Featured personal projects">
+    <div class="projects-items">
+        <h2 class="projects-title">Featured Projects</h2>
+        <div class="projects-preview">
+            {
+                FeaturedProjectsList.map(project => (
+            <div class="project-image-container">
+                <a href={project.DetailsLink.Href} class="invisible-link"
+                title={project.DetailsLink.Title}
+                target={project.DetailsLink.Target ? '_blank' : '_self'}>
+    <Image 
+        class="project-image"
+        src={project.CoverImage.Image}
+        alt={project.CoverImage.Alt}
+        loading="lazy"
+    />
+    <span class="project-name">{project.Name}</span>
+
+    <div class="project-toolbar">
+        <span><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></span>
+        <div style={{ display: "flex", gap: "5px" }}>
+            {
+                project.Languages.map(lang => (
+                    <Image 
+                        src={lang.Logo.Image}
+                        alt={lang.Logo.Alt}
+                        title={lang.Name}
+                        style={{ height: '20px' }}
+                    />
+                ))
+            }
+        </div>
+    </div>
+    </a>
+</div>
+        ))
+            }
+        </div>
+        <a href="/projects" title="See more" class="see-more primary-button button">See more</a>
+    </div>
+</section>
+ <div class="wave-container"></div>

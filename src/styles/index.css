@@ -505,6 +505,16 @@ body {
 
 /* SUMMARY */
 
+.github {
+color: var(--background-color);
+font-weight: 700; 
+background-color: #181717;
+}
+
+.github:hover {
+  background-color: #080a0e;
+}
+
 .linkedin {
   color: var(--background-color);
   background-color: #0077B5;

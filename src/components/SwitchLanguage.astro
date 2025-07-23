@@ -67,7 +67,7 @@ const defaultLang = 'es';
 
 <div class="language-switch" id="language-switch" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-label="Seleccionar idioma">
   <div class="selected" id="selected-language" aria-live="polite">
-    <span class={`flag-icon flag-icon-${languages.find(lang => lang.code === defaultLang).flagCode}`}></span>
+    <span class={`flag-icon flag-icon-${languages.find(lang => lang.code === defaultLang)!.flagCode}`}></span>
   </div>
   <div class="options" id="language-options" role="listbox">
     {languages.map(({ code, label, flagCode }) => (
@@ -84,13 +84,13 @@ const defaultLang = 'es';
 </div>
 
 <script>
-  const switchEl = document.getElementById('language-switch');
-  const selectedEl = document.getElementById('selected-language');
-  const optionsEl = document.getElementById('language-options');
+  const switchEl = document.getElementById('language-switch')!;
+  const selectedEl = document.getElementById('selected-language')!;
+  const optionsEl = document.getElementById('language-options')!;
   let currentLang = '{defaultLang}';
 
   function toggleOptions() {
-    const isOpen = optionsEl.classList.toggle('show');
+    const isOpen = optionsEl.classList.toggle('show')!;
     switchEl.setAttribute('aria-expanded', isOpen);
   }
 
@@ -133,11 +133,11 @@ const defaultLang = 'es';
 
   optionsEl.querySelectorAll('.option').forEach(option => {
     option.addEventListener('click', () => {
-      const lang = option.getAttribute('data-lang');
+      const lang = option.getAttribute('data-lang')!;
       currentLang = lang;
 
       // Actualiza la bandera visible con ambas clases
-      const flagCode = option.querySelector('span').className.split(' ').find(c => c.startsWith('flag-icon-'));
+      const flagCode = option.querySelector('span')!.className.split(' ').find(c => c.startsWith('flag-icon-'));
       selectedEl.innerHTML = `<span class="flag-icon ${flagCode}"></span>`;
 
       // Actualiza aria-selected en opciones
