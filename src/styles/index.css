@@ -72,6 +72,14 @@ body {
     z-index: 0;
 }
 
+@media(max-width:450px) {
+  #action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  } 
+}
+
 @media (max-width: 988px) {
   .hero {
     display: grid;
@@ -236,7 +244,6 @@ body {
   .contact {
     position: absolute;
     width: 70%;
-    height: 70%;
     margin-left: 280px;
     margin-top: 50px;
   }
@@ -250,6 +257,7 @@ body {
     "buttons buttons";
     border-radius: 10px;
     padding: 5px;
+    padding-bottom: 0px;
     box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.3);
 
     .label {
@@ -344,7 +352,7 @@ body {
     overflow: hidden;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .contact-image {
     display: none;
   }
@@ -368,7 +376,8 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 15px;
+    gap: 10px;
+    margin: 5px;
 }
 
 
@@ -470,6 +479,8 @@ body {
   height: 14vh;
   background-color: var(--secondary-background-color);
   position: relative;
+  padding-top: -25px;
+  padding-bottom: -25px;
 }
 
 .wave-container::before {   
@@ -527,7 +538,7 @@ body {
   content: "";
   position: absolute;
   top: 60%;
-  right: calc(100% - 6rem);
+  right: calc(100% - 2rem);
   left: 0;
   height: 1px;
   background-color: var(--bold-color);
@@ -552,7 +563,7 @@ body {
 .timeline, .summary-left {
   flex: 1 1 60%;
   max-width: var(--max-left-width);
-  padding-left: 7rem;
+  padding-left: 3rem;
   position: relative;
 }
 
