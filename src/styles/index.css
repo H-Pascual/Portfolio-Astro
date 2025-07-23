@@ -648,6 +648,10 @@ body {
   .small-item {
     display: block;
   }
+
+  .timeline, .summary-left { 
+    max-width: max-content;
+  }
 }
 
 @media(min-width:1050px) {
