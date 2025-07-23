@@ -76,6 +76,7 @@ body {
   .hero {
     display: grid;
     grid-template-columns: auto;
+    min-height: 500px;
   }
 
   .hero-content {
