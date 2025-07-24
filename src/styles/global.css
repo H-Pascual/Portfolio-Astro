@@ -18,7 +18,7 @@
 }
 
 body {
-    font-family: 'Raleway', serif;
+    font-family: 'Raleway', sans-serif;
     background-color: var(--background-color);
     margin: 0;
 }

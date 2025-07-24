@@ -19,6 +19,7 @@ import Filter from "../components/Filter.astro";
                 title={project.DetailsLink?.Title}
                 target={project.DetailsLink.Target ? '_blank' : '_self'}>
                     <Image 
+                        format="webp"
                         class="project-image"
                         src={project.CoverImage?.Image}
                         alt={project.CoverImage?.Alt}
@@ -32,6 +33,7 @@ import Filter from "../components/Filter.astro";
                             {
                                 project.Languages.map(lang => (
                                     <Image 
+                                        format="webp"
                                         src={lang.Logo.Image}
                                         alt={lang.Logo.Alt || 'Imagen del proyecto'}
                                         title={lang.Name}

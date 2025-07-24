@@ -17,6 +17,7 @@ import TriangleDifficulty from './TriangleDifficulty.astro';
     <Image 
         class="project-image"
         src={project.CoverImage.Image}
+        format="webp"
         alt={project.CoverImage.Alt}
         loading="lazy"
     />
@@ -28,6 +29,7 @@ import TriangleDifficulty from './TriangleDifficulty.astro';
             {
                 project.Languages.map(lang => (
                     <Image 
+                        format="webp"
                         src={lang.Logo.Image}
                         alt={lang.Logo.Alt}
                         loading="lazy"
