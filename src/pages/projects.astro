@@ -1,5 +1,50 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets'
+import TriangleDifficulty from '../components/TriangleDifficulty.astro';
+import { ProjectList } from '../data';
+import Filter from "../components/Filter.astro";
 ---
+<!-- Añadir filtrado de datos por: Dificultad, Titulo, Tecnologias -->
 <BaseLayout title="Proyectos - Héctor Pascual Marín | FullStack Developer">
+    <section class="all-projects" id="all-projects" aria-label="All programming projects">
+        <h2>Proyectos</h2>
+        <Filter></Filter>
+        <div class="projects-container">
+            {
+                ProjectList.map(project => (
+            <div class="project-image-container">
+                <a href={project.DetailsLink?.Href} 
+                class="invisible-link"
+                title={project.DetailsLink?.Title}
+                target={project.DetailsLink.Target ? '_blank' : '_self'}>
+                    <Image 
+                        class="project-image"
+                        src={project.CoverImage?.Image}
+                        alt={project.CoverImage?.Alt}
+                        loading="eager"
+                    />
+                    <span class="project-name">{project.Name}</span>
+
+                    <div class="project-toolbar">
+                        <span><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></span>
+                        <div style={{ display: "flex", gap: "5px" }}>
+                            {
+                                project.Languages.map(lang => (
+                                    <Image 
+                                        src={lang.Logo.Image}
+                                        alt={lang.Logo.Alt || 'Imagen del proyecto'}
+                                        title={lang.Name}
+                                        loading="eager"
+                                        style={{ height: '20px' }}
+                                    />
+                                ))
+                            }
+                        </div>
+                    </div>
+                </a>
+            </div>
+        ))}
+        </div>
+    </section>
 </BaseLayout>
