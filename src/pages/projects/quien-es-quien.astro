@@ -1,5 +1,6 @@
 ---
 import Details from "../../layouts/Details.astro";
+import { ProjectList } from "../../data";
 ---
-<Details>
+<Details project={ProjectList.find(proj => proj.ID == '4bc0e413-0fc2-4353-acf0-7c92c5937203')}>
 </Details>

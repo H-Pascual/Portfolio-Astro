@@ -804,3 +804,14 @@ background-color: #181717;
   align-items: center;
 }
 }
+
+/* Detalles de proyecto */
+
+.recommended-projects {
+  padding: 2em;
+}
+
+.project-details {
+  margin-top: 20px;
+  padding: 2em;
+}
