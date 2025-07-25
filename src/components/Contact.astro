@@ -2,34 +2,133 @@
 import { Image } from 'astro:assets'
 import HectorStandWhiteShirt from '../assets/content/hector-stand-white-shirt.png'
 ---
-<!-- Arreglar bug content -->
-<!-- Hacer funcional botones -->
-<!-- Validación de campos -->
-<section id="contacto" aria-label="">
-    <div class="contact">
+<section id="contacto" aria-label="Formulario de contacto">
+  <div class="contact">
     <h2>¡Contáctame!</h2>
-    <form action="" class="contact-form">
-        <div class="name label">
-            <input id="name" type="text" placeholder=" ">
-            <label for="name">Nombre/Empresa</label>
-        </div>
-        <div class="email label">
-            <input id="email" type="email" placeholder=" ">
-            <label for="email">Email</label>
-        </div>
-        <div class="subject label">
-            <input id="subject" type="text" placeholder=" ">
-            <label for="subject">Asunto</label>
-        </div>
-        <div class="content label">
-            <input id="content" class="content-input" type="text" placeholder=" ">
-            <label for="content">Contenido</label>
-        </div>
-        <div class="buttons">
-        <input type="submit" value="Enviar" class="submit-button button primary-button">
-        <input type="button" value="Borrar" class="secondary-button button">
-        </div>
+    <form action="https://formspree.io/f/mrblqqqv" id="contact-form" method="POST" class="contact-form" novalidate>
+      <div class="name label">
+        <input id="name" name="name" type="text" placeholder=" " required minlength="2" />
+        <label for="name">Nombre/Empresa</label>
+        <span class="error-message" aria-live="polite"></span>
+      </div>
+      <div class="email label">
+        <input id="email" name="email" type="email" placeholder=" " required />
+        <label for="email">Email</label>
+        <span class="error-message" aria-live="polite"></span>
+      </div>
+      <div class="subject label">
+        <input id="subject" name="subject" type="text" placeholder=" " required minlength="2" />
+        <label for="subject">Asunto</label>
+        <span class="error-message" aria-live="polite"></span>
+      </div>
+      <div class="content label">
+        <textarea id="content" class="content-input" name="content" placeholder=" " required minlength="10"></textarea>
+        <label for="content">Contenido</label>
+        <span class="error-message" aria-live="polite"></span>
+      </div>
+      <div class="buttons">
+        <input type="submit" value="Enviar" class="submit-button button primary-button" />
+        <input type="button" value="Borrar" id="reset-button" class="secondary-button button" />
+      </div>
+      <p id="form-message" role="alert" aria-live="assertive"></p>
     </form>
-    </div>
-    <Image format="webp" loading={"lazy"} src={HectorStandWhiteShirt} class="contact-image" alt="Héctor de pie con una sudadera blanca" />
+  </div>
+  <Image format="webp" loading="lazy" src={HectorStandWhiteShirt} class="contact-image" alt="Héctor de pie con una sudadera blanca" />
 </section>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const resetBtn = document.getElementById('reset-button');
+  const formMessage = document.getElementById('form-message');
+
+  function showError(input, message) {
+    const errorSpan = input.parentElement.querySelector('.error-message');
+    if (errorSpan) {
+      errorSpan.textContent = message;
+    }
+    input.setAttribute('aria-invalid', 'true');
+  }
+
+  function clearErrors() {
+    form.querySelectorAll('.error-message').forEach(span => (span.textContent = ''));
+    form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+    formMessage.textContent = '';
+    formMessage.className = '';
+  }
+
+  function validateForm() {
+    clearErrors();
+    let valid = true;
+
+    const name = form.elements['name'];
+    if (!name.value.trim() || name.value.trim().length < 2) {
+      showError(name, 'Por favor, ingresa un nombre o empresa válido (mínimo 2 caracteres).');
+      valid = false;
+    }
+
+    const email = form.elements['email'];
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
+      showError(email, 'Por favor, ingresa un email válido.');
+      valid = false;
+    }
+
+    const subject = form.elements['subject'];
+    if (!subject.value.trim() || subject.value.trim().length < 2) {
+      showError(subject, 'Por favor, ingresa un asunto válido (mínimo 2 caracteres).');
+      valid = false;
+    }
+
+    const content = form.elements['content'];
+    if (!content.value.trim() || content.value.trim().length < 10) {
+      showError(content, 'Por favor, escribe un contenido con al menos 10 caracteres.');
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  function showFormMessage(text, type = 'error') {
+    formMessage.textContent = text;
+    formMessage.className = `show ${type}`;
+    setTimeout(() => {
+      formMessage.classList.remove('show', type);
+      // Solo limpiar mensaje cuando desaparece para evitar sobreposiciones
+      if (!formMessage.classList.contains('show')) {
+        formMessage.textContent = '';
+      }
+    }, 4000);
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      showFormMessage('Por favor corrige los errores en el formulario.', 'error');
+      return;
+    }
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        showFormMessage('¡Mensaje enviado con éxito!', 'success');
+        form.reset();
+      } else {
+        showFormMessage('Error al enviar el mensaje. Inténtalo de nuevo.', 'error');
+      }
+    }).catch(() => {
+      showFormMessage('Error de red. Verifica tu conexión.', 'error');
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    form.reset();
+    clearErrors();
+    formMessage.textContent = '';
+    formMessage.className = '';
+  });
+</script>

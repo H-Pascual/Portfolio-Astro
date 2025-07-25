@@ -341,6 +341,71 @@ body {
     height: 280px !important;
 }
 
+.contact-form textarea:focus ~ label,
+.contact-form textarea:not(:placeholder-shown) ~ label {
+  top: -8px;
+  font-size: 13px;
+}
+
+.contact-form textarea.content-input {
+  font-size: 12px;
+  width: 100%;
+  height: 280px;
+  padding: 12px 20px;
+  border: 1px solid var(--text-contrast-color);
+  border-radius: 4px;
+  background: var(--primary-color);
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: 1.4;
+  cursor: text;
+  resize: vertical;
+}
+
+.contact-form textarea:-webkit-autofill {
+  background-color: transparent !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--primary-color) inset !important;
+  -webkit-text-fill-color: var(--text-contrast-color) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.contact-form textarea:focus {
+  outline: none;
+}
+
+#form-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 320px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+#form-message.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#form-message.error {
+  background-color: #ffdddd;
+  color: #b00020;
+  border: 1.5px solid #b00020;
+}
+
+#form-message.success {
+  background-color: #ddffdd;
+  color: #1b5e20;
+  border: 1.5px solid #1b5e20;
+}
+
 .contact-image {
     position: absolute;
     width: 100%;
@@ -364,6 +429,34 @@ body {
     margin-left: 40px;
     margin-top: 50px;
   }
+}
+
+label {
+  position: relative;
+}
+
+.error-message {
+  position: absolute;
+  bottom: -20px;
+  left: 15px;
+  font-size: 12px;
+  color: #b00020;
+  background-color: #ffdddd;
+  padding: 2px 6px;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(176, 0, 32, 0.3);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  min-width: max-content;
+}
+
+.label input[aria-invalid="true"] ~ .error-message,
+.label textarea[aria-invalid="true"] ~ .error-message {
+  opacity: 1;
+  pointer-events: auto;
 }
 /* Projects */
 .projects {
