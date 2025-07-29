@@ -8,19 +8,51 @@ const { project } = Astro.props;
 
 <BaseLayout>
     <section class="project-details" id="detalles" aria-label=`Detalles de proyecto ${project.Name}`>
-        <div class="details-images">
-
-        </div>
         <div class="details-title">
-            <h2>{project.Name}</h2> <!-- Añadir dificultad y languages -->
-            <div class="languages">
-
+            <h2>{project.Name}</h2>
+             <div style={{ display: "flex", gap: "5px" }}>
+            {
+                project.Languages.map(lang => (
+                    <Image 
+                        format="webp"
+                        src={lang.Logo.Image}
+                        alt={lang.Logo.Alt}
+                        title={lang.Name}
+                        style={{ height: '20px', width: 'auto' }}
+                    />
+                ))
+            }
             </div>
         </div>
-        <div class="details-difficulty"></div>
+        <div class="details-carousel">
+  <div class="details-carousel-wrapper">
+    <button class="details-carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
+    
+    <div class="details-carousel-track-container">
+      <div class="details-carousel-track">
+        {
+          project.Images.map(img => (
+            <Image 
+              format="webp"
+              src={img.Image}
+              alt={img.Alt}
+              class="details-carousel-image"
+              loading="lazy"
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <button class="details-carousel-button next" onclick="scrollCarousel(1)">&#10095;</button>
+  </div>
+</div>
+        <!-- Dates -->
+        <div class="details-difficulty">Dificultad: <div class="details-triangle"><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></div></div>
         <p class="details-description">{project.Description}</p>
         <div class="details-action-buttons">
-
+            {project.HasDemo && <a target="_blank" title={project?.DemoLink?.Title} href={project?.DemoLink?.Href} class="demo-button primary-button button">Ver Demo</a>}
+            <a target="_blank" title={project.GithubLink.Title} href={project.GithubLink.Href} class="github primary-button button">Github</a>
         </div>
     </section>
     <section class="recommended-projects" id="recomendados" aria-label="Proyectos recomendados">
@@ -65,3 +97,17 @@ const { project } = Astro.props;
         </div>
     </section>
 </BaseLayout>
+
+<script is:script>
+  function scrollCarousel(direction) {
+    const container = document.querySelector(".details-carousel-track-container");
+    const image = container.querySelector(".details-carousel-image");
+
+    if (!image) return;
+
+    const imageWidth = image.offsetWidth + parseInt(getComputedStyle(image).marginRight);
+    container.scrollBy({ left: direction * imageWidth, behavior: 'smooth' });
+  }
+
+  window.scrollCarousel = scrollCarousel;
+</script>

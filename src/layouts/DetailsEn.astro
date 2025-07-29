@@ -1,6 +1,113 @@
 ---
-import BaseLayoutEn from '../layouts/BaseLayoutEn.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { ProjectListEn } from '../../data';
+import { Image } from 'astro:assets'
+import TriangleDifficulty from '../components/TriangleDifficulty.astro';
+const { project } = Astro.props;
 ---
 
-<BaseLayoutEn>
-</BaseLayoutEn>
+<BaseLayout>
+    <section class="project-details" id="detalles" aria-label=`Project details ${project.Name}`>
+        <div class="details-title">
+            <h2>{project.Name}</h2>
+             <div style={{ display: "flex", gap: "5px" }}>
+            {
+                project.Languages.map(lang => (
+                    <Image 
+                        format="webp"
+                        src={lang.Logo.Image}
+                        alt={lang.Logo.Alt}
+                        title={lang.Name}
+                        style={{ height: '20px', width: 'auto' }}
+                    />
+                ))
+            }
+            </div>
+        </div>
+        <div class="details-carousel">
+  <div class="details-carousel-wrapper">
+    <button class="details-carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
+    
+    <div class="details-carousel-track-container">
+      <div class="details-carousel-track">
+        {
+          project.Images.map(img => (
+            <Image 
+              format="webp"
+              src={img.Image}
+              alt={img.Alt}
+              class="details-carousel-image"
+              loading="lazy"
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <button class="details-carousel-button next" onclick="scrollCarousel(1)">&#10095;</button>
+  </div>
+</div>
+        <!-- Dates -->
+        <div class="details-difficulty">Difficulty: <div class="details-triangle"><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></div></div>
+        <p class="details-description">{project.Description}</p>
+        <div class="details-action-buttons">
+            {project.HasDemo && <a target="_blank" title={project?.DemoLink?.Title} href={project?.DemoLink?.Href} class="demo-button primary-button button">Ver Demo</a>}
+            <a target="_blank" title={project.GithubLink.Title} href={project.GithubLink.Href} class="github primary-button button">Github</a>
+        </div>
+    </section>
+    <section class="recommended-projects" id="recomendados" aria-label="Proyectos recomendados">
+        <h3>Recomendados</h3>
+        <div class="projects-container">
+            {
+                ProjectListEn.filter(proj => proj.ID != project.ID).slice(0, 3).map(project => (
+            <div class="project-image-container">
+                <a href={project.DetailsLink?.Href} 
+                class="invisible-link"
+                title={project.DetailsLink?.Title}
+                target={project.DetailsLink.Target ? '_blank' : '_self'}>
+                    <Image 
+                        format="webp"
+                        class="project-image"
+                        src={project.CoverImage?.Image}
+                        alt={project.CoverImage?.Alt}
+                        loading="eager"
+                    />
+                    <span class="project-name">{project.Name}</span>
+
+                    <div class="project-toolbar">
+                        <span><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></span>
+                        <div style={{ display: "flex", gap: "5px" }}>
+                            {
+                                project.Languages.map(lang => (
+                                    <Image 
+                                        format="webp"
+                                        src={lang.Logo.Image}
+                                        alt={lang.Logo.Alt || 'Imagen del proyecto'}
+                                        title={lang.Name}
+                                        loading="eager"
+                                        style={{ height: '20px' }}
+                                    />
+                                ))
+                            }
+                        </div>
+                    </div>
+                </a>
+            </div>
+        ))}
+        </div>
+    </section>
+</BaseLayout>
+
+<script is:script>
+  function scrollCarousel(direction) {
+    const container = document.querySelector(".details-carousel-track-container");
+    const image = container.querySelector(".details-carousel-image");
+
+    if (!image) return;
+
+    const imageWidth = image.offsetWidth + parseInt(getComputedStyle(image).marginRight);
+    container.scrollBy({ left: direction * imageWidth, behavior: 'smooth' });
+  }
+
+  window.scrollCarousel = scrollCarousel;
+</script>

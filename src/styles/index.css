@@ -312,7 +312,8 @@ body {
 
     .buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: end;
+        gap: 5px;
         margin: 5px;
         input:hover {
             cursor: pointer;
@@ -902,9 +903,122 @@ background-color: #181717;
 
 .recommended-projects {
   padding: 2em;
+  padding-top: 0;
+}
+.details-title h2 {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.demo-button {
+  background-color: var(--subtitle-color);
+}
+.details-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .project-details {
   margin-top: 20px;
   padding: 2em;
+}
+
+.details-triangle {
+  margin-left: 10px;
+  margin-top: -5px;
+}
+
+.details-difficulty {
+  display: inline-flex;
+  margin: 5px;
+  align-items: center;
+}
+
+.details-action-buttons {
+  margin: 1em;
+  margin-top: 2em;
+}
+.details-carousel {
+  margin: 30px 0;
+}
+
+.details-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  margin: auto;
+}
+
+.details-carousel-track-container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.details-carousel-track-container::-webkit-scrollbar {
+  display: none;
+}
+
+.details-carousel-track {
+  display: flex;
+  gap: 15px;
+  touch-action: pan-x;
+}
+
+.details-carousel-image {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 8px;
+  object-fit: cover;
+  max-height: 250px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  pointer-events: auto;
+}
+
+/* Flechas */
+.details-carousel-button {
+  position: absolute;
+  background-color: transparent;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  border: none;
+  font-size: 2.5rem;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: #333;
+}
+
+.details-carousel-button:hover {
+  background-color: transparent;
+}
+
+.details-carousel-button.prev {
+  left: 10px;
+}
+
+.details-carousel-button.next {
+  right: 10px;
+}
+
+/* Responsive: ajusta cantidad de imágenes por fila */
+@media (max-width: 600px) {
+  .details-carousel-image {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .details-carousel-image {
+    max-width: 48%;
+  }
+}
+
+@media (min-width: 901px) {
+  .details-carousel-image {
+    max-width: 32%;
+  }
 }
