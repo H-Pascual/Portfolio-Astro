@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import { ProjectListEn } from '../../data';
+import BaseLayoutEn from '../layouts/BaseLayoutEn.astro'
+import { ProjectListEn } from "../data/ProjectListEn";
 import { Image } from 'astro:assets'
 import TriangleDifficulty from '../components/TriangleDifficulty.astro';
 const { project } = Astro.props;
 ---
 
-<BaseLayout>
+<BaseLayoutEn>
     <section class="project-details" id="detalles" aria-label=`Project details ${project.Name}`>
         <div class="details-title">
             <h2>{project.Name}</h2>
@@ -55,8 +55,8 @@ const { project } = Astro.props;
             <a target="_blank" title={project.GithubLink.Title} href={project.GithubLink.Href} class="github primary-button button">Github</a>
         </div>
     </section>
-    <section class="recommended-projects" id="recomendados" aria-label="Proyectos recomendados">
-        <h3>Recomendados</h3>
+    <section class="recommended-projects" id="recomendados" aria-label="Projects recommended">
+        <h3>Recommended</h3>
         <div class="projects-container">
             {
                 ProjectListEn.filter(proj => proj.ID != project.ID).slice(0, 3).map(project => (
