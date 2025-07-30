@@ -11,7 +11,7 @@ import { FeaturedLanguages } from '../../data';
       <li class="carousel-slide">
         <a href={lang.Link.Href} title={lang.Link.Title} 
         target={lang.Link.Target ? '_blank' : '_self'} rel={lang.Link.Target ? 'noopener noreferrer' : undefined}>
-            <Image loading="lazy" format="webp" src={lang.Logo.Image} alt={lang.Logo.Alt} title={lang.Name} />
+            <Image loading="eager" format="webp" src={lang.Logo.Image} alt={lang.Logo.Alt} title={lang.Name} />
         </a>
       </li>
           ))
