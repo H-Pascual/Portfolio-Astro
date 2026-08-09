@@ -1,0 +1,93 @@
+---
+// Loader de arranque: simula un "boot" de diagnóstico, coherente con el
+// motivo visual de la terminal en el Hero. Se oculta solo en cuanto termina.
+---
+<div class="cs-loader" id="cs-loader" aria-hidden="true">
+  <div class="cs-loader-box">
+    <div class="cs-loader-dot"></div>
+    <div class="cs-loader-text"><span id="cs-loader-line">iniciando codesano...</span><span class="cs-cursor">_</span></div>
+    <div class="cs-loader-bar"><div class="cs-loader-bar-fill"></div></div>
+  </div>
+</div>
+
+<style>
+  .cs-loader{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity .5s ease, visibility .5s ease;
+  }
+  .cs-loader.cs-loader-hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .cs-loader-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+  }
+  .cs-loader-dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--success);
+    animation:cs-pulse 1s ease-in-out infinite;
+  }
+  .cs-loader-text{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--text-muted-on-ink);
+    letter-spacing:.02em;
+  }
+  .cs-cursor{
+    display:inline-block;
+    margin-left:2px;
+    animation:cs-blink 1s step-end infinite;
+    color:var(--success);
+  }
+  .cs-loader-bar{
+    width:160px;height:2px;background:var(--ink-line);border-radius:2px;overflow:hidden;
+  }
+  .cs-loader-bar-fill{
+    height:100%;width:0%;background:var(--success);
+    animation:cs-fill .9s ease forwards;
+  }
+  @keyframes cs-pulse{0%,100%{opacity:.4;transform:scale(.85);}50%{opacity:1;transform:scale(1);}}
+  @keyframes cs-blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
+  @keyframes cs-fill{to{width:100%;}}
+
+  @media (prefers-reduced-motion: reduce){
+    .cs-loader{display:none;}
+  }
+</style>
+
+<script>
+  const loader = document.getElementById('cs-loader');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (loader) {
+    if (prefersReduced) {
+      loader.remove();
+    } else {
+      const minDisplay = 700; // ms — que se note el gesto sin retrasar al usuario
+      const start = Date.now();
+      const finish = () => {
+        const elapsed = Date.now() - start;
+        const wait = Math.max(0, minDisplay - elapsed);
+        setTimeout(() => {
+          loader.classList.add('cs-loader-hidden');
+          setTimeout(() => loader.remove(), 550);
+        }, wait);
+      };
+      if (document.readyState === 'complete') {
+        finish();
+      } else {
+        window.addEventListener('load', finish);
+      }
+    }
+  }
+</script>

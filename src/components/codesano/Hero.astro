@@ -1,0 +1,66 @@
+---
+const waHref = "https://wa.me/34653039281?text=Hola%2C%20quiero%20un%20diagn%C3%B3stico%20gratis%20de%20mi%20web%2Fapp%20hecha%20con%20IA";
+---
+<header class="cs-hero">
+  <div class="cs-wrap cs-hero-grid">
+    <div>
+      <div class="cs-eyebrow">Especialista en apps y webs creadas con IA</div>
+      <h1>Tu app la construyó una IA.<br>Yo hago que funcione de verdad.</h1>
+      <p class="cs-lead">Reviso, arreglo y blindo aplicaciones creadas con Lovable, Bolt, Replit, Cursor y otras IAs, para que puedas lanzarlas sin miedo a que se rompan.</p>
+      <div class="cs-hero-cta">
+        <a class="cs-btn cs-btn-primary" href={waHref} target="_blank" rel="noopener">
+          Pide tu diagnóstico gratis
+        </a>
+        <span class="cs-hero-note">Respuesta en &lt;24h · Sin compromiso</span>
+      </div>
+    </div>
+    <div class="cs-terminal">
+      <div class="cs-terminal-head">
+        <div class="cs-terminal-bar"><span></span><span></span><span></span></div>
+        <div class="cs-terminal-title">diagnóstico — tu-app-ia/</div>
+      </div>
+      <div class="cs-term-line cs-cmd">$ analizando tu-app-ia/ ...</div>
+      <div class="cs-term-line cs-bad">✗ auth.js — contraseñas sin cifrar</div>
+      <div class="cs-term-line cs-bad">✗ api/ — sin validación de datos</div>
+      <div class="cs-term-line cs-bad">✗ index.jsx — errores sin controlar</div>
+      <div class="cs-term-line cs-good">✓ arquitectura reorganizada</div>
+      <div class="cs-term-line cs-good">✓ seguridad reforzada</div>
+      <div class="cs-term-line cs-good">✓ lista para producción</div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .cs-hero{padding:76px 0 40px;}
+  .cs-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  @media (max-width:900px){.cs-hero-grid{grid-template-columns:1fr;}}
+  .cs-hero p.cs-lead{font-size:18px;color:var(--text-muted);margin-top:20px;max-width:520px;}
+  .cs-hero-cta{display:flex;align-items:center;gap:18px;margin-top:32px;flex-wrap:wrap;}
+  .cs-hero-note{font-family:var(--font-mono);font-size:12.5px;color:var(--text-muted);}
+
+  .cs-terminal{
+    background:var(--ink);border-radius:var(--radius);padding:20px 22px 26px;
+    box-shadow:0 30px 60px -24px rgba(18,21,28,.45);
+    border:1px solid var(--ink-line);
+  }
+  .cs-terminal-bar{display:flex;gap:6px;margin-bottom:16px;}
+  .cs-terminal-bar span{width:10px;height:10px;border-radius:50%;background:#555C70;}
+  .cs-terminal-title{font-family:var(--font-mono);font-size:11.5px;color:var(--text-muted-on-ink);margin-left:10px;}
+  .cs-terminal-head{display:flex;align-items:center;margin-bottom:14px;}
+  .cs-term-line{font-family:var(--font-mono);font-size:13.5px;line-height:2;opacity:0;transform:translateY(4px);animation:cs-tline .45s ease forwards;}
+  .cs-term-line.cs-cmd{color:var(--text-muted-on-ink);}
+  .cs-term-line.cs-bad{color:var(--danger);}
+  .cs-term-line.cs-good{color:var(--success);}
+  .cs-term-line:nth-child(1){animation-delay:.9s;}
+  .cs-term-line:nth-child(2){animation-delay:1.4s;}
+  .cs-term-line:nth-child(3){animation-delay:1.85s;}
+  .cs-term-line:nth-child(4){animation-delay:2.3s;}
+  .cs-term-line:nth-child(5){animation-delay:3s;}
+  .cs-term-line:nth-child(6){animation-delay:3.5s;}
+  .cs-term-line:nth-child(7){animation-delay:4s;}
+  @keyframes cs-tline{to{opacity:1;transform:translateY(0);}}
+
+  @media (prefers-reduced-motion: reduce){
+    .cs-term-line{animation:none;opacity:1;transform:none;}
+  }
+</style>

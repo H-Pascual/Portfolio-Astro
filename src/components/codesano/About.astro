@@ -1,0 +1,32 @@
+---
+const badges = [
+  'FullStack Developer en producción (React/TS + C#/.NET)',
+  'Especialización en Inteligencia Artificial y Big Data',
+  'Clean Architecture, DDD y CQRS aplicados a diario',
+  '3er premio FemFutur — Caixa Popular',
+];
+---
+<section class="cs-section cs-section-alt" id="sobre-mi">
+  <div class="cs-wrap">
+    <div class="cs-eyebrow cs-reveal">Quién hay detrás</div>
+    <h2 class="cs-reveal">Héctor Pascual — FullStack Developer</h2>
+    <div class="cs-about-grid">
+      <div class="cs-badges cs-reveal">
+        {badges.map((b) => <div class="cs-badge">{b}</div>)}
+      </div>
+      <div class="cs-reveal">
+        <p>Trabajo como FullStack Developer en Eurobanan, donde desarrollo y mantengo sistemas de gestión reales con React, TypeScript y C#/.NET, aplicando Clean Architecture para que el código aguante el paso del tiempo. Antes trabajé en Inetum, en microservicios para el ámbito sanitario.</p>
+        <p>Mi trabajo diario es justo esto: coger sistemas complejos y mantenerlos sólidos, seguros y fáciles de evolucionar. Aplico exactamente el mismo criterio cuando arreglo una app construida con IA — la diferencia es que aquí no partimos de cero, partimos de lo que ya tienes y lo dejamos bien hecho.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cs-about-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:48px;align-items:start;margin-top:40px;}
+  @media (max-width:820px){.cs-about-grid{grid-template-columns:1fr;}}
+  .cs-badges{display:flex;flex-direction:column;gap:12px;}
+  .cs-badge{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13.5px;font-weight:500;display:flex;gap:10px;align-items:center;}
+  .cs-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--success);flex-shrink:0;}
+  .cs-about-grid p{color:var(--text-muted);font-size:16px;margin-bottom:16px;}
+</style>

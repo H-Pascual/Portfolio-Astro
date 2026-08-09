@@ -1,0 +1,31 @@
+---
+const waHref = "https://wa.me/34653039281?text=Hola%2C%20quiero%20un%20diagn%C3%B3stico%20gratis%20de%20mi%20web%2Fapp%20hecha%20con%20IA";
+---
+<nav class="cs-top">
+  <div class="cs-wrap cs-nav-inner">
+    <div class="cs-logo"><span class="cs-dot"></span>CodeSano</div>
+    <div class="cs-nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#calculadora">Precios</a>
+      <a href="#caso">Casos</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="cs-btn cs-btn-primary cs-btn-sm" href={waHref} target="_blank" rel="noopener">Diagnóstico gratis</a>
+  </div>
+</nav>
+
+<style>
+  .cs-top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(239,241,236,.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .cs-nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px;}
+  .cs-logo{font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-0.01em;display:flex;align-items:center;gap:8px;}
+  .cs-dot{width:8px;height:8px;border-radius:50%;background:var(--success);display:inline-block;}
+  .cs-nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:500;}
+  .cs-nav-links a{text-decoration:none;color:var(--ink);opacity:.75;transition:opacity .15s;}
+  .cs-nav-links a:hover{opacity:1;}
+  @media (max-width:760px){.cs-nav-links{display:none;}}
+</style>

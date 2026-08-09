@@ -1,0 +1,33 @@
+---
+const steps = [
+  { n: '01', title: 'Diagnóstico gratuito', text: 'Me pasas tu proyecto o accesos, y te digo qué encuentro y qué te recomiendo. Sin coste, sin compromiso.' },
+  { n: '02', title: 'Presupuesto cerrado', text: 'Precio y plazos claros antes de empezar. Nada de sustos a mitad de camino.' },
+  { n: '03', title: 'Entregas por hitos', text: 'Ves avances reales y pagas por fases, nunca todo de golpe.' },
+  { n: '04', title: 'Entrega y acompañamiento', text: 'Te dejo el código explicado y sigo disponible para dudas después de la entrega.' },
+];
+---
+<section class="cs-section cs-section-alt" id="proceso">
+  <div class="cs-wrap">
+    <div class="cs-eyebrow cs-reveal">Cómo trabajo</div>
+    <h2 class="cs-reveal">Sin sorpresas, con avances constantes</h2>
+    <div class="cs-steps">
+      {steps.map((s) => (
+        <div class="cs-step cs-reveal">
+          <div class="cs-step-num">{s.n}</div>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cs-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px;}
+  @media (max-width:900px){.cs-steps{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.cs-steps{grid-template-columns:1fr;}}
+  .cs-step{position:relative;padding-top:8px;}
+  .cs-step .cs-step-num{font-family:var(--font-mono);font-size:13px;color:var(--accent);font-weight:700;margin-bottom:14px;}
+  .cs-step h3{font-size:17px;margin-bottom:8px;}
+  .cs-step p{font-size:14px;color:var(--text-muted);}
+</style>

@@ -1,0 +1,64 @@
+---
+---
+<section class="cs-section cs-section-alt" id="servicios">
+  <div class="cs-wrap">
+    <div class="cs-eyebrow cs-reveal">Servicios</div>
+    <h2 class="cs-reveal">Elige hasta dónde quieres llegar</h2>
+    <div class="cs-plans">
+      <div class="cs-plan cs-reveal">
+        <h3>Arreglo de bugs</h3>
+        <p class="cs-desc">Soluciono los errores concretos que no te dejan avanzar.</p>
+        <div class="cs-price">300€ – 700€</div>
+        <div class="cs-price-sub">Orientativo, según nº y complejidad de bugs</div>
+        <ul>
+          <li>Diagnóstico de los errores reportados</li>
+          <li>Corrección y pruebas</li>
+          <li>Explicación clara de qué fallaba y por qué</li>
+        </ul>
+      </div>
+      <div class="cs-plan cs-plan-featured cs-reveal">
+        <div class="cs-plan-badge">Más pedido</div>
+        <h3>Bugs + Seguridad</h3>
+        <p class="cs-desc">Arreglo lo que falla y blindo lo que puede fallar mañana.</p>
+        <div class="cs-price">600€ – 1.400€</div>
+        <div class="cs-price-sub">Orientativo, según tamaño del proyecto</div>
+        <ul>
+          <li>Todo lo del plan anterior</li>
+          <li>Auditoría de seguridad (login, datos, API)</li>
+          <li>Corrección de vulnerabilidades críticas</li>
+          <li>Informe simple de lo que se ha reforzado</li>
+        </ul>
+      </div>
+      <div class="cs-plan cs-reveal">
+        <h3>Limpieza de código</h3>
+        <p class="cs-desc">Reorganizo el código para que puedas crecer sin miedo.</p>
+        <div class="cs-price">Desde 1.200€</div>
+        <div class="cs-price-sub">Orientativo, según estado del proyecto</div>
+        <ul>
+          <li>Todo lo anterior</li>
+          <li>Refactor a arquitectura mantenible</li>
+          <li>Documentación básica para futuros cambios</li>
+          <li>Recomendaciones para escalar (Docker, caché...)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="cs-plans-note">Precios orientativos. Cada proyecto es distinto — te doy un presupuesto cerrado después de revisar tu caso, gratis y sin compromiso.</p>
+  </div>
+</section>
+
+<style>
+  .cs-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;}
+  @media (max-width:900px){.cs-plans{grid-template-columns:1fr;}}
+  .cs-plan{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;display:flex;flex-direction:column;position:relative;transition:transform .2s ease, box-shadow .2s ease;}
+  .cs-plan:hover{transform:translateY(-4px);box-shadow:0 20px 34px -22px rgba(18,21,28,.35);}
+  .cs-plan-featured{border-color:var(--accent);box-shadow:0 20px 40px -20px rgba(53,89,224,.35);}
+  .cs-plan-badge{position:absolute;top:-13px;right:24px;background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:11px;padding:5px 10px;border-radius:999px;letter-spacing:.03em;}
+  .cs-plan h3{margin-bottom:6px;}
+  .cs-plan .cs-desc{color:var(--text-muted);font-size:14.5px;margin-bottom:18px;min-height:42px;}
+  .cs-plan .cs-price{font-family:var(--font-mono);font-size:26px;font-weight:600;margin-bottom:4px;}
+  .cs-plan .cs-price-sub{font-size:12.5px;color:var(--text-muted);margin-bottom:20px;}
+  .cs-plan ul{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:10px;flex-grow:1;}
+  .cs-plan li{font-size:14.5px;display:flex;gap:9px;align-items:flex-start;}
+  .cs-plan li::before{content:'✓';color:var(--success);font-weight:700;flex-shrink:0;}
+  .cs-plans-note{text-align:center;margin-top:26px;font-size:13.5px;color:var(--text-muted);max-width:520px;margin-left:auto;margin-right:auto;}
+</style>
