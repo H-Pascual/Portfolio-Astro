@@ -5,6 +5,9 @@ const faqs = [
   { q: '¿Cuánto tarda un proyecto?', a: 'Depende del alcance. Un arreglo de bugs puede resolverse en días; una limpieza completa de arquitectura, en unas semanas. Te doy plazos reales dentro del presupuesto.' },
   { q: 'No soy nada técnico, ¿vas a hablarme en un idioma que no entiendo?', a: 'Te explico todo en términos claros, sin tecnicismos innecesarios. Mi trabajo es que tú entiendas qué le pasa a tu web y por qué, no que aprendas a programar.' },
   { q: '¿Cómo sé que puedo confiar en ti con mi proyecto?', a: 'Empezamos con un diagnóstico gratuito sin compromiso, y trabajamos por hitos: solo pagas por lo que ya has visto entregado.' },
+  { q: '¿Necesito darte acceso completo a mi código y mis cuentas?', a: 'Solo lo justo para trabajar: repositorio o exportación del proyecto. No necesito contraseñas de cuentas personales ni accesos que no tengan que ver con el desarrollo.' },
+  { q: '¿Qué pasa si aparecen más problemas de los que se veían al principio?', a: 'Es habitual que al abrir el código salgan cosas que no se veían desde fuera. Si eso cambia el alcance, te lo explico y te doy un presupuesto ajustado antes de tocar nada más — nunca sin avisar.' },
+  { q: '¿Solo trabajas con webs o también con apps móviles?', a: 'Trabajo sobre todo con aplicaciones web (React, Next.js, Node...), que es lo que generan la mayoría de estas IAs. Si tu caso es distinto, cuéntamelo en el diagnóstico y te digo si puedo ayudarte.' },
 ];
 ---
 <section class="cs-section" id="faq">
@@ -36,7 +39,7 @@ const faqs = [
   .cs-faq-plus{font-family:var(--font-mono);font-size:20px;color:var(--accent);transition:transform .25s ease;flex-shrink:0;}
   .cs-faq-item.cs-open .cs-faq-plus{transform:rotate(45deg);}
   .cs-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-  .cs-faq-item.cs-open .cs-faq-a{max-height:200px;}
+  .cs-faq-item.cs-open .cs-faq-a{max-height:220px;}
   .cs-faq-a p{padding-bottom:22px;color:var(--text-muted);font-size:14.5px;}
 </style>
 

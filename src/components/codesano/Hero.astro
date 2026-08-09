@@ -16,16 +16,19 @@ const waHref = "https://wa.me/34653039281?text=Hola%2C%20quiero%20un%20diagn%C3%
     </div>
     <div class="cs-terminal">
       <div class="cs-terminal-head">
-        <div class="cs-terminal-bar"><span></span><span></span><span></span></div>
+        <div class="cs-terminal-bar"><span class="cs-dot-r"></span><span class="cs-dot-y"></span><span class="cs-dot-g"></span></div>
         <div class="cs-terminal-title">diagnóstico — tu-app-ia/</div>
       </div>
-      <div class="cs-term-line cs-cmd">$ analizando tu-app-ia/ ...</div>
-      <div class="cs-term-line cs-bad">✗ auth.js — contraseñas sin cifrar</div>
-      <div class="cs-term-line cs-bad">✗ api/ — sin validación de datos</div>
-      <div class="cs-term-line cs-bad">✗ index.jsx — errores sin controlar</div>
-      <div class="cs-term-line cs-good">✓ arquitectura reorganizada</div>
-      <div class="cs-term-line cs-good">✓ seguridad reforzada</div>
-      <div class="cs-term-line cs-good">✓ lista para producción</div>
+      <div class="cs-term-body">
+        <div class="cs-term-line cs-cmd cs-typewriter">analizando tu-app-ia/ ...</div>
+        <div class="cs-term-line cs-bad">✗ auth.js — contraseñas sin cifrar</div>
+        <div class="cs-term-line cs-bad">✗ api/ — sin validación de datos</div>
+        <div class="cs-term-line cs-bad">✗ index.jsx — errores sin controlar</div>
+        <div class="cs-term-line cs-good">✓ arquitectura reorganizada</div>
+        <div class="cs-term-line cs-good">✓ seguridad reforzada</div>
+        <div class="cs-term-line cs-good">✓ lista para producción</div>
+        <div class="cs-term-line cs-prompt">$ <span class="cs-term-cursor">▌</span></div>
+      </div>
     </div>
   </div>
 </header>
@@ -42,25 +45,69 @@ const waHref = "https://wa.me/34653039281?text=Hola%2C%20quiero%20un%20diagn%C3%
     background:var(--ink);border-radius:var(--radius);padding:20px 22px 26px;
     box-shadow:0 30px 60px -24px rgba(18,21,28,.45);
     border:1px solid var(--ink-line);
+    position:relative;
+    overflow:hidden;
   }
+  /* Efecto scanline sutil para que se note más "terminal en vivo" */
+  .cs-terminal::after{
+    content:'';
+    position:absolute;left:0;right:0;height:60px;
+    background:linear-gradient(180deg, rgba(53,89,224,0) 0%, rgba(53,89,224,.06) 50%, rgba(53,89,224,0) 100%);
+    animation:cs-scanline 5s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes cs-scanline{
+    0%{top:-60px;}
+    100%{top:100%;}
+  }
+
   .cs-terminal-bar{display:flex;gap:6px;margin-bottom:16px;}
-  .cs-terminal-bar span{width:10px;height:10px;border-radius:50%;background:#555C70;}
+  .cs-terminal-bar span{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .cs-dot-r{background:#E9584A;}
+  .cs-dot-y{background:#E8B94B;}
+  .cs-dot-g{background:#3FBE6B;}
   .cs-terminal-title{font-family:var(--font-mono);font-size:11.5px;color:var(--text-muted-on-ink);margin-left:10px;}
-  .cs-terminal-head{display:flex;align-items:center;margin-bottom:14px;}
+  .cs-terminal-head{display:flex;align-items:center;margin-bottom:14px;position:relative;z-index:2;}
+  .cs-term-body{position:relative;z-index:2;}
   .cs-term-line{font-family:var(--font-mono);font-size:13.5px;line-height:2;opacity:0;transform:translateY(4px);animation:cs-tline .45s ease forwards;}
   .cs-term-line.cs-cmd{color:var(--text-muted-on-ink);}
   .cs-term-line.cs-bad{color:var(--danger);}
   .cs-term-line.cs-good{color:var(--success);}
-  .cs-term-line:nth-child(1){animation-delay:.9s;}
-  .cs-term-line:nth-child(2){animation-delay:1.4s;}
-  .cs-term-line:nth-child(3){animation-delay:1.85s;}
-  .cs-term-line:nth-child(4){animation-delay:2.3s;}
-  .cs-term-line:nth-child(5){animation-delay:3s;}
-  .cs-term-line:nth-child(6){animation-delay:3.5s;}
-  .cs-term-line:nth-child(7){animation-delay:4s;}
+  .cs-term-line.cs-prompt{color:var(--success);font-weight:600;}
+
+  /* Efecto máquina de escribir para la primera línea */
+  .cs-typewriter{
+    display:inline-block;
+    white-space:nowrap;
+    overflow:hidden;
+    width:0;
+    border-right:2px solid var(--text-muted-on-ink);
+    animation:cs-typewriter .9s steps(24,end) forwards, cs-tline 0s .9s forwards, cs-caret-blink .8s step-end 4;
+    animation-delay:.5s, .5s, .5s;
+  }
+  .cs-typewriter::before{content:'$ ';}
+  @keyframes cs-typewriter{from{width:0;}to{width:24ch;}}
+  @keyframes cs-caret-blink{50%{border-color:transparent;}}
+
+  .cs-term-line:nth-child(2){animation-delay:1.5s;}
+  .cs-term-line:nth-child(3){animation-delay:1.95s;}
+  .cs-term-line:nth-child(4){animation-delay:2.4s;}
+  .cs-term-line:nth-child(5){animation-delay:3.1s;}
+  .cs-term-line:nth-child(6){animation-delay:3.6s;}
+  .cs-term-line:nth-child(7){animation-delay:4.1s;}
+  .cs-term-line.cs-prompt{animation-delay:4.6s;}
   @keyframes cs-tline{to{opacity:1;transform:translateY(0);}}
+
+  .cs-term-cursor{
+    display:inline-block;
+    animation:cs-blink 1s step-end infinite;
+  }
+  @keyframes cs-blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
 
   @media (prefers-reduced-motion: reduce){
     .cs-term-line{animation:none;opacity:1;transform:none;}
+    .cs-typewriter{width:24ch;border-right:none;animation:none;}
+    .cs-terminal::after{animation:none;display:none;}
+    .cs-term-cursor{animation:none;}
   }
 </style>
