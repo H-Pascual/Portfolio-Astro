@@ -1,12 +1,14 @@
 ---
 const waHref = "https://wa.me/34653039281?text=Hola%2C%20quiero%20un%20diagn%C3%B3stico%20gratis%20de%20mi%20web%2Fapp%20hecha%20con%20IA";
+import HectorStandWhiteShirt from '../assets/content/hector-stand-white-shirt.png'
+import { Image } from 'astro:assets'
 ---
 <section class="cs-section-tight">
   <div class="cs-wrap">
     <div class="cs-final-cta cs-reveal">
-      <img
+      <Image
         class="cs-final-cta-photo"
-        src="../assets/content/hector-stand-white-shirt.png"
+        src={HectorStandWhiteShirt}
         alt="Héctor Pascual Marín"
         loading="lazy"
         width="76"

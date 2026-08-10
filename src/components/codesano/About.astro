@@ -1,4 +1,6 @@
 ---
+import HectorSuitPicture from '../assets/content/hector-suit-picture.webp'
+import { Image } from 'astro:assets'
 const badges = [
   'FullStack Developer en producción (React/TS + C#/.NET)',
   'Especialización en Inteligencia Artificial y Big Data',
@@ -24,9 +26,9 @@ const stats = [
     <div class="cs-about-grid">
       <div class="cs-reveal">
         <div class="cs-avatar-card">
-          <img
+          <Image
             class="cs-avatar-photo"
-            src="../assets/content/hector-suit-picture.webp"
+            src={HectorSuitPicture}
             alt="Héctor Pascual Marín, FullStack Developer"
             loading="lazy"
             width="240"

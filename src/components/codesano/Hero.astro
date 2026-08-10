@@ -1,5 +1,7 @@
 ---
 const waHref = "https://wa.me/34653039281?text=Hola%2C%20quiero%20un%20diagn%C3%B3stico%20gratis%20de%20mi%20web%2Fapp%20hecha%20con%20IA";
+import { Image } from 'astro:assets'
+import HectorDarkShirt from '../assets/content/hector-dark-shirt.png'
 ---
 <header class="cs-hero">
   <div class="cs-wrap cs-hero-grid">
@@ -14,9 +16,9 @@ const waHref = "https://wa.me/34653039281?text=Hola%2C%20quiero%20un%20diagn%C3%
         <span class="cs-hero-note">Respuesta en &lt;24h · Sin compromiso</span>
       </div>
       <div class="cs-hero-person">
-        <img
+        <Image
           class="cs-hero-person-photo"
-          src="../assets/content/hector-dark-shirt.png"
+          src={HectorDarkShirt}
           alt="Héctor Pascual Marín"
           loading="eager"
           width="72"
