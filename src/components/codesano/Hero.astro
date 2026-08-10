@@ -2,10 +2,22 @@
 const waHref = "https://wa.me/34653039281?text=Hola%2C%20quiero%20un%20diagn%C3%B3stico%20gratis%20de%20mi%20web%2Fapp%20hecha%20con%20IA";
 import { Image } from 'astro:assets'
 import HectorDarkShirt from '../../assets/content/hector-dark-shirt.png'
+import HectorBlueSuit from '../../assets/content/hector_blue_suit.png'
 ---
 <header class="cs-hero">
+  <div class="cs-hero-confidence" aria-hidden="true">
+    <Image
+      class="cs-hero-confidence-photo"
+      src={HectorBlueSuit}
+      alt=""
+      loading="eager"
+      width="520"
+      height="780"
+    />
+  </div>
+
   <div class="cs-wrap cs-hero-grid">
-    <div>
+    <div class="cs-hero-copy">
       <div class="cs-eyebrow">Especialista en apps y webs creadas con IA</div>
       <h1>Tu app la construyó una IA.<br>Yo hago que funcione de verdad.</h1>
       <p class="cs-lead">Reviso, arreglo y blindo aplicaciones creadas con Lovable, Bolt, Replit, Cursor y otras IAs, para que puedas lanzarlas sin miedo a que se rompan.</p>
@@ -16,17 +28,20 @@ import HectorDarkShirt from '../../assets/content/hector-dark-shirt.png'
         <span class="cs-hero-note">Respuesta en &lt;24h · Sin compromiso</span>
       </div>
       <div class="cs-hero-person">
-        <Image
-          class="cs-hero-person-photo"
-          src={HectorDarkShirt}
-          alt="Héctor Pascual Marín"
-          loading="eager"
-          width="72"
-          height="72"
-        />
+        <span class="cs-hero-person-photo" aria-hidden="true">
+          <Image
+            class="cs-hero-person-photo-image"
+            src={HectorDarkShirt}
+            alt=""
+            loading="eager"
+            width="110"
+            height="110"
+          />
+        </span>
         <p class="cs-hero-person-text">Te responde <strong>Héctor</strong> en persona — no una agencia, no un bot.</p>
       </div>
     </div>
+
     <div class="cs-terminal">
       <div class="cs-terminal-head">
         <div class="cs-terminal-bar"><span class="cs-dot-r"></span><span class="cs-dot-y"></span><span class="cs-dot-g"></span></div>
@@ -47,18 +62,35 @@ import HectorDarkShirt from '../../assets/content/hector-dark-shirt.png'
 </header>
 
 <style>
-  .cs-hero{padding:76px 0 40px;}
-  .cs-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
-  @media (max-width:900px){.cs-hero-grid{grid-template-columns:1fr;}}
+  .cs-hero{position:relative;padding:76px 0 40px;overflow:hidden;isolation:isolate;}
+  .cs-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  .cs-hero-copy{position:relative;z-index:3;}
+  .cs-hero-confidence{
+    position:absolute;z-index:1;right:2%;bottom:-118px;width:min(39vw,520px);
+    pointer-events:none;filter:drop-shadow(0 28px 34px rgba(18,21,28,.18));
+  }
+  .cs-hero-confidence-photo{width:100%;height:auto;display:block;}
+  @media (max-width:1100px){
+    .cs-hero-confidence{right:-3%;width:min(43vw,460px);bottom:-100px;opacity:.95;}
+  }
+  @media (max-width:900px){
+    .cs-hero{padding-top:56px;}
+    .cs-hero-grid{grid-template-columns:1fr;gap:38px;}
+    .cs-hero-confidence{right:-7%;bottom:-120px;width:340px;opacity:.14;}
+  }
   .cs-hero p.cs-lead{font-size:18px;color:var(--text-muted);margin-top:20px;max-width:520px;}
   .cs-hero-cta{display:flex;align-items:center;gap:18px;margin-top:32px;flex-wrap:wrap;}
   .cs-hero-note{font-family:var(--font-mono);font-size:12.5px;color:var(--text-muted);}
 
   .cs-hero-person{display:flex;align-items:center;gap:12px;margin-top:28px;}
   .cs-hero-person-photo{
-    width:44px;height:44px;border-radius:50%;object-fit:cover;
+    width:52px;height:52px;border-radius:50%;overflow:hidden;display:block;
     border:2px solid #fff;box-shadow:0 4px 12px -4px rgba(18,21,28,.35);
-    flex-shrink:0;
+    flex-shrink:0;position:relative;background:var(--paper-2);
+  }
+  .cs-hero-person-photo-image{
+    width:110px;height:110px;max-width:none !important;object-fit:cover;object-position:50% 24%;
+    transform:scale(1.85);transform-origin:50% 24%;
   }
   .cs-hero-person-text{font-size:13.5px;color:var(--text-muted);max-width:280px;}
   .cs-hero-person-text strong{color:var(--ink);}
@@ -67,13 +99,10 @@ import HectorDarkShirt from '../../assets/content/hector-dark-shirt.png'
     background:var(--ink);border-radius:var(--radius);padding:20px 22px 26px;
     box-shadow:0 30px 60px -24px rgba(18,21,28,.45);
     border:1px solid var(--ink-line);
-    position:relative;
-    overflow:hidden;
+    position:relative;z-index:3;overflow:hidden;
   }
-  /* Efecto scanline sutil para que se note más "terminal en vivo" */
   .cs-terminal::after{
-    content:'';
-    position:absolute;left:0;right:0;height:60px;
+    content:'';position:absolute;left:0;right:0;height:60px;
     background:linear-gradient(180deg, rgba(53,89,224,0) 0%, rgba(53,89,224,.06) 50%, rgba(53,89,224,0) 100%);
     animation:cs-scanline 5s linear infinite;
     pointer-events:none;
@@ -97,7 +126,6 @@ import HectorDarkShirt from '../../assets/content/hector-dark-shirt.png'
   .cs-term-line.cs-good{color:var(--success);}
   .cs-term-line.cs-prompt{color:var(--success);font-weight:600;}
 
-  /* Efecto máquina de escribir para la primera línea */
   .cs-typewriter{
     display:inline-block;
     white-space:nowrap;
@@ -120,10 +148,7 @@ import HectorDarkShirt from '../../assets/content/hector-dark-shirt.png'
   .cs-term-line.cs-prompt{animation-delay:4.6s;}
   @keyframes cs-tline{to{opacity:1;transform:translateY(0);}}
 
-  .cs-term-cursor{
-    display:inline-block;
-    animation:cs-blink 1s step-end infinite;
-  }
+  .cs-term-cursor{display:inline-block;animation:cs-blink 1s step-end infinite;}
   @keyframes cs-blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
 
   @media (prefers-reduced-motion: reduce){

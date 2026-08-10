@@ -6,14 +6,16 @@ import { Image } from 'astro:assets'
 <section class="cs-section-tight">
   <div class="cs-wrap">
     <div class="cs-final-cta cs-reveal">
-      <Image
-        class="cs-final-cta-photo"
-        src={HectorStandWhiteShirt}
-        alt="Héctor Pascual Marín"
-        loading="lazy"
-        width="76"
-        height="76"
-      />
+      <span class="cs-final-cta-photo" aria-hidden="true">
+        <Image
+          class="cs-final-cta-photo-image"
+          src={HectorStandWhiteShirt}
+          alt=""
+          loading="lazy"
+          width="120"
+          height="120"
+        />
+      </span>
       <h2>¿Le echamos un vistazo a tu proyecto?</h2>
       <p>Cuéntame qué tienes y qué te preocupa. El diagnóstico es gratis y no te compromete a nada.</p>
       <a class="cs-btn cs-btn-primary" href={waHref} target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
@@ -25,9 +27,13 @@ import { Image } from 'astro:assets'
   .cs-final-cta{background:var(--ink);border-radius:24px;padding:64px 40px;text-align:center;color:var(--on-ink);}
   @media (max-width:640px){.cs-final-cta{padding:44px 22px;}}
   .cs-final-cta-photo{
-    width:76px;height:76px;border-radius:50%;object-fit:cover;
-    margin:0 auto 22px;display:block;
-    border:2px solid var(--ink-line);
+    width:92px;height:92px;border-radius:50%;overflow:hidden;
+    margin:0 auto 22px;display:block;position:relative;
+    border:2px solid var(--ink-line);background:var(--ink-soft);
+  }
+  .cs-final-cta-photo-image{
+    width:120px;height:120px;max-width:none !important;object-fit:cover;object-position:50% 23%;
+    transform:scale(2.05);transform-origin:50% 23%;
   }
   .cs-final-cta h2{color:var(--on-ink);max-width:600px;margin:0 auto 16px;}
   .cs-final-cta p{color:var(--text-muted-on-ink);max-width:480px;margin:0 auto 30px;font-size:16px;}
