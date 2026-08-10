@@ -8,34 +8,36 @@
 
     <div class="cs-calc-box cs-reveal">
       <div class="cs-calc-group">
-        <label class="cs-calc-label">1. ¿Qué necesitas?</label>
+        <label class="cs-calc-label">1. ¿Qué necesitas? <span class="cs-calc-hint">Puedes elegir varias</span></label>
         <div class="cs-pill-row" data-group="servicio">
-          <button type="button" class="cs-pill cs-pill-active" data-value="bugs">Arreglar bugs</button>
-          <button type="button" class="cs-pill" data-value="seguridad">Bugs + seguridad</button>
-          <button type="button" class="cs-pill" data-value="limpieza">Limpieza de código</button>
+          <button type="button" class="cs-pill cs-pill-active" data-value="bugs" aria-pressed="true">Arreglar bugs</button>
+          <button type="button" class="cs-pill" data-value="seguridad" aria-pressed="false">Revisar / reforzar seguridad</button>
+          <button type="button" class="cs-pill" data-value="limpieza" aria-pressed="false">Limpiar código</button>
         </div>
       </div>
+
       <div class="cs-calc-group">
         <label class="cs-calc-label">2. Tamaño aproximado del proyecto</label>
         <div class="cs-pill-row" data-group="tamano">
-          <button type="button" class="cs-pill cs-pill-active" data-value="pequeno">Pequeño (pocas páginas/funciones)</button>
-          <button type="button" class="cs-pill" data-value="mediano">Mediano (varias secciones, login, etc.)</button>
-          <button type="button" class="cs-pill" data-value="grande">Grande (muchas funciones, pagos, usuarios...)</button>
+          <button type="button" class="cs-pill cs-pill-active" data-value="pequeno" aria-pressed="true">Pequeño (pocas páginas/funciones)</button>
+          <button type="button" class="cs-pill" data-value="mediano" aria-pressed="false">Mediano (varias secciones, login, etc.)</button>
+          <button type="button" class="cs-pill" data-value="grande" aria-pressed="false">Grande (muchas funciones, pagos, usuarios...)</button>
         </div>
       </div>
+
       <div class="cs-calc-group">
         <label class="cs-calc-label">3. ¿Cómo está el código ahora mismo?</label>
         <div class="cs-pill-row" data-group="estado">
-          <button type="button" class="cs-pill cs-pill-active" data-value="manejable">Funciona, solo tiene fallos puntuales</button>
-          <button type="button" class="cs-pill" data-value="desordenado">Bastante desordenado</button>
-          <button type="button" class="cs-pill" data-value="caos">No tengo ni idea de cómo está</button>
+          <button type="button" class="cs-pill cs-pill-active" data-value="manejable" aria-pressed="true">Funciona, solo tiene fallos puntuales</button>
+          <button type="button" class="cs-pill" data-value="desordenado" aria-pressed="false">Bastante desordenado</button>
+          <button type="button" class="cs-pill" data-value="caos" aria-pressed="false">No tengo ni idea de cómo está</button>
         </div>
       </div>
 
       <div class="cs-calc-result">
         <div>
           <div class="cs-calc-result-label">Rango estimado</div>
-          <div class="cs-calc-result-value" id="cs-calc-output">300€ – 700€</div>
+          <div class="cs-calc-result-value" id="cs-calc-output">250€ – 550€</div>
         </div>
         <div class="cs-calc-disclaimer">Estimación orientativa. El precio final depende de la revisión real del proyecto.</div>
       </div>
@@ -51,6 +53,7 @@
   @media (max-width:640px){.cs-calc-box{padding:24px 20px;}}
   .cs-calc-group{margin-bottom:26px;}
   .cs-calc-label{font-family:var(--font-mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:12px;display:block;}
+  .cs-calc-hint{font-family:var(--font-body);font-size:12px;text-transform:none;letter-spacing:0;font-weight:400;opacity:.75;margin-left:8px;}
   .cs-pill-row{display:flex;gap:10px;flex-wrap:wrap;}
   .cs-pill{
     border:1px solid var(--line);background:var(--paper);border-radius:999px;
@@ -59,6 +62,7 @@
   }
   .cs-pill:hover{border-color:var(--accent);transform:translateY(-1px);}
   .cs-pill-active{background:var(--ink);border-color:var(--ink);color:var(--on-ink);}
+  .cs-pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .cs-calc-result{
     margin-top:30px;padding:26px;border-radius:14px;background:var(--accent-soft);
     display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
@@ -70,15 +74,42 @@
 </style>
 
 <script>
-  const state = { servicio: 'bugs', tamano: 'pequeno', estado: 'manejable' };
+  type Servicio = 'bugs' | 'seguridad' | 'limpieza';
 
-  const baseRanges: Record<string, [number, number]> = {
-    bugs:      [300, 700],
-    seguridad: [600, 1400],
-    limpieza:  [1200, 2600],
+  const state: {
+    servicio: Servicio[];
+    tamano: string;
+    estado: string;
+  } = {
+    servicio: ['bugs'],
+    tamano: 'pequeno',
+    estado: 'manejable',
   };
-  const sizeFactor: Record<string, number>  = { pequeno: 1, mediano: 1.4, grande: 2 };
-  const stateFactor: Record<string, number> = { manejable: 1, desordenado: 1.25, caos: 1.5 };
+
+  // Cada servicio suma su propio coste. Así se pueden combinar sin convertir
+  // "limpieza de código" en un pack que incluya otras tareas.
+  const serviceRanges: Record<Servicio, [number, number]> = {
+    bugs:      [250, 550],
+    seguridad: [400, 750],
+    limpieza:  [400, 750],
+  };
+
+  // El tamaño influye, pero el proyecto grande no dispara el precio.
+  const sizeFactor: Record<string, number> = {
+    pequeno: 1,
+    mediano: 1.2,
+    grande: 1.3,
+  };
+
+  // "No tengo ni idea" añade poco: hasta revisar el proyecto no sabemos si
+  // realmente está mal, así que no tiene sentido penalizarlo demasiado.
+  const stateFactor: Record<string, number> = {
+    manejable: 1,
+    desordenado: 1.12,
+    caos: 1.05,
+  };
+
+  const MAX_PRICE = 3000;
 
   function fmt(n: number) {
     return n.toLocaleString('es-ES') + '€';
@@ -88,38 +119,83 @@
   const ctaBtn = document.getElementById('cs-calc-cta') as HTMLAnchorElement | null;
 
   function recalc() {
-    const [minBase, maxBase] = baseRanges[state.servicio];
+    const selectedServices = state.servicio;
+
+    if (selectedServices.length === 0) {
+      if (output) output.textContent = 'Selecciona al menos una opción';
+      if (ctaBtn) ctaBtn.removeAttribute('href');
+      return;
+    }
+
+    const minBase = selectedServices.reduce((sum, service) => sum + serviceRanges[service][0], 0);
+    const maxBase = selectedServices.reduce((sum, service) => sum + serviceRanges[service][1], 0);
     const sf = sizeFactor[state.tamano];
     const ef = stateFactor[state.estado];
-    const min = Math.round((minBase * sf * ef) / 50) * 50;
-    const max = Math.round((maxBase * sf * ef) / 50) * 50;
+
+    let min = Math.round((minBase * sf * ef) / 50) * 50;
+    let max = Math.round((maxBase * sf * ef) / 50) * 50;
+
+    min = Math.min(min, MAX_PRICE);
+    max = Math.min(Math.max(max, min), MAX_PRICE);
+
+    const approximate = state.estado === 'desordenado' ? '≈ ' : '';
 
     if (output) {
       output.style.opacity = '0';
       setTimeout(() => {
-        output.textContent = `${fmt(min)} – ${fmt(max)}`;
+        output.textContent = `${approximate}${fmt(min)} – ${fmt(max)}`;
         output.style.opacity = '1';
       }, 120);
     }
 
-    const servicioLabel: Record<string, string> = {
+    const servicioLabels: Record<Servicio, string> = {
       bugs: 'arreglar bugs',
-      seguridad: 'bugs + seguridad',
+      seguridad: 'revisión/refuerzo de seguridad',
       limpieza: 'limpieza de código',
     };
+
+    const selectedLabels = selectedServices.map((service) => servicioLabels[service]).join(', ');
     const msg = encodeURIComponent(
-      `Hola, he usado la calculadora y me ha salido un rango de ${fmt(min)} - ${fmt(max)} para "${servicioLabel[state.servicio]}". Quiero confirmar el precio real con un diagnóstico gratis.`
+      `Hola, he usado la calculadora y me ha salido un rango de ${approximate}${fmt(min)} - ${fmt(max)} para ${selectedLabels}. Proyecto ${state.tamano}, código: ${state.estado}. Quiero confirmar el precio real con un diagnóstico gratis.`
     );
+
     if (ctaBtn) ctaBtn.href = `https://wa.me/34653039281?text=${msg}`;
   }
 
   document.querySelectorAll<HTMLElement>('.cs-pill-row').forEach((row) => {
-    const group = row.dataset.group as keyof typeof state;
+    const group = row.dataset.group;
+
     row.querySelectorAll<HTMLButtonElement>('.cs-pill').forEach((pill) => {
       pill.addEventListener('click', () => {
-        row.querySelectorAll('.cs-pill').forEach((p) => p.classList.remove('cs-pill-active'));
-        pill.classList.add('cs-pill-active');
-        state[group] = pill.dataset.value as string;
+        const value = pill.dataset.value;
+        if (!value) return;
+
+        if (group === 'servicio') {
+          const service = value as Servicio;
+          const index = state.servicio.indexOf(service);
+
+          if (index >= 0) {
+            state.servicio.splice(index, 1);
+            pill.classList.remove('cs-pill-active');
+            pill.setAttribute('aria-pressed', 'false');
+          } else {
+            state.servicio.push(service);
+            pill.classList.add('cs-pill-active');
+            pill.setAttribute('aria-pressed', 'true');
+          }
+        } else {
+          row.querySelectorAll('.cs-pill').forEach((p) => {
+            p.classList.remove('cs-pill-active');
+            p.setAttribute('aria-pressed', 'false');
+          });
+
+          pill.classList.add('cs-pill-active');
+          pill.setAttribute('aria-pressed', 'true');
+
+          if (group === 'tamano') state.tamano = value;
+          if (group === 'estado') state.estado = value;
+        }
+
         recalc();
       });
     });
