@@ -28,6 +28,25 @@ const description = "¿Tu web o app la creaste con IA (Lovable, Bolt, Replit, Cu
 
     gtag('config', 'AW-18059505411');
   </script>
+
+  <!-- Conversión: clic en cualquier enlace de WhatsApp -->
+  <script is:inline>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18059505411/2hp0CI3mn5YcEIPeuKND',
+          'value': 1.0,
+          'currency': 'EUR',
+          'event_callback': callback
+      });
+      return false;
+    }
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
