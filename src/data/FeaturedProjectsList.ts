@@ -25,6 +25,17 @@ import QuienEsQuienHomeImage from '../assets/projects/quien-es-quien/quien-es-qu
 import QuienEsQuienResultados from '../assets/projects/quien-es-quien/quien-es-quien-resultado.png'
 import QuienEsQuienJugadorImage from '../assets/projects/quien-es-quien/quien-es-quien-jugador1.png'
 
+import RentaNorteCoverImage from '../assets/projects/renta-norte/renta_norte_1.png'
+import RentaNorteDetailsImage from '../assets/projects/renta-norte/renta_norte_2.png'
+import RentaNortePostsImage from '../assets/projects/renta-norte/renta_norte_3.png'
+import RentaNortePostExampleImage from '../assets/projects/renta-norte/renta_norte_4.png'
+
+import CodeSanoCoverImage from '../assets/projects/code-sano/code_sano_1.png'
+import CodeSanoCalculatorImage from '../assets/projects/code-sano/code_sano_2.png'
+import CodeSanoReviewsImage from '../assets/projects/code-sano/code_sano_3.png'
+import CodeSanoDetailsImage from '../assets/projects/code-sano/code_sano_4.png'
+
+import AstroLogo from '../assets/languages/astro.png'
 import CSharpLogo from '../assets/languages/csharp.svg'
 import AngularLogo from '../assets/languages/angular.png'
 import TypeScriptLogo from '../assets/languages/typescript.png'
@@ -35,7 +46,114 @@ import JavaScriptLogo from '../assets/languages/javascript.png'
 import { DifficultyTypes } from "../types";
 
 export const FeaturedProjectsList : Project[] = [
-{ ID: "d595f540-3058-45b7-9f14-b0d4342f45a9", 
+{
+    ID: "b381c29d-0264-4f65-95dd-8076b3591127",
+    Name: "Renta Norte",
+    Description:
+        "An investment newsletter prepared for investors in Alicante, featuring key news explained every Sunday and the best market offers.",
+    Difficulty: DifficultyTypes.Medium,
+    EndDate: new Date("2026-04-21"),
+    HasDemo: false,
+    DetailsLink: {
+        Href: "/en/projects/renta-norte",
+        Title: "Renta Norte Details Page",
+        Target: false
+    },
+    GithubLink: {
+        Href: "",
+        Title: "",
+        Target: true
+    },
+    Languages: [
+        {
+        ID: "e72844e0-ed9b-4325-992d-cc968117f106",
+        Name: "Astro",
+        Link: {
+            Href: "https://astro.build/",
+            Title: "Astro - The web framework for content-driven websites",
+            Target: true
+        },
+        Logo: { Image: AstroLogo, Alt: "Astro Logo" }
+        }
+    ],
+    CoverImage: {
+        Image: RentaNorteCoverImage,
+        Alt: "Startup screen of Newsletter Renta Norte"
+    },
+    Images: [
+        {
+        Image: RentaNorteCoverImage,
+        Alt: "Startup screen of Renta Norte Newsletter"
+        },
+        {
+        Image: RentaNorteDetailsImage,
+        Alt: "Landing Page Details from Renta Norte"
+        },
+        {
+        Image: RentaNortePostsImage,
+        Alt: "Renta Norte all posts page"
+        },
+        {
+        Image: RentaNortePostExampleImage,
+        Alt: "Post example from Renta Norte Website"
+        }
+    ]
+    },
+    {
+    ID: "4a4e2198-d3fc-453a-8f0c-f51abaa490c5",
+    Name: "Code Sano",
+    Description:
+        "Landing page to attract clients who need to fix a website built with artificial intelligence.",
+    Difficulty: DifficultyTypes.Easy,
+    EndDate: new Date("2026-07-05"),
+    HasDemo: false,
+    DetailsLink: {
+        Href: "/en/projects/code-sano",
+        Title: "Code Sano Details Page",
+        Target: false
+    },
+    GithubLink: {
+        Href: "",
+        Title: "",
+        Target: true
+    },
+    Languages: [
+        {
+        ID: "e72844e0-ed9b-4325-992d-cc968117f106",
+        Name: "Astro",
+        Link: {
+            Href: "https://astro.build/",
+            Title: "Astro - The web framework for content-driven websites",
+            Target: true
+        },
+        Logo: { Image: AstroLogo, Alt: "Astro Logo" }
+        }
+    ],
+    CoverImage: {
+        Image: CodeSanoCoverImage,
+        Alt: "Code Sano Landing Page"
+    },
+    Images: [
+        {
+        Image: CodeSanoCoverImage,
+        Alt: "Code Sano Landing Page"
+        },
+        {
+        Image: CodeSanoCalculatorImage,
+        Alt: "Landing Page Details from Renta Norte"
+        },
+        {
+        Image: CodeSanoReviewsImage,
+        Alt: "Code Sano reviews image"
+        },
+        {
+        Image: CodeSanoDetailsImage,
+        Alt: "Code Sano job details"
+        }
+    ]
+    },
+{ 
+    ID: "d595f540-3058-45b7-9f14-b0d4342f45a9", 
         Name: "Brokey", 
         Description: "Brokey es una aplicación web desarrollada con Angular y TypeScript que facilita la inversión en bolsa para usuarios sin experiencia. Ofrece una interfaz intuitiva para comprar, vender y gestionar acciones, criptomonedas y commodities. Incluye funcionalidades como carteras personalizadas, gráficos interactivos, autenticación segura y conexión con datos reales mediante API espejo.",
         Difficulty: DifficultyTypes.Hard, 
