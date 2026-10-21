@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /curriculum
+Disallow: /en/curriculum
 Allow: /
 
-Sitemap: https://www.hectorpascual.com/sitemap.xml
+Sitemap: https://www.hectorpascual.com/sitemap-index.xml

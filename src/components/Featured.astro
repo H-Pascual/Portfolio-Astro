@@ -1,31 +1,30 @@
----
-import { Image } from 'astro:assets'
-import KeywordPicture from '../assets/content/keyword-picture.jpg'
----
-<section id="ventajas-desarrollo" aria-label="Ventajas de contratar en Alicante a un FullStack Developer profesional">
-<div class="hero-container">
-  <Image
-    format="webp"
-    src={KeywordPicture}
-    alt="Teclado retroiluminado de desarrollador trabajando en una app web"
-    class="background-image"
-    loading="eager"
-  />
-  <div class="hero-text left">
-    <h2>Arquitectura limpia, resultados sólidos</h2>
-    <h3>Desarrollos robustos, eficientes y fáciles de mantener</h3>
+<section id="ventajas-desarrollo" class="approach" aria-labelledby="approach-title">
+  <div class="approach-intro">
+    <h2 id="approach-title">Código que tu equipo podrá mantener dentro de dos años</h2>
     <p>
-        Priorizo la calidad, el rendimiento y la escalabilidad desde la base.  
-        <br />
-        Aplico principios de <span class="bold">Clean Architecture</span> y <span class="bold">Código Limpio</span> para que cada línea de código tenga propósito y facilite la evolución del software.
-        <br />
-        ¿Buscas un sistema moderno, estable y sin dependencias frágiles?  
-        <br />
-        Este es el momento de construirlo bien.
-      </p>
-        <div id="action-buttons">
-    <a href="#contacto" title="Solicita tu proyecto" class="hero-button primary-button button">Solicita tu proyecto</a>
+      Lo rápido sale caro cuando llega el momento de tocarlo. Por eso aplico
+      <strong>Clean Architecture</strong> y <strong>código limpio</strong> desde el primer día:
+      capas bien separadas, decisiones documentadas y nada de dependencias frágiles.
+      El resultado es software que puedes ampliar sin miedo a romperlo.
+    </p>
+    <a href="#contacto" class="primary-button button">Cuéntame tu proyecto</a>
   </div>
-  </div>
-</div>
+  <dl class="approach-list">
+    <div>
+      <dt>Arquitectura limpia</dt>
+      <dd>Negocio, aplicación e infraestructura separados. Cambiar de base de datos o de proveedor no obliga a reescribir el núcleo.</dd>
+    </div>
+    <div>
+      <dt>Tests donde importan</dt>
+      <dd>Pruebas unitarias sobre la lógica crítica para publicar cambios con confianza, no con los dedos cruzados.</dd>
+    </div>
+    <div>
+      <dt>Rápido y bien posicionado</dt>
+      <dd>Webs ligeras, accesibles y preparadas para Google desde el principio. El rendimiento no se deja para el final.</dd>
+    </div>
+    <div>
+      <dt>Documentado para otros</dt>
+      <dd>Código explicado y documentación técnica, para que tu equipo no dependa de mí para entenderlo.</dd>
+    </div>
+  </dl>
 </section>

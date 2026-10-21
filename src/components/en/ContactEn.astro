@@ -1,42 +1,51 @@
 ---
 import { Image } from 'astro:assets'
-import HectorStandWhiteShirt from '../../assets/content/hector-stand-white-shirt.png'
+import HectorAvatar from '../../assets/content/hector-avatar.png'
 ---
-
-<section id="contact" aria-label="Contact Form">
-    <div class="contact">
-    <h2>Contact me!</h2>
-    <form action="https://formspree.io/f/mrblqqqv" id="contact-form" method="POST" class="contact-form" novalidate>
-        <div class="name label">
-            <input id="name" type="text" placeholder=" " required minlength="2" />
-            <label for="name">Name/Company</label>
-            <span class="error-message" aria-live="polite"></span>
-        </div>
-        <div class="email label">
-            <input id="email" type="email" placeholder=" "name="email" required />
-            <label for="email">Email</label>
-            <span class="error-message" aria-live="polite"></span>
-        </div>
-        <div class="subject label">
-            <input id="subject" type="text" name="subject" placeholder=" " required minlength="2" />
-            <label for="subject">Subject</label>
-            <span class="error-message" aria-live="polite"></span>
-        </div>
-        <div class="content label">
-            <textarea id="content" class="content-input" name="content" placeholder=" " required minlength="10"></textarea>
-            <label for="content">Content</label>
-            <span class="error-message" aria-live="polite"></span>
-        </div>
-        <div class="buttons">
-        <input type="submit" value="Send" class="submit-button button primary-button">
-        <input type="button" id="reset-button" value="Delete" class="secondary-button button">
-        </div>
-        <p id="form-message" role="alert" aria-live="assertive"></p>
-    </form>
+<section id="contacto" class="contact-section" aria-labelledby="contact-title">
+  <div class="contact-aside">
+    <h2 id="contact-title">Let's talk</h2>
+    <p class="contact-lead">A freelance project, a role on your team or a technical second opinion: tell me what you need and I'll reply personally, usually within 24 hours.</p>
+    <div class="contact-person">
+      <Image src={HectorAvatar} format="webp" width={128} height={128} class="contact-avatar" alt="Héctor Pascual Marín" loading="lazy" />
+      <p>You'll hear back from Héctor, not an agency or a bot.</p>
     </div>
-    <Image loading="lazy" format="webp" src={HectorStandWhiteShirt} class="contact-image" alt="Hector standing in a white sweatshirt" />
+    <ul class="contact-direct">
+      <li><span>Email</span><a href="mailto:hector.pascual.marin@gmail.com">hector.pascual.marin@gmail.com</a></li>
+      <li><span>Phone</span><a href="tel:+34653039281">+34 653 039 281</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/h%C3%A9ctor-pascual-mar%C3%ADn-953787232/" target="_blank" rel="noopener noreferrer">Héctor Pascual Marín</a></li>
+    </ul>
+  </div>
+  <div class="contact">
+    <form action="https://formspree.io/f/mrblqqqv" id="contact-form" method="POST" class="contact-form" novalidate>
+      <div class="name label">
+        <input id="name" name="name" type="text" placeholder=" " required minlength="2" autocomplete="name" />
+        <label for="name">Name or company</label>
+        <span class="error-message" aria-live="polite"></span>
+      </div>
+      <div class="email label">
+        <input id="email" name="email" type="email" placeholder=" " required autocomplete="email" />
+        <label for="email">Email</label>
+        <span class="error-message" aria-live="polite"></span>
+      </div>
+      <div class="subject label">
+        <input id="subject" name="subject" type="text" placeholder=" " required minlength="2" />
+        <label for="subject">Subject</label>
+        <span class="error-message" aria-live="polite"></span>
+      </div>
+      <div class="content label">
+        <textarea id="content" class="content-input" name="content" placeholder=" " required minlength="10"></textarea>
+        <label for="content">How can I help?</label>
+        <span class="error-message" aria-live="polite"></span>
+      </div>
+      <div class="buttons">
+        <input type="button" value="Clear" id="reset-button" class="ghost-button button" />
+        <input type="submit" value="Send message" class="submit-button button primary-button" />
+      </div>
+      <p id="form-message" role="alert" aria-live="assertive"></p>
+    </form>
+  </div>
 </section>
-
 
 <script>
   const form = document.getElementById('contact-form');
@@ -83,7 +92,7 @@ import HectorStandWhiteShirt from '../../assets/content/hector-stand-white-shirt
 
     const content = form.elements['content'];
     if (!content.value.trim() || content.value.trim().length < 10) {
-      showError(content, 'Please write a content with at least 10 characters.');
+      showError(content, 'Please write a message of at least 10 characters.');
       valid = false;
     }
 
@@ -104,7 +113,7 @@ import HectorStandWhiteShirt from '../../assets/content/hector-stand-white-shirt
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      showFormMessage('Please correct the errors in the form.', 'error');
+      showFormMessage('Please check the highlighted fields.', 'error');
       return;
     }
 
@@ -116,10 +125,10 @@ import HectorStandWhiteShirt from '../../assets/content/hector-stand-white-shirt
       }
     }).then(response => {
       if (response.ok) {
-        showFormMessage('Message sent successfully!', 'success');
+        showFormMessage('Message sent. I\'ll get back to you soon.', 'success');
         form.reset();
       } else {
-        showFormMessage('Error sending message. Please try again.', 'error');
+        showFormMessage('The message couldn\'t be sent. Try again or email hector.pascual.marin@gmail.com.', 'error');
       }
     }).catch(() => {
       showFormMessage('Network error. Check your connection.', 'error');

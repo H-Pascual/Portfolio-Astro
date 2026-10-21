@@ -1,28 +1,26 @@
----
-import { Image } from 'astro:assets'
-import PapersImage from '../../assets/content/papers-image.jpg'
----
-<section id="feature-ia" aria-label="Automation and Artificial Intelligence with Héctor Pascual">
-<div class="hero-container">
-  <Image
-    src={PapersImage}
-    format="webp"
-    alt="AI documentation and automated process sketches"
-    class="background-image background-image-secondary"
-    loading="lazy"
-  />
-  <div class="hero-text center">
-    <h2>Artificial Intelligence for your business</h2>
-    <h3>Convert manual processes into intelligent systems</h3>
-     <p>
-        Expert in <span class="bold">custom automations</span> and <span class="bold">applied Artificial Intelligence</span> to help optimize your daily operations.
-        <br/>
-        Reduce costs, save time and make more effective decisions. 
-        <br/>
-        Make your software work for you.
+<section id="feature-ia" class="ai-section" aria-labelledby="ai-title">
+  <div class="ai-inner">
+    <div class="ai-intro">
+      <h2 id="ai-title">Artificial intelligence that removes work instead of adding it</h2>
+      <p>
+        I specialised in AI and Big Data, and I use it where it delivers something measurable: automating repetitive tasks,
+        answering your customers faster and giving your software capabilities it didn't have before.
       </p>
-    <div id="action-buttons">
-    <a href="#contacto" title="Automate your business" class="hero-button primary-button button">Automate your business</a>
+      <a href="#contacto" class="primary-button button">Tell me what you want to automate</a>
+    </div>
+    <ul class="ai-cases">
+      <li>
+        <h3>Support that answers on its own</h3>
+        <p>At Eurobanan I designed and built an AI chatbot for the corporate website's support.</p>
+      </li>
+      <li>
+        <h3>Characters that teach</h3>
+        <p>In Aulaventura, figures like Dalí or Napoleon answer students in the first person.</p>
+      </li>
+      <li>
+        <h3>AI-built apps, ready for real users</h3>
+        <p>With CodeSano I review, fix and secure apps built with Lovable, Bolt or Cursor.</p>
+      </li>
+    </ul>
   </div>
-</div>
 </section>

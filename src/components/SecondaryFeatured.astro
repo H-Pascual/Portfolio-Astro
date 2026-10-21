@@ -1,29 +1,26 @@
----
-import { Image } from 'astro:assets'
-import PapersImage from '../assets/content/papers-image.jpg'
----
-<section id="feature-ia" aria-label="Automatización e Inteligencia Artificial con Héctor Pascual">
-<div class="hero-container">
-  <Image
-    src={PapersImage}
-    format="webp"
-    alt="Documentación de IA y bocetos de procesos automatizados"
-    class="background-image background-image-secondary"
-    loading="lazy"
-  />
-  <div class="hero-text center">
-    <h2>Inteligencia Artificial para tu negocio</h2>
-    <h3>Convierte procesos manuales en sistemas inteligentes</h3>
-     <p>
-        Creo <span class="bold">automatizaciones a medida</span> e <span class="bold">Inteligencia Artificial aplicada</span> para ayudar a optimizar tu operativa diaria.
-        <br/>
-        Reduce costes, ahorra tiempo y toma decisiones más efectivas. 
-        <br/>
-        Haz que tu software trabaje para ti.
+<section id="feature-ia" class="ai-section" aria-labelledby="ai-title">
+  <div class="ai-inner">
+    <div class="ai-intro">
+      <h2 id="ai-title">Inteligencia artificial que quita trabajo, no que lo añade</h2>
+      <p>
+        Me especialicé en IA y Big Data y la uso donde aporta algo medible: automatizar tareas repetitivas,
+        responder antes a tus clientes y dar a tu software capacidades que antes no tenía.
       </p>
-    <div id="action-buttons">
-    <a href="#contacto" title="Automatiza tu negocio" class="hero-button primary-button button">Automatiza tu negocio</a>
+      <a href="#contacto" class="primary-button button">Cuéntame qué quieres automatizar</a>
+    </div>
+    <ul class="ai-cases">
+      <li>
+        <h3>Soporte que responde solo</h3>
+        <p>En Eurobanan diseñé y desarrollé un chatbot de IA para el soporte de la web corporativa.</p>
+      </li>
+      <li>
+        <h3>Personajes que enseñan</h3>
+        <p>En Aulaventura, figuras como Dalí o Napoleón responden a los alumnos en primera persona.</p>
+      </li>
+      <li>
+        <h3>Apps hechas con IA, listas para usuarios reales</h3>
+        <p>Con CodeSano reviso, arreglo y aseguro aplicaciones creadas con Lovable, Bolt o Cursor.</p>
+      </li>
+    </ul>
   </div>
-</div>
-
 </section>

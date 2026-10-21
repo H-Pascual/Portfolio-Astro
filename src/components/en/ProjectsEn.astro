@@ -1,50 +1,96 @@
 ---
-import { Image } from 'astro:assets'
-import { FeaturedProjectsList } from '../../data';
-import TriangleDifficulty from './../TriangleDifficulty.astro';
+import { Image, getImage } from 'astro:assets'
+import { FeaturedProjectsListEn } from '../../data';
+
+// Póster del vídeo: la portada del proyecto, optimizada
+const posters: Record<string, string> = {}
+for (const p of FeaturedProjectsListEn) {
+    if (p.Video) posters[p.ID] = (await getImage({ src: p.CoverImage.Image, width: 1280, format: 'webp' })).src
+}
+
+const host = (href?: string) => href ? new URL(href).hostname.replace(/^www\./, '') : ''
 ---
 
-<section id="proyectos" class="projects" aria-label="Featured personal projects">
-    <div class="projects-items">
-        <h2 class="projects-title">Featured Projects</h2>
-        <div class="projects-preview">
-            {
-                FeaturedProjectsList.map(project => (
-            <div class="project-image-container">
-                <a href={project.DetailsLink.Href} class="invisible-link"
-                title={project.DetailsLink.Title}
-                target={project.DetailsLink.Target ? '_blank' : '_self'}>
-    <Image 
-        class="project-image"
-        format="webp"
-        src={project.CoverImage.Image}
-        alt={project.CoverImage.Alt}
-        loading="lazy"
-    />
-    <span class="project-name">{project.Name}</span>
+<section id="proyectos" class="projects" aria-labelledby="projects-title">
+    <div class="projects-inner">
+        <header class="projects-head">
+            <h2 id="projects-title" class="projects-title">Featured projects</h2>
+            <p>Three products of my own that I designed, built and shipped. They are live, so you can visit them.</p>
+        </header>
 
-    <div class="project-toolbar">
-        <span><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></span>
-        <div style={{ display: "flex", gap: "5px" }}>
-            {
-                project.Languages.map(lang => (
-                    <Image 
-                        format="webp"
-                        src={lang.Logo.Image}
-                        alt={lang.Logo.Alt}
-                        title={lang.Name}
-                        style={{ height: '20px' }}
-                    />
-                ))
-            }
-        </div>
-    </div>
-    </a>
-</div>
-        ))
-            }
-        </div>
-        <a href="/en/projects" title="See more" class="see-more primary-button button">See more</a>
+        <ul class="case-list">
+            {FeaturedProjectsListEn.map((project, i) => (
+                <li class={`case ${i % 2 === 1 ? 'case-reverse' : ''}`}>
+                    <div class="browser">
+                        <div class="browser-bar">
+                            <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            {project.DemoLink?.Href
+                                ? <a class="browser-url" href={project.DemoLink.Href} target="_blank" rel="noopener noreferrer" title={project.DemoLink.Title}>{host(project.DemoLink.Href)}</a>
+                                : <span class="browser-url">{project.Name}</span>}
+                        </div>
+                        {project.Video ? (
+                            <div class="browser-video" data-video>
+                                <video preload="none" playsinline poster={posters[project.ID]} title={project.Video.Title}>
+                                    <source src={project.Video.Src} type="video/mp4" />
+                                    {project.Video.SrcWebm && <source src={project.Video.SrcWebm} type="video/webm" />}
+                                </video>
+                                <button type="button" class="video-play" aria-label={`Play the demo of ${project.Name}`}>
+                                    <span class="video-play-icon" aria-hidden="true"></span>
+                                    <span>Watch demo · 2 min</span>
+                                </button>
+                            </div>
+                        ) : (
+                            <a href={project.DetailsLink.Href} class="browser-shot" tabindex="-1" aria-hidden="true">
+                                <Image
+                                    src={project.CoverImage.Image}
+                                    format="webp"
+                                    widths={[480, 760, 1100]}
+                                    sizes="(max-width: 980px) 92vw, 640px"
+                                    alt={project.CoverImage.Alt}
+                                    loading="lazy"
+                                />
+                            </a>
+                        )}
+                    </div>
+                    <div class="case-body">
+                        <h3 class="case-title"><a href={project.DetailsLink.Href} title={project.DetailsLink.Title}>{project.Name}</a></h3>
+                        <p class="case-tagline">{project.Tagline}</p>
+                        {project.Highlights && (
+                            <ul class="case-highlights">
+                                {project.Highlights.map(h => <li>{h}</li>)}
+                            </ul>
+                        )}
+                        <ul class="case-stack" aria-label="Technologies">
+                            {project.Languages.map(lang => (
+                                <li><Image src={lang.Logo.Image} alt="" height={40} format="webp" loading="lazy" />{lang.Name}</li>
+                            ))}
+                        </ul>
+                        <div class="action-row">
+                            <a href={project.DetailsLink.Href} class="light-button button">View project</a>
+                            {project.DemoLink?.Href && (
+                                <a href={project.DemoLink.Href} target="_blank" rel="noopener noreferrer" class="text-link">Visit {host(project.DemoLink.Href)}</a>
+                            )}
+                        </div>
+                    </div>
+                </li>
+            ))}
+        </ul>
+
+        <a href="/en/projects" class="see-more outline-light-button button">See all projects</a>
     </div>
 </section>
- <div class="wave-container"></div>
+<div class="wave-container" aria-hidden="true"></div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-video]').forEach(wrapper => {
+    const video = wrapper.querySelector('video');
+    const button = wrapper.querySelector('.video-play');
+    if (!video || !button) return;
+    button.addEventListener('click', () => {
+      wrapper.classList.add('is-playing');
+      video.controls = true;
+      video.play();
+      video.focus();
+    });
+  });
+</script>

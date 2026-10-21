@@ -3,338 +3,142 @@ import EurobananLogo from '../assets/companies/eurobanan-logo.png'
 import InetumLogo from '../assets/companies/inetum-logo.png'
 import SanVicenteLogo from '../assets/companies/ies-san-vicente-logo.png'
 import MariaBlascoLogo from '../assets/companies/ies-maria-blasco-logo.jpg'
-import LaCaixaLogo from '../assets/companies/la-caixa-logo.png'
 import OpenWebinarsLogo from '../assets/companies/openwebinars-logo.png'
 import CambridgeLogo from '../assets/companies/cambridge-logo.png'
 import { Image } from 'astro:assets'
+
+const experience = [
+  {
+    role: 'FullStack Developer', org: 'Eurobanan', dates: 'Julio 2024 – actualidad', logo: EurobananLogo, alt: 'Logo de Eurobanan',
+    points: [
+      'Desarrollo y mantengo Altair, el sistema interno con el que se gestiona toda la operativa de la empresa.',
+      'Frontend en React, TypeScript, Vite y DevExpress; backend en C# y .NET Core con APIs REST.',
+      'Diseñé y desarrollé un chatbot de inteligencia artificial para el soporte de la web.',
+      'Participo en la definición de la arquitectura (Clean Architecture) y en la mejora de procesos del equipo.',
+      'Tests unitarios, documentación técnica, user stories y revisión de pull requests.',
+    ],
+  },
+  {
+    role: 'Backend Developer', org: 'Inetum', dates: 'Marzo 2024 – junio 2024', logo: InetumLogo, alt: 'Logo de Inetum',
+    points: [
+      'Desarrollo y mantenimiento de microservicios en C# y .NET Core para el sector sanitario.',
+      'Automatización de flujos de trabajo con Azure Logic Apps.',
+      'Trabajo dentro de un proyecto con más de 200 profesionales implicados.',
+    ],
+  },
+]
+
+const studies = [
+  { title: 'Especialización en Inteligencia Artificial y Big Data', org: 'IES San Vicente', dates: 'Septiembre 2024 – junio 2025', logo: SanVicenteLogo, alt: 'Logo del IES San Vicente' },
+  { title: 'Técnico Superior en Desarrollo de Aplicaciones Web', org: 'IES San Vicente', dates: 'Septiembre 2022 – junio 2024', logo: SanVicenteLogo, alt: 'Logo del IES San Vicente' },
+  { title: 'Bachillerato Científico-Tecnológico', org: 'IES María Blasco', dates: 'Septiembre 2020 – junio 2022', logo: MariaBlascoLogo, alt: 'Logo del IES María Blasco' },
+]
+
+const certifications = [
+  { title: 'Curso de .NET Framework (10 h)', org: 'OpenWebinars', dates: 'Marzo 2024', logo: OpenWebinarsLogo, alt: 'Logo de OpenWebinars' },
+  { title: 'Curso de TypeScript (14 h)', org: 'OpenWebinars', dates: 'Marzo 2024', logo: OpenWebinarsLogo, alt: 'Logo de OpenWebinars' },
+  { title: 'Curso de C# intermedio (8 h)', org: 'OpenWebinars', dates: 'Marzo 2024', logo: OpenWebinarsLogo, alt: 'Logo de OpenWebinars' },
+  { title: 'Inglés B2 First (168 puntos)', org: 'Cambridge University', dates: 'Agosto 2021', logo: CambridgeLogo, alt: 'Logo de Cambridge University' },
+]
+
+const skills = [
+  { area: 'Frontend', items: 'React, TypeScript, JavaScript, Astro, Angular, HTML, CSS, SASS, Bootstrap' },
+  { area: 'Backend', items: 'C#, .NET Core, Node.js, PHP, Python, APIs REST' },
+  { area: 'Datos e infraestructura', items: 'SQL, MariaDB, MongoDB, Docker, Git, Azure Logic Apps' },
+]
 ---
-<section id="resumen" class="summary">
-  <div class="content">
-  <h3 class="summary-title summary-left">Experiencia laboral</h3>
+<section id="resumen" class="summary" aria-labelledby="summary-heading">
+  <header class="summary-head">
+    <h2 id="summary-heading">Experiencia y formación</h2>
+    <p>Más de dos años desarrollando software empresarial en producción, en logística y en sanidad.</p>
+  </header>
 
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">FullStack Developer</h4>
-            <span class="summary-subtitle">Eurobanan | Julio 2024 - Actualidad</span>
+  <div class="summary-block summary-exp">
+    <h3 class="summary-title">Experiencia laboral</h3>
+    <ol class="timeline">
+      {experience.map(job => (
+        <li class="summary-item">
+          <span class="summary-marker" aria-hidden="true"></span>
+          <div class="summary-header">
+            <div class="summary-text">
+              <h4 class="summary-job-title">{job.role} <span class="summary-org">en {job.org}</span></h4>
+              <span class="summary-subtitle">{job.dates}</span>
+            </div>
+            <Image src={job.logo} format="webp" width={112} class="summary-image" alt={job.alt} loading="lazy" />
           </div>
-          <Image src={EurobananLogo} format="webp" class="summary-image" alt="Logo de la empresa Eurobanan" loading="lazy"/>
-        </div>
-        <p class="summary-description">
-          · Desarrollo y mantenimiento de Altair, un sistema interno de gestión general de todo el negocio.
-          <br/>· Desarrollo de test unitarios.
-          <br/>· Diseño y desarrollo de un chatbot de inteligencia artificial para soporte web.
-          <br/>· Elaboración de documentación técnica para garantizar la mantenibilidad del sistema.
-          <br/>· Implementación de React con TypeScript, Vite y DevExpress en el FrontEnd.
-          <br/>· Desarrollo del BackEnd en C# y .NET Core, asegurando escalabilidad y rendimiento.
-          <br/>· Colaboración en la definición de arquitectura (Clean Architecture) y mejora de procesos internos.
-          <br/>· Creación de API Rest comunicadas con el BackEnd. 
-          <br/>· Creación y gestión de User Stories y Pull Requests (PRs) para optimizar el flujo de trabajo en el equipo de desarrollo.
-        </p>
-      </div>
-    </div>
-
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">BackEnd Developer</h4>
-            <span class="summary-subtitle">Inetum | Marzo 2024 - Junio 2024</span>
-          </div>
-          <Image src={InetumLogo} format="webp" class="summary-image" alt="Logo de la consultora Inetum" loading="lazy" />
-        </div>
-        <p class="summary-description">
-          · Desarrollo y gestión de microservicios en C# y .NET Core para el ámbito sanitario.
-          <br/>· Automatización de flujos de trabajo con Azure Logic Apps.
-          <br/>· Colaboración con un equipo multidisciplinario en un sistema con más de200 profesionales involucrados.
-        </p>
-      </div>
-    </div>
+          <ul class="summary-points">
+            {job.points.map(p => <li>{p}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ol>
   </div>
-   <h3 class="summary-title summary-left">Estudios</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Especialización en Inteligencia Artificial y Big Data</h4>
-            <span class="summary-subtitle">IES San Vicente | Septiembre 2024 - Junio 2025</span>
+
+  <div class="summary-block summary-studies">
+    <h3 class="summary-title">Formación</h3>
+    <ol class="timeline">
+      {studies.map(s => (
+        <li class="summary-item">
+          <span class="summary-marker" aria-hidden="true"></span>
+          <div class="summary-header">
+            <div class="summary-text">
+              <h4 class="summary-job-title">{s.title}</h4>
+              <span class="summary-subtitle">{s.org}, {s.dates}</span>
+            </div>
+            <Image src={s.logo} format="webp" width={112} class="summary-image" alt={s.alt} loading="lazy" />
           </div>
-          <Image src={SanVicenteLogo} format="webp" class="summary-image" alt="Logo del instituto IES San Vicente" loading="lazy" />
-        </div>
-      </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <aside class="summary-aside" aria-label="Logros, conocimientos e idiomas">
+    <div class="summary-award">
+      <h3 class="summary-title">Logro destacado</h3>
+      <p class="award-rank">3.<sup>er</sup> premio FemFutur</p>
+      <p class="summary-subtitle">Caixa Popular, mayo 2024</p>
+      <p class="summary-description">Plataforma web para encontrar personal de limpieza doméstica. Tercer puesto entre más de 200 participantes.</p>
     </div>
 
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Técnico Superior en Desarrollo de Aplicaciones Web</h4>
-            <span class="summary-subtitle">IES San Vicente | Septiembre 2022 - Junio 2024</span>
-          </div>
-          <Image src={SanVicenteLogo} format="webp" class="summary-image" alt="Logo del instituto IES San Vicente" loading="lazy" />
-        </div>
-      </div>
+    <div>
+      <h3 class="summary-title">Conocimientos</h3>
+      <dl class="skills">
+        {skills.map(s => (<div><dt>{s.area}</dt><dd>{s.items}</dd></div>))}
+      </dl>
     </div>
 
-  <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Bachillerato Técnico Científico</h4>
-            <span class="summary-subtitle">ES María Blasco | Septiembre 2020 - Junio 2022</span>
-          </div>
-          <Image src={MariaBlascoLogo} format="webp" class="summary-image" alt="Logo del instituto IES María Blasco" loading="lazy" />
-        </div>
-      </div>
+    <div>
+      <h3 class="summary-title">Idiomas</h3>
+      <dl class="skills skills-inline">
+        <div><dt>Castellano</dt><dd>Nativo</dd></div>
+        <div><dt>Valenciano</dt><dd>B2</dd></div>
+        <div><dt>Inglés</dt><dd>B2</dd></div>
+      </dl>
     </div>
 
-  </div>
-  <div class="small-item">
-  <h3 class="summary-title summary-left">Logros destacados</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">3er Premio de FemFutur</h4>
-            <span class="summary-subtitle">Caixa Popular | Mayo 2024</span>
-          </div>
-        </div>
-        <p class="summary-description">
-          Creación de plataforma web para la búsqueda de limpiadores domésticos. Finalista en FemFutur Caixa Popular 2024, obteniendo el 3er puesto entremás de 200 participantes.
-        </p>
-      </div>
+    <div>
+      <h3 class="summary-title">Certificaciones</h3>
+      <ul class="cert-list">
+        {certifications.map(c => (
+          <li>
+            <Image src={c.logo} format="webp" width={64} class="cert-logo" alt={c.alt} loading="lazy" />
+            <div><span class="cert-title">{c.title}</span><span class="summary-subtitle">{c.org}, {c.dates}</span></div>
+          </li>
+        ))}
+      </ul>
     </div>
-  </div>
-  <h3 class="summary-title summary-left">Conocimientos</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">FrontEnd</h4>
-          </div>
-        </div>
-        <p class="summary-description">
-         HTML, CSS, Bootstrap, JavaScript, TypeScript, React, SASS, AngularJS
-        </p>
-      </div>
-    </div>
+  </aside>
 
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">BackEnd</h4>
-          </div>
-        </div>
-        <p class="summary-description">
-          C#, .NET Core, PHP, Python
-        </p>
-      </div>
-    </div>
-  </div>
-  <h3 class="summary-title summary-left contact-title">Idiomas</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-content-box">
-        <p class="summary-description">
-          <span class="bold">Castellano:</span> Nativo
-          <br/>
-          <span class="bold">Valenciano:</span> Alto (B2)
-          <br/>
-          <span class="bold">Inglés:</span> Alto (B2)
-        </p>
-      </div>
-    </div>
-  </div>
-    <h3 class="summary-title summary-left">Certificaciones</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Curso de .NET Framework (10 horas)</h4>
-            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
-          </div>
-          <Image src={OpenWebinarsLogo} format="webp" class="summary-image" alt="Logo de la empresa OpenWebinars" loading="lazy" />
-        </div>
-      </div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Curso de TypeScript (14 horas)</h4>
-            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
-          </div>
-          <Image src={OpenWebinarsLogo} format="webp" class="summary-image" alt="Logo de la empresa OpenWebinars" loading="lazy" />
-        </div>
-      </div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Curso de C# Intermedio (8 horas)</h4>
-            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
-          </div>
-          <Image src={OpenWebinarsLogo} format="webp" class="summary-image" alt="Logo de la empresa OpenWebinars" loading="lazy" />
-        </div>
-      </div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Inglés Nivel B2 (Score 168)</h4>
-            <span class="summary-subtitle">Cambridge University | Agosto 2021</span>
-          </div>
-          <Image src={CambridgeLogo} format="webp" class="summary-image" alt="Logo de la Cambridge University" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <h3 class="summary-title contact-title summary-left">Contacto</h3>
-  <div class="timeline">
-    <p class="summary-description">
-      <br/>hector.pascual.marin@gmail.com
-      <br/>+34 65 3039 281<br/><br/>
+  <div class="summary-block summary-contact">
+    <h3 class="summary-title">Contacto directo</h3>
+    <p class="summary-contact-lines">
+      <a href="mailto:hector.pascual.marin@gmail.com">hector.pascual.marin@gmail.com</a>
+      <a href="tel:+34653039281">+34 653 039 281</a>
     </p>
-    <div id="action-buttons">
-      <a href="https://www.linkedin.com/in/h%C3%A9ctor-pascual-mar%C3%ADn-953787232/" target="_blank" title="Acceder a Linkedin" class="linkedin primary-button button">Linkedin</a>
-      <a href="https://github.com/H-Pascual" target="_blank" title="Acceder a Github" class="github primary-button button">Github</a>
-      <a href="#contacto" title="Contáctame" class="hero-button primary-button button">Contáctame</a>
-      <a href="/curriculum" title="Ver Currículum" class="secondary-button button">Ver Curriculum</a>
+    <div class="action-row">
+      <a href="https://www.linkedin.com/in/h%C3%A9ctor-pascual-mar%C3%ADn-953787232/" target="_blank" rel="noopener noreferrer" class="linkedin button">LinkedIn</a>
+      <a href="https://github.com/H-Pascual" target="_blank" rel="noopener noreferrer" class="github button">GitHub</a>
+      <a href="/curriculum" class="secondary-button button">Ver currículum</a>
     </div>
-  </div>
-  </div>
-    <div class="side-item">
-  <h3 class="summary-title summary-right">Logros destacados</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">3er Premio de FemFutur</h4>
-            <span class="summary-subtitle">Caixa Popular | Mayo 2024</span>
-          </div>
-        </div>
-        <p class="summary-description">
-          Creación de plataforma web para la búsqueda de limpiadores domésticos. Finalista en FemFutur Caixa Popular 2024, obteniendo el 3er puesto entremás de 200 participantes.
-        </p>
-      </div>
-    </div>
-  </div>
-  <h3 class="summary-title summary-right">Conocimientos</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">FrontEnd</h4>
-          </div>
-        </div>
-        <p class="summary-description">
-         HTML, CSS, Bootstrap, JavaScript, TypeScript, React, SASS, AngularJS
-        </p>
-      </div>
-    </div>
-
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">BackEnd</h4>
-          </div>
-        </div>
-        <p class="summary-description">
-          C#, .NET Core, PHP, Python
-        </p>
-      </div>
-    </div>
-  </div>
-  <h3 class="summary-title summary-right contact-title">Idiomas</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-content-box">
-        <p class="summary-description">
-          <span class="bold">Castellano:</span> Nativo
-          <br/>
-          <span class="bold">Valenciano:</span> Alto (B2)
-          <br/>
-          <span class="bold">Inglés:</span> Alto (B2)
-        </p>
-      </div>
-    </div>
-  </div>
-    <h3 class="summary-title summary-right">Certificaciones</h3>
-  <div class="timeline">
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Curso de .NET Framework (10 horas)</h4>
-            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
-          </div>
-          <Image src={OpenWebinarsLogo} format="webp" class="summary-image" alt="Logo de la empresa OpenWebinars" loading="lazy" />
-        </div>
-      </div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Curso de TypeScript (14 horas)</h4>
-            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
-          </div>
-          <Image src={OpenWebinarsLogo} format="webp" class="summary-image" alt="Logo de la empresa OpenWebinars" loading="lazy" />
-        </div>
-      </div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Curso de C# Intermedio (8 horas)</h4>
-            <span class="summary-subtitle">OpenWebinars | Marzo 2024</span>
-          </div>
-          <Image src={OpenWebinarsLogo} format="webp" class="summary-image" alt="Logo de la empresa OpenWebinars" loading="lazy" />
-        </div>
-      </div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-marker"></div>
-      <div class="summary-content-box">
-        <div class="summary-header">
-          <div class="summary-text">
-            <h4 class="summary-job-title">Inglés Nivel B2 (Score 168)</h4>
-            <span class="summary-subtitle">Cambridge University | Agosto 2021</span>
-          </div>
-          <Image src={CambridgeLogo} format="webp" class="summary-image" alt="Logo de la Cambridge University" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
 </section>

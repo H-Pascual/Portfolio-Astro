@@ -2,19 +2,36 @@
 import SwitchLanguageEn from "./SwitchLanguageEn.astro";
 ---
 
-<header>
-    <div class="header-logo" aria-label="Main brand">
-        <h1 class="header-title"><a title="Start: Héctor Pascual Marín - FullStack Developer" href="/en">Héctor Pascual Marín</a></h1>
-        <h2 class="header-subtitle">FullStack Developer</h2>
+<header class="site-header">
+    <div class="header-logo">
+        <h1 class="header-title"><a title="Home: Héctor Pascual Marín - FullStack Developer in Alicante" href="/en/">Héctor Pascual Marín</a></h1>
+        <h2 class="header-subtitle">FullStack Developer in Alicante</h2>
     </div>
-    <nav class="header-navigation" aria-label="Menú principal">
-        <ul>
-            <li><a href="/en/#inicio" class="menu large-link" title="Inicio">Home</a></li>
-            <li><a href="/en/#resumen" class="menu large-link" title="Ver resumen">Summary</a></li>
-            <li><a href="/en/#proyectos" class="menu large-link" title="Proyectos creados">Projects</a></li>
-            <li><a href="/en/#contacto" class="menu large-link" title="Contactar">Contact</a></li>
-            <li><a href="/en/curriculum" class="menu large-link" title="Curriculum">Resume</a></li>
-            <li><SwitchLanguageEn></SwitchLanguageEn></li>
+    <nav class="header-navigation" aria-label="Main menu">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
+            <span class="menu-toggle-bars" aria-hidden="true"></span>
+            <span class="menu-toggle-label">Menu</span>
+        </button>
+        <ul id="main-menu" class="menu-list">
+            <li><a href="/en/#inicio" class="menu large-link">Home</a></li>
+            <li><a href="/en/#proyectos" class="menu large-link">Projects</a></li>
+            <li><a href="/en/#resumen" class="menu large-link">Experience</a></li>
+            <li><a href="/en/curriculum" class="menu large-link">Resume</a></li>
+            <li><a href="/en/#contacto" class="menu large-link menu-cta">Contact</a></li>
         </ul>
+        <SwitchLanguageEn></SwitchLanguageEn>
     </nav>
 </header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const list = document.getElementById('main-menu');
+  const close = () => { toggle?.setAttribute('aria-expanded', 'false'); list?.classList.remove('open'); };
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    list?.classList.toggle('open', open);
+  });
+  list?.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+</script>

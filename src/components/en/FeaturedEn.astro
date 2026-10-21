@@ -1,31 +1,30 @@
----
-import { Image } from 'astro:assets'
-import KeywordPicture from '../../assets/content/keyword-picture.jpg'
----
-<section id="ventajas-desarrollo" aria-label="Advantages of hiring a professional FullStack Developer in Alicante">
-<div class="hero-container">
-  <Image
-    src={KeywordPicture}
-    format="webp"
-    alt="Backlit keyboard of a developer working on a web app"
-    class="background-image"
-    loading="eager"
-  />
-  <div class="hero-text left">
-    <h2>Clean architecture, solid results</h2>
-    <h3>Robust, efficient and easy-to-maintain developments</h3>
+<section id="ventajas-desarrollo" class="approach" aria-labelledby="approach-title">
+  <div class="approach-intro">
+    <h2 id="approach-title">Code your team can still maintain two years from now</h2>
     <p>
-        I prioritize quality, performance, and scalability from the ground up.  
-        <br />
-        I apply principles of <span class="bold">Clean Architecture</span> and <span class="bold">Clean Code</span> so that each line of code has a purpose and facilitates the evolution of the software.
-        <br />
-        Are you looking for a modern, stable system without fragile dependencies?
-        <br />
-        This is the time to build it right.
-      </p>
-        <div id="action-buttons">
-    <a href="#contacto" title="Request your project" class="hero-button primary-button button">Request your project</a>
+      Quick and dirty gets expensive the moment you need to change it. That's why I apply
+      <strong>Clean Architecture</strong> and <strong>clean code</strong> from day one:
+      well-separated layers, documented decisions and no fragile dependencies.
+      The result is software you can extend without fear of breaking it.
+    </p>
+    <a href="#contacto" class="primary-button button">Tell me about your project</a>
   </div>
-  </div>
-</div>
+  <dl class="approach-list">
+    <div>
+      <dt>Clean architecture</dt>
+      <dd>Business, application and infrastructure kept apart. Switching database or provider doesn't mean rewriting the core.</dd>
+    </div>
+    <div>
+      <dt>Tests where they matter</dt>
+      <dd>Unit tests on the critical logic, so changes ship with confidence instead of crossed fingers.</dd>
+    </div>
+    <div>
+      <dt>Fast and search-ready</dt>
+      <dd>Lightweight, accessible websites built for Google from the start. Performance is never left for later.</dd>
+    </div>
+    <div>
+      <dt>Documented for others</dt>
+      <dd>Explained code and technical documentation, so your team doesn't depend on me to understand it.</dd>
+    </div>
+  </dl>
 </section>

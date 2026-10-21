@@ -1,18 +1,30 @@
 ---
 import { Image } from 'astro:assets'
-import HectorStandWhiteShirt from '../assets/content/hector-stand-white-shirt.png'
+import HectorAvatar from '../assets/content/hector-avatar.png'
 ---
-<section id="contacto" aria-label="Formulario de contacto">
+<section id="contacto" class="contact-section" aria-labelledby="contact-title">
+  <div class="contact-aside">
+    <h2 id="contact-title">Hablemos</h2>
+    <p class="contact-lead">Un proyecto freelance, un puesto en tu equipo o una segunda opinión técnica: cuéntame qué necesitas y te respondo personalmente, normalmente en menos de 24 horas.</p>
+    <div class="contact-person">
+      <Image src={HectorAvatar} format="webp" width={128} height={128} class="contact-avatar" alt="Héctor Pascual Marín" loading="lazy" />
+      <p>Te responde Héctor, no una agencia ni un bot.</p>
+    </div>
+    <ul class="contact-direct">
+      <li><span>Email</span><a href="mailto:hector.pascual.marin@gmail.com">hector.pascual.marin@gmail.com</a></li>
+      <li><span>Teléfono</span><a href="tel:+34653039281">+34 653 039 281</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/h%C3%A9ctor-pascual-mar%C3%ADn-953787232/" target="_blank" rel="noopener noreferrer">Héctor Pascual Marín</a></li>
+    </ul>
+  </div>
   <div class="contact">
-    <h2>¡Contáctame!</h2>
     <form action="https://formspree.io/f/mrblqqqv" id="contact-form" method="POST" class="contact-form" novalidate>
       <div class="name label">
-        <input id="name" name="name" type="text" placeholder=" " required minlength="2" />
-        <label for="name">Nombre/Empresa</label>
+        <input id="name" name="name" type="text" placeholder=" " required minlength="2" autocomplete="name" />
+        <label for="name">Nombre o empresa</label>
         <span class="error-message" aria-live="polite"></span>
       </div>
       <div class="email label">
-        <input id="email" name="email" type="email" placeholder=" " required />
+        <input id="email" name="email" type="email" placeholder=" " required autocomplete="email" />
         <label for="email">Email</label>
         <span class="error-message" aria-live="polite"></span>
       </div>
@@ -23,17 +35,16 @@ import HectorStandWhiteShirt from '../assets/content/hector-stand-white-shirt.pn
       </div>
       <div class="content label">
         <textarea id="content" class="content-input" name="content" placeholder=" " required minlength="10"></textarea>
-        <label for="content">Contenido</label>
+        <label for="content">¿En qué puedo ayudarte?</label>
         <span class="error-message" aria-live="polite"></span>
       </div>
       <div class="buttons">
-        <input type="submit" value="Enviar" class="submit-button button primary-button" />
-        <input type="button" value="Borrar" id="reset-button" class="secondary-button button" />
+        <input type="button" value="Borrar" id="reset-button" class="ghost-button button" />
+        <input type="submit" value="Enviar mensaje" class="submit-button button primary-button" />
       </div>
       <p id="form-message" role="alert" aria-live="assertive"></p>
     </form>
   </div>
-  <Image format="webp" loading="lazy" src={HectorStandWhiteShirt} class="contact-image" alt="Héctor de pie con una sudadera blanca" />
 </section>
 
 <script>
@@ -103,7 +114,7 @@ import HectorStandWhiteShirt from '../assets/content/hector-stand-white-shirt.pn
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      showFormMessage('Por favor corrige los errores en el formulario.', 'error');
+      showFormMessage('Revisa los campos marcados.', 'error');
       return;
     }
 
@@ -115,10 +126,10 @@ import HectorStandWhiteShirt from '../assets/content/hector-stand-white-shirt.pn
       }
     }).then(response => {
       if (response.ok) {
-        showFormMessage('¡Mensaje enviado con éxito!', 'success');
+        showFormMessage('Mensaje enviado. Te respondo lo antes posible.', 'success');
         form.reset();
       } else {
-        showFormMessage('Error al enviar el mensaje. Inténtalo de nuevo.', 'error');
+        showFormMessage('No se ha podido enviar. Inténtalo de nuevo o escríbeme a hector.pascual.marin@gmail.com.', 'error');
       }
     }).catch(() => {
       showFormMessage('Error de red. Verifica tu conexión.', 'error');

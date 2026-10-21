@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets'
+import TriangleDifficulty from './TriangleDifficulty.astro'
+import type { Project } from '../entities'
+
+interface Props { project: Project; lang?: 'es' | 'en'; eager?: boolean }
+const { project, lang = 'es', eager = false } = Astro.props
+const levels = lang === 'es' ? ['Básico', 'Intermedio', 'Avanzado'] : ['Basic', 'Intermediate', 'Advanced']
+---
+<a href={project.DetailsLink.Href} class="project-card" title={project.DetailsLink.Title}>
+    <div class="project-card-media">
+        <Image
+            src={project.CoverImage.Image}
+            format="webp"
+            widths={[420, 640, 900]}
+            sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 400px"
+            alt={project.CoverImage.Alt}
+            loading={eager ? 'eager' : 'lazy'}
+        />
+    </div>
+    <div class="project-card-body">
+        <h3 class="project-card-title">{project.Name}</h3>
+        {project.Tagline && <p class="project-card-tagline">{project.Tagline}</p>}
+        <div class="project-card-foot">
+            <span class="project-card-level" title={lang === 'es' ? 'Complejidad' : 'Complexity'}>
+                <TriangleDifficulty difficulty={project.Difficulty + 1}></TriangleDifficulty>
+                {levels[project.Difficulty]}
+            </span>
+            <span class="project-card-stack">
+                {project.Languages.map(l => <Image src={l.Logo.Image} alt={l.Name} title={l.Name} height={40} format="webp" loading="lazy" />)}
+            </span>
+        </div>
+    </div>
+</a>
