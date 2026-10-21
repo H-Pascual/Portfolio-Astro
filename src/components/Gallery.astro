@@ -1,0 +1,214 @@
+---
+import { Image, getImage } from 'astro:assets'
+import type { Image as ProjectImage } from '../entities'
+
+interface Props { images: ProjectImage[]; lang?: 'es' | 'en' }
+const { images, lang = 'es' } = Astro.props
+
+const t = lang === 'es'
+    ? { prev: 'Imagen anterior', next: 'Imagen siguiente', open: 'Ver en pantalla completa', close: 'Cerrar', viewer: 'Visor de imágenes', of: 'de', zoomIn: 'Ampliar', zoomOut: 'Reducir', hint: 'Pulsa la imagen para ampliarla' }
+    : { prev: 'Previous image', next: 'Next image', open: 'View full screen', close: 'Close', viewer: 'Image viewer', of: 'of', zoomIn: 'Zoom in', zoomOut: 'Zoom out', hint: 'Tap the image to zoom in' }
+
+// Versión grande de cada imagen para el visor a pantalla completa
+const full = await Promise.all(images.map(img =>
+    getImage({ src: img.Image, width: Math.min(img.Image.width, 2200), format: 'webp' })
+))
+const slides = full.map((f, i) => ({ src: f.src, alt: images[i].Alt }))
+---
+
+<div class="details-carousel" data-gallery>
+    <div class="details-carousel-wrapper">
+        <button class="details-carousel-button prev" type="button" aria-label={t.prev} data-scroll="-1">&#10094;</button>
+        <div class="details-carousel-track-container">
+            <div class="details-carousel-track">
+                {images.map((img, i) => (
+                    <button type="button" class="details-carousel-item" data-index={i} aria-label={`${t.open}: ${img.Alt}`}>
+                        <Image
+                            format="webp"
+                            src={img.Image}
+                            widths={[480, 760, 1100]}
+                            sizes="(max-width: 600px) 88vw, (max-width: 900px) 48vw, 32vw"
+                            alt={img.Alt}
+                            class="details-carousel-image"
+                            loading={i < 3 ? 'eager' : 'lazy'}
+                        />
+                        <span class="zoom-hint" aria-hidden="true"></span>
+                    </button>
+                ))}
+            </div>
+        </div>
+        <button class="details-carousel-button next" type="button" aria-label={t.next} data-scroll="1">&#10095;</button>
+    </div>
+</div>
+
+<dialog class="lightbox" aria-label={t.viewer} data-slides={JSON.stringify(slides)} data-of={t.of}>
+    <div class="lightbox-bar">
+        <span class="lightbox-count" aria-live="polite"></span>
+        <div class="lightbox-tools">
+            <button type="button" class="lightbox-zoom" aria-pressed="false" data-in={t.zoomIn} data-out={t.zoomOut} aria-label={t.zoomIn}>
+                <span class="zoom-glyph" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="lightbox-close" aria-label={t.close}>
+                <span aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+    <figure class="lightbox-stage">
+        <div class="lightbox-viewport">
+            <img class="lightbox-img" src="" alt="" decoding="async" draggable="false" title={t.hint} />
+        </div>
+        <figcaption class="lightbox-caption"></figcaption>
+    </figure>
+    <button type="button" class="lightbox-nav prev" aria-label={t.prev}>&#10094;</button>
+    <button type="button" class="lightbox-nav next" aria-label={t.next}>&#10095;</button>
+</dialog>
+
+<script>
+    const gallery = document.querySelector<HTMLElement>('[data-gallery]');
+    const dialog = document.querySelector<HTMLDialogElement>('dialog.lightbox');
+
+    if (gallery && dialog) {
+        const track = gallery.querySelector<HTMLElement>('.details-carousel-track-container')!;
+        const slides: { src: string; alt: string }[] = JSON.parse(dialog.dataset.slides || '[]');
+        const of = dialog.dataset.of || '/';
+        const img = dialog.querySelector<HTMLImageElement>('.lightbox-img')!;
+        const caption = dialog.querySelector<HTMLElement>('.lightbox-caption')!;
+        const count = dialog.querySelector<HTMLElement>('.lightbox-count')!;
+        const viewport = dialog.querySelector<HTMLElement>('.lightbox-viewport')!;
+        const zoomBtn = dialog.querySelector<HTMLButtonElement>('.lightbox-zoom')!;
+        let zoomed = false;
+
+        // Zoom: muestra la imagen a su tamaño real (mínimo 2x) y permite desplazarse por ella
+        const setZoom = (on: boolean, clientX?: number, clientY?: number) => {
+            if (on === zoomed) return;
+            if (on) {
+                const rect = img.getBoundingClientRect();
+                const fx = clientX !== undefined ? (clientX - rect.left) / rect.width : 0.5;
+                const fy = clientY !== undefined ? (clientY - rect.top) / rect.height : 0.5;
+                const scale = Math.max(2, img.naturalWidth / rect.width);
+                zoomed = true;
+                dialog.classList.add('zoomed');
+                img.style.width = `${rect.width * scale}px`;
+                requestAnimationFrame(() => {
+                    viewport.scrollLeft = fx * viewport.scrollWidth - viewport.clientWidth / 2;
+                    viewport.scrollTop = fy * viewport.scrollHeight - viewport.clientHeight / 2;
+                });
+            } else {
+                zoomed = false;
+                dialog.classList.remove('zoomed');
+                img.style.width = '';
+                viewport.scrollTo(0, 0);
+            }
+            zoomBtn.setAttribute('aria-pressed', String(zoomed));
+            zoomBtn.setAttribute('aria-label', (zoomed ? zoomBtn.dataset.out : zoomBtn.dataset.in) || '');
+        };
+
+        img.addEventListener('click', e => { e.stopPropagation(); setZoom(!zoomed, e.clientX, e.clientY); });
+        zoomBtn.addEventListener('click', () => setZoom(!zoomed));
+
+        // Arrastrar con el ratón para moverse por la imagen ampliada
+        let drag: { x: number; y: number; left: number; top: number; moved: boolean } | null = null;
+        viewport.addEventListener('pointerdown', e => {
+            if (!zoomed || e.pointerType !== 'mouse') return;
+            e.preventDefault();
+            drag = { x: e.clientX, y: e.clientY, left: viewport.scrollLeft, top: viewport.scrollTop, moved: false };
+        });
+        window.addEventListener('pointermove', e => {
+            if (!drag) return;
+            const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+            if (Math.abs(dx) + Math.abs(dy) > 4) { drag.moved = true; dialog.classList.add('dragging'); }
+            viewport.scrollLeft = drag.left - dx;
+            viewport.scrollTop = drag.top - dy;
+        });
+        window.addEventListener('pointerup', () => {
+            if (drag?.moved) {
+                // Evita que soltar tras arrastrar cuente como clic para reducir
+                img.addEventListener('click', ev => ev.stopImmediatePropagation(), { capture: true, once: true });
+            }
+            drag = null;
+            dialog.classList.remove('dragging');
+        });
+        const many = slides.length > 1;
+        let current = 0;
+        let opener: HTMLElement | null = null;
+
+        dialog.classList.toggle('single', !many);
+
+        // Flechas del carrusel
+        gallery.querySelectorAll<HTMLButtonElement>('[data-scroll]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = track.querySelector<HTMLElement>('.details-carousel-item');
+                if (!item) return;
+                const gap = parseFloat(getComputedStyle(item.parentElement!).columnGap) || 0;
+                track.scrollBy({ left: Number(btn.dataset.scroll) * (item.offsetWidth + gap), behavior: 'smooth' });
+            });
+        });
+
+        const preload = (i: number) => { const p = new Image(); p.src = slides[(i + slides.length) % slides.length].src; };
+
+        const show = (i: number) => {
+            setZoom(false);
+            current = (i + slides.length) % slides.length;
+            const slide = slides[current];
+            dialog.classList.add('loading');
+            img.onload = () => dialog.classList.remove('loading');
+            img.src = slide.src;
+            img.alt = slide.alt;
+            caption.textContent = slide.alt;
+            count.textContent = `${current + 1} ${of} ${slides.length}`;
+            if (many) { preload(current + 1); preload(current - 1); }
+        };
+
+        const open = (i: number, from: HTMLElement) => {
+            opener = from;
+            show(i);
+            dialog.showModal();
+            document.documentElement.classList.add('lightbox-open');
+        };
+
+        const close = () => dialog.close();
+
+        dialog.addEventListener('close', () => {
+            setZoom(false);
+            document.documentElement.classList.remove('lightbox-open');
+            // Deja visible en el carrusel la última imagen vista
+            const item = track.querySelector<HTMLElement>(`[data-index="${current}"]`);
+            item?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+            (item ?? opener)?.focus({ preventScroll: true });
+        });
+
+        gallery.querySelectorAll<HTMLButtonElement>('.details-carousel-item').forEach(item => {
+            item.addEventListener('click', () => open(Number(item.dataset.index), item));
+        });
+
+        dialog.querySelector('.lightbox-close')!.addEventListener('click', close);
+        dialog.querySelector('.lightbox-nav.prev')!.addEventListener('click', () => show(current - 1));
+        dialog.querySelector('.lightbox-nav.next')!.addEventListener('click', () => show(current + 1));
+
+        // Clic fuera de la imagen cierra el visor
+        dialog.addEventListener('click', e => {
+            const target = e.target as HTMLElement;
+            if (zoomed) return;
+            if (target === dialog || target.classList.contains('lightbox-stage') || target.classList.contains('lightbox-viewport')) close();
+        });
+
+        dialog.addEventListener('keydown', e => {
+            if (e.key === '+' || e.key === '=') { setZoom(true); return; }
+            if (e.key === '-') { setZoom(false); return; }
+            if (!many || zoomed) return;
+            if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+        });
+
+        // Deslizar en móvil
+        let startX = 0, startY = 0;
+        dialog.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startY = e.touches[0].clientY; }, { passive: true });
+        dialog.addEventListener('touchend', e => {
+            if (zoomed || e.changedTouches.length !== 1 || e.touches.length > 0) return;
+            const dx = e.changedTouches[0].clientX - startX;
+            const dy = e.changedTouches[0].clientY - startY;
+            if (many && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1));
+            else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) close();
+        }, { passive: true });
+    }
+</script>

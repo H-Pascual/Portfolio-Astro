@@ -8,9 +8,6 @@ for (const p of FeaturedProjectsListEn) {
     if (p.Video) posters[p.ID] = (await getImage({ src: p.CoverImage.Image, width: 1280, format: 'webp' })).src
 }
 
-import { Image } from 'astro:assets'
-import { FeaturedProjectsListEn } from '../../data';
-
 const host = (href?: string) => href ? new URL(href).hostname.replace(/^www\./, '') : ''
 ---
 
