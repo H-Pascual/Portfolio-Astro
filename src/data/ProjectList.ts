@@ -107,6 +107,13 @@ const CSharp: Language = {
     Logo: { Image: CSharpLogo, Alt: "Logo de C#" }
 }
 
+const CSharpDotNet: Language = {
+    ...CSharp,
+    ID: "6b2f9a41-8d3e-4c7a-b5f0-2e9d1c4a7f38",
+    Name: "C# / .NET",
+    Link: { Href: "https://dotnet.microsoft.com/", Title: "C# y .NET - Backend de Aulaventura", Target: true },
+}
+
 const NoRepo = { Href: "", Title: "", Target: true }
 
 export const ProjectList : Project[] = [
@@ -114,7 +121,7 @@ export const ProjectList : Project[] = [
         ID: "7c1d2f0e-5a3b-4e8f-9b61-2d4a8c3e9f10",
         Name: "Aulaventura",
         Tagline: "Gamificación para profesores: el temario convertido en una campaña de aventura.",
-        Description: "Aulaventura es una plataforma para docentes de Primaria y ESO que convierte el temario en campañas con mapas, misiones, batallas y recompensas. El profesor elige un mapa, añade etapas y retos, y la clase avanza como un grupo de héroes: cada acierto en una batalla de preguntas daña al jefe final y cada fallo cuesta vida. Incluye un panel de clase para repartir experiencia y oro en grupo, tienda e intercambios con moneda del juego (sin dinero real), ranking opcional y personajes históricos con IA, como Dalí o Napoleón, que responden en primera persona. Diseñé y desarrollé el producto completo, desde el modelo de datos hasta la experiencia de juego.",
+        Description: "Aulaventura es una plataforma para docentes de Primaria y ESO que convierte el temario en campañas con mapas, misiones, batallas y recompensas. El profesor elige un mapa, añade etapas y retos, y la clase avanza como un grupo de héroes: cada acierto en una batalla de preguntas daña al jefe final y cada fallo cuesta vida. Incluye un panel de clase para repartir experiencia y oro en grupo, tienda e intercambios con moneda del juego (sin dinero real), ranking opcional y personajes históricos con IA, como Dalí o Napoleón, que responden en primera persona. Diseñé y desarrollé el producto completo: la landing en Astro y TypeScript y el backend en C# con .NET, desde el modelo de datos hasta la experiencia de juego.",
         Highlights: [
             "Campañas con mapas, etapas y jefe final, listas en minutos",
             "Personajes históricos con IA que hablan en primera persona",
@@ -126,14 +133,14 @@ export const ProjectList : Project[] = [
         DemoLink: { Href: "https://aulaventura.dev", Title: "Visitar la web de Aulaventura", Target: true },
         DetailsLink: { Href: "/projects/aulaventura", Title: "Detalles del proyecto Aulaventura", Target: false },
         GithubLink: NoRepo,
-        Languages: [React, TypeScript, NodeJS],
+        Languages: [Astro, TypeScript, CSharpDotNet],
         CoverImage: { Image: AulaventuraCoverImage, Alt: "Portada de Aulaventura: tu clase, convertida en una aventura" },
         Images: [
             { Image: AulaventuraCoverImage, Alt: "Portada de Aulaventura con un guerrero espartano al atardecer" },
-            { Image: AulaventuraImage2, Alt: "Mapa de campaña de Aulaventura con etapas y retos" },
-            { Image: AulaventuraImage3, Alt: "Pantalla de Aulaventura con personajes y misiones" },
-            { Image: AulaventuraImage4, Alt: "Batalla de preguntas contra el jefe final en Aulaventura" },
-            { Image: AulaventuraImage5, Alt: "Panel de clase de Aulaventura con los héroes de los alumnos" },
+            { Image: AulaventuraImage2, Alt: "Aulaventura: ¿y si dejaras de competir con los videojuegos y empezaras a jugar en su equipo?" },
+            { Image: AulaventuraImage3, Alt: "Funciones de Aulaventura: el temario convertido en un mapa de aventura y personajes que cuentan la lección" },
+            { Image: AulaventuraImage4, Alt: "Personalización del héroe de cada alumno y panel de clase con XP, oro y vida" },
+            { Image: AulaventuraImage5, Alt: "Lista de espera de Aulaventura con ventajas para los profesores fundadores" },
         ],
         Video: { Src: "/videos/aulaventura-demo.mp4", SrcWebm: "/videos/aulaventura-demo.webm", Poster: "/videos/aulaventura-demo-poster.jpg", Title: "Demo de Aulaventura en 2 minutos" },
     },

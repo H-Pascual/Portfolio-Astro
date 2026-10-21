@@ -107,6 +107,13 @@ const CSharp: Language = {
     Logo: { Image: CSharpLogo, Alt: "C# logo" }
 }
 
+const CSharpDotNet: Language = {
+    ...CSharp,
+    ID: "6b2f9a41-8d3e-4c7a-b5f0-2e9d1c4a7f38",
+    Name: "C# / .NET",
+    Link: { Href: "https://dotnet.microsoft.com/", Title: "C# and .NET - Aulaventura backend", Target: true },
+}
+
 const NoRepo = { Href: "", Title: "", Target: true }
 
 export const ProjectListEn : Project[] = [
@@ -114,7 +121,7 @@ export const ProjectListEn : Project[] = [
         ID: "7c1d2f0e-5a3b-4e8f-9b61-2d4a8c3e9f10",
         Name: "Aulaventura",
         Tagline: "Classroom gamification: the syllabus turned into an adventure campaign.",
-        Description: "Aulaventura is a platform for primary and secondary school teachers that turns the syllabus into campaigns with maps, quests, battles and rewards. The teacher picks a map, adds stages and challenges, and the class progresses as a party of heroes: every right answer in a quiz battle damages the final boss and every mistake costs health. It includes a class dashboard to hand out XP and gold to the whole group, an in-game shop and trading (no real money), an optional leaderboard and AI-powered historical characters, like Dalí or Napoleon, who answer in the first person. I designed and built the whole product, from the data model to the game experience.",
+        Description: "Aulaventura is a platform for primary and secondary school teachers that turns the syllabus into campaigns with maps, quests, battles and rewards. The teacher picks a map, adds stages and challenges, and the class progresses as a party of heroes: every right answer in a quiz battle damages the final boss and every mistake costs health. It includes a class dashboard to hand out XP and gold to the whole group, an in-game shop and trading (no real money), an optional leaderboard and AI-powered historical characters, like Dalí or Napoleon, who answer in the first person. I designed and built the whole product: the landing page in Astro and TypeScript and the backend in C# with .NET, from the data model to the game experience.",
         Highlights: [
             "Campaigns with maps, stages and a final boss, ready in minutes",
             "AI historical characters that speak in the first person",
@@ -126,14 +133,14 @@ export const ProjectListEn : Project[] = [
         DemoLink: { Href: "https://aulaventura.dev", Title: "Visit the Aulaventura website", Target: true },
         DetailsLink: { Href: "/en/projects/aulaventura", Title: "Aulaventura project details", Target: false },
         GithubLink: NoRepo,
-        Languages: [React, TypeScript, NodeJS],
+        Languages: [Astro, TypeScript, CSharpDotNet],
         CoverImage: { Image: AulaventuraCoverImage, Alt: "Aulaventura cover: your class, turned into an adventure" },
         Images: [
             { Image: AulaventuraCoverImage, Alt: "Aulaventura cover with a Spartan warrior at sunset" },
-            { Image: AulaventuraImage2, Alt: "Aulaventura campaign map with stages and challenges" },
-            { Image: AulaventuraImage3, Alt: "Aulaventura screen with characters and quests" },
-            { Image: AulaventuraImage4, Alt: "Quiz battle against the final boss in Aulaventura" },
-            { Image: AulaventuraImage5, Alt: "Aulaventura class dashboard with the students' heroes" },
+            { Image: AulaventuraImage2, Alt: "Aulaventura: what if you stopped competing with video games and started playing on their team?" },
+            { Image: AulaventuraImage3, Alt: "Aulaventura features: the syllabus as an adventure map and characters who tell the lesson" },
+            { Image: AulaventuraImage4, Alt: "Student hero customisation and class dashboard with XP, gold and health" },
+            { Image: AulaventuraImage5, Alt: "Aulaventura waiting list with perks for founding teachers" },
         ],
         Video: { Src: "/videos/aulaventura-demo.mp4", SrcWebm: "/videos/aulaventura-demo.webm", Poster: "/videos/aulaventura-demo-poster.jpg", Title: "Aulaventura 2-minute demo" },
     },

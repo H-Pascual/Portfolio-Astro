@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Vídeo original sin comprimir (la versión web está en public/videos)
+src/assets/projects/aulaventura/aulaventura_demo_v4.mp4

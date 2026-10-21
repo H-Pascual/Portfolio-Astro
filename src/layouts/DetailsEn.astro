@@ -4,6 +4,7 @@ import { ProjectListEn } from "../data/ProjectListEn";
 import { Image, getImage } from 'astro:assets'
 import TriangleDifficulty from '../components/TriangleDifficulty.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import Gallery from '../components/Gallery.astro';
 const { project } = Astro.props;
 
 const levels = ['Basic', 'Intermediate', 'Advanced']
@@ -48,27 +49,7 @@ const others = ProjectListEn.filter(proj => proj.ID != project.ID).slice(0, 3)
             </figure>
         )}
 
-        <div class="details-carousel">
-            <div class="details-carousel-wrapper">
-                <button class="details-carousel-button prev" type="button" aria-label="Previous image" onclick="scrollCarousel(-1)">&#10094;</button>
-                <div class="details-carousel-track-container">
-                    <div class="details-carousel-track">
-                        {project.Images.map((img, i) => (
-                            <Image
-                                format="webp"
-                                src={img.Image}
-                                widths={[480, 760, 1100]}
-                                sizes="(max-width: 600px) 88vw, (max-width: 900px) 48vw, 32vw"
-                                alt={img.Alt}
-                                class="details-carousel-image"
-                                loading={i < 3 ? 'eager' : 'lazy'}
-                            />
-                        ))}
-                    </div>
-                </div>
-                <button class="details-carousel-button next" type="button" aria-label="Next image" onclick="scrollCarousel(1)">&#10095;</button>
-            </div>
-        </div>
+        <Gallery images={project.Images} lang="en" />
 
         <div class="details-body">
             <div class="details-description">
@@ -97,13 +78,3 @@ const others = ProjectListEn.filter(proj => proj.ID != project.ID).slice(0, 3)
     </section>
 </BaseLayoutEn>
 
-<script is:inline>
-  function scrollCarousel(direction) {
-    const container = document.querySelector(".details-carousel-track-container");
-    const image = container && container.querySelector(".details-carousel-image");
-    if (!image) return;
-    const gap = parseInt(getComputedStyle(image.parentElement).columnGap || '0', 10) || 0;
-    container.scrollBy({ left: direction * (image.offsetWidth + gap), behavior: 'smooth' });
-  }
-  window.scrollCarousel = scrollCarousel;
-</script>
