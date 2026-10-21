@@ -2,18 +2,33 @@
 import { Image } from 'astro:assets'
 import HectorSuitPicture from '../../assets/content/hector-suit-picture.webp'
 ---
-<section id='inicio' class="hero" aria-label="Looking for a Full Stack Developer? Contact me.">
+<section id="inicio" class="hero" aria-labelledby="hero-title">
     <div class="hero-content">
-        <h2 class="hero-title">Are you looking for a FullStack Developer?</h2>
-        <p class="hero-description">I'm Héctor Pascual, <span class="bold">FullStack Developer</span> from Alicante specialized in the creation of quality websites. I have experience in technologies such as <span class="bold">React</span> and <span class="bold">TypeScript</span> in the Frontend and <span class="bold">C#</span> in Backend.</p>
-        <div id="action-buttons">
-        <a href="#contacto" title="Contact me" class="hero-button primary-button button">Contact me</a>
-        <a href="/curriculum" title="See Curriculum" class="secondary-button button">See Curriculum</a>
+        <p class="hero-status"><span class="status-dot" aria-hidden="true"></span>Available for projects and new roles</p>
+        <h2 id="hero-title" class="hero-title">
+            <span class="hero-kicker">FullStack Developer in Alicante, Spain</span>
+            I build software that reaches production and stays standing.
+        </h2>
+        <p class="hero-description">I'm Héctor Pascual. I build complete web applications: <strong>React</strong> and <strong>TypeScript</strong> on the frontend, <strong>C# and .NET</strong> on the backend, and the architecture that holds it all together. I work with companies that need more than a pretty website: a product that works, makes sense and can grow.</p>
+        <div class="action-row">
+            <a href="#contacto" class="primary-button button">Let's talk about your project</a>
+            <a href="/en/curriculum" class="secondary-button button">See my resume</a>
         </div>
+        <dl class="hero-facts">
+            <div><dt>Now</dt><dd>FullStack Developer at Eurobanan</dd></div>
+            <div><dt>Before</dt><dd>.NET microservices for healthcare at Inetum</dd></div>
+            <div><dt>On my own</dt><dd><a href="#proyectos">Aulaventura, CodeSano and Renta Norte</a></dd></div>
+        </dl>
     </div>
+    <figure class="hero-portrait">
         <Image src={HectorSuitPicture}
-        class="hero-image"
-        format="webp"
-        loading="eager"
-        alt="Héctor Pascual Marín posing in a suit" />
+            class="hero-image"
+            format="webp"
+            loading="eager"
+            fetchpriority="high"
+            widths={[360, 560, 720]}
+            sizes="(max-width: 988px) 70vw, 440px"
+            alt="Héctor Pascual Marín, FullStack Developer in Alicante" />
+        <figcaption>Alicante, Spain</figcaption>
+    </figure>
 </section>

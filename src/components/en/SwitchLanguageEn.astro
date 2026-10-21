@@ -11,51 +11,53 @@ const defaultLang = 'en';
   position: relative;
   user-select: none;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 }
 
 .selected {
-  border-radius: 5px;
-  background-color: var(--primary-color);
-  color: var(--contrast-text-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 10px;
-  padding-bottom: 5px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
 }
+
+.selected:hover { border-color: var(--ink); }
 
 .options {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   right: 0;
-  background: var(--primary-color);
-  border-radius: 5px;
-  box-shadow: 0 5px 8px rgba(0,0,0,0.15);
-  margin-top: 0.3em;
-  min-width: 100px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(20, 32, 44, 0.14);
+  min-width: 150px;
+  padding: 6px;
   z-index: 10;
   display: none;
   flex-direction: column;
 }
 
-.options.show {
-  display: flex;
-}
+.options.show { display: flex; }
 
 .option {
-  padding: 0.4em 0.8em;
+  padding: 0.5em 0.7em;
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 0.5em;
-  font-size: 1rem;
-  color: var(--contrast-text-color);
+  gap: 0.6em;
+  font-size: 0.95rem;
+  color: var(--ink);
 }
 
-.option:hover {
-  background-color: var(--subtitle-color);
-  color: var(--primary-color);
+.option:hover, .option:focus-visible {
+  background-color: var(--paper-deep);
+  outline: none;
 }
 
 .flag-icon {
@@ -103,15 +105,8 @@ const defaultLang = 'en';
     const url = new URL(window.location.href);
     const path = url.pathname;
 
-    if (lang === 'en') {
-      if (!path.startsWith('/en/')) {
-        url.pathname = '/en' + (path === '/' ? '/' : path);
-      }
-    } else {
-      if (path.startsWith('/en/')) {
-        url.pathname = path.replace(/^\/en/, '');
-      }
-    }
+    const esPath = path.replace(/^\/en(?=\/|$)/, '') || '/';
+    url.pathname = lang === 'en' ? (esPath === '/' ? '/en/' : '/en' + esPath) : esPath;
 
     if (window.location.href !== url.toString()) {
       window.location.href = url.toString();

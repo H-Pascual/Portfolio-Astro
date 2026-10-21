@@ -1,113 +1,108 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { ProjectList } from '../data';
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
 import TriangleDifficulty from '../components/TriangleDifficulty.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 const { project } = Astro.props;
+
+const levels = ['Básico', 'Intermedio', 'Avanzado']
+const host = (href?: string) => href ? new URL(href).hostname.replace(/^www\./, '') : ''
+const year = project.EndDate.getFullYear()
+const metaDescription = `${project.Name}: ${project.Tagline ?? ''} Proyecto de Héctor Pascual Marín, desarrollador FullStack en Alicante.`.replace(/\s+/g, ' ')
+const og = await getImage({ src: project.CoverImage.Image, width: 1200, format: 'jpg' })
+const ogImage = new URL(og.src, 'https://www.hectorpascual.com').href
+const others = ProjectList.filter(proj => proj.ID != project.ID).slice(0, 3)
 ---
 
-<BaseLayout>
-    <section class="project-details" id="detalles" aria-label=`Detalles de proyecto ${project.Name}`>
-        <div class="details-title">
-            <h2>{project.Name}</h2>
-             <div style={{ display: "flex", gap: "5px" }}>
-            {
-                project.Languages.map(lang => (
-                    <Image 
-                        format="webp"
-                        src={lang.Logo.Image}
-                        alt={lang.Logo.Alt}
-                        title={lang.Name}
-                        style={{ height: '20px', width: 'auto' }}
-                    />
-                ))
-            }
+<BaseLayout title={`${project.Name} - Proyecto de Héctor Pascual Marín`} description={metaDescription} image={ogImage} type="article">
+    <article class="project-details" id="detalles" aria-labelledby="project-title">
+        <a href="/projects" class="back-link">Todos los proyectos</a>
+        <header class="details-head">
+            <div class="details-heading">
+                <h2 id="project-title">{project.Name}</h2>
+                {project.Tagline && <p class="details-tagline">{project.Tagline}</p>}
             </div>
-        </div>
+            <dl class="details-meta">
+                <div><dt>Año</dt><dd>{year}</dd></div>
+                <div><dt>Complejidad</dt><dd class="details-level"><TriangleDifficulty difficulty={project.Difficulty + 1}></TriangleDifficulty>{levels[project.Difficulty]}</dd></div>
+                <div><dt>Stack</dt><dd class="details-stack">
+                    {project.Languages.map(lang => (
+                        <span><Image format="webp" src={lang.Logo.Image} alt="" height={40} />{lang.Name}</span>
+                    ))}
+                </dd></div>
+            </dl>
+            <div class="details-action-buttons action-row">
+                {project.HasDemo && project.DemoLink?.Href && <a target="_blank" rel="noopener noreferrer" title={project.DemoLink.Title} href={project.DemoLink.Href} class="primary-button button">Visitar {host(project.DemoLink.Href)}</a>}
+                {project.GithubLink?.Href && <a target="_blank" rel="noopener noreferrer" title={project.GithubLink.Title} href={project.GithubLink.Href} class="github button">Ver código en GitHub</a>}
+            </div>
+        </header>
+
+        {project.Video && (
+            <figure class="details-video">
+                <video controls preload="none" playsinline poster={project.Video.Poster} title={project.Video.Title}>
+                    <source src={project.Video.Src} type="video/mp4" />
+                </video>
+                <figcaption>{project.Video.Title}</figcaption>
+            </figure>
+        )}
+
         <div class="details-carousel">
-  <div class="details-carousel-wrapper">
-    <button class="details-carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
-    
-    <div class="details-carousel-track-container">
-      <div class="details-carousel-track">
-        {
-          project.Images.map(img => (
-            <Image 
-              format="webp"
-              src={img.Image}
-              alt={img.Alt}
-              class="details-carousel-image"
-              loading="lazy"
-            />
-          ))
-        }
-      </div>
-    </div>
-
-    <button class="details-carousel-button next" onclick="scrollCarousel(1)">&#10095;</button>
-  </div>
-</div>
-        <!-- Dates -->
-        <div class="details-difficulty">Dificultad: <div class="details-triangle"><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></div></div>
-        <p class="details-description">{project.Description}</p>
-        <div class="details-action-buttons">
-            {project.HasDemo && <a target="_blank" title={project?.DemoLink?.Title} href={project?.DemoLink?.Href} class="demo-button primary-button button">Ver Demo</a>}
-            <a target="_blank" title={project.GithubLink.Title} href={project.GithubLink.Href} class="github primary-button button">Github</a>
-        </div>
-    </section>
-    <section class="recommended-projects" id="recomendados" aria-label="Proyectos recomendados">
-        <h3>Recomendados</h3>
-        <div class="projects-container">
-            {
-                ProjectList.filter(proj => proj.ID != project.ID).slice(0, 3).map(project => (
-            <div class="project-image-container">
-                <a href={project.DetailsLink?.Href} 
-                class="invisible-link"
-                title={project.DetailsLink?.Title}
-                target={project.DetailsLink.Target ? '_blank' : '_self'}>
-                    <Image 
-                        format="webp"
-                        class="project-image"
-                        src={project.CoverImage?.Image}
-                        alt={project.CoverImage?.Alt}
-                        loading="eager"
-                    />
-                    <span class="project-name">{project.Name}</span>
-
-                    <div class="project-toolbar">
-                        <span><TriangleDifficulty difficulty={project.Difficulty}></TriangleDifficulty></span>
-                        <div style={{ display: "flex", gap: "5px" }}>
-                            {
-                                project.Languages.map(lang => (
-                                    <Image 
-                                        format="webp"
-                                        src={lang.Logo.Image}
-                                        alt={lang.Logo.Alt || 'Imagen del proyecto'}
-                                        title={lang.Name}
-                                        loading="eager"
-                                        style={{ height: '20px' }}
-                                    />
-                                ))
-                            }
-                        </div>
+            <div class="details-carousel-wrapper">
+                <button class="details-carousel-button prev" type="button" aria-label="Imagen anterior" onclick="scrollCarousel(-1)">&#10094;</button>
+                <div class="details-carousel-track-container">
+                    <div class="details-carousel-track">
+                        {project.Images.map((img, i) => (
+                            <Image
+                                format="webp"
+                                src={img.Image}
+                                widths={[480, 760, 1100]}
+                                sizes="(max-width: 600px) 88vw, (max-width: 900px) 48vw, 32vw"
+                                alt={img.Alt}
+                                class="details-carousel-image"
+                                loading={i < 3 ? 'eager' : 'lazy'}
+                            />
+                        ))}
                     </div>
-                </a>
+                </div>
+                <button class="details-carousel-button next" type="button" aria-label="Imagen siguiente" onclick="scrollCarousel(1)">&#10095;</button>
             </div>
-        ))}
+        </div>
+
+        <div class="details-body">
+            <div class="details-description">
+                <h3>Sobre el proyecto</h3>
+                <p>{project.Description}</p>
+            </div>
+            {project.Highlights && (
+                <div class="details-highlights">
+                    <h3>Lo más destacado</h3>
+                    <ul>{project.Highlights.map((h: string) => <li>{h}</li>)}</ul>
+                </div>
+            )}
+        </div>
+
+        <aside class="details-cta">
+            <p>¿Necesitas algo parecido para tu empresa?</p>
+            <a href="/#contacto" class="primary-button button">Hablemos</a>
+        </aside>
+    </article>
+
+    <section class="recommended-projects" id="recomendados" aria-labelledby="rec-title">
+        <h3 id="rec-title">Otros proyectos</h3>
+        <div class="projects-container">
+            {others.map(p => <ProjectCard project={p} lang="es" />)}
         </div>
     </section>
 </BaseLayout>
 
-<script is:script>
+<script is:inline>
   function scrollCarousel(direction) {
     const container = document.querySelector(".details-carousel-track-container");
-    const image = container.querySelector(".details-carousel-image");
-
+    const image = container && container.querySelector(".details-carousel-image");
     if (!image) return;
-
-    const imageWidth = image.offsetWidth + parseInt(getComputedStyle(image).marginRight);
-    container.scrollBy({ left: direction * imageWidth, behavior: 'smooth' });
+    const gap = parseInt(getComputedStyle(image.parentElement).columnGap || '0', 10) || 0;
+    container.scrollBy({ left: direction * (image.offsetWidth + gap), behavior: 'smooth' });
   }
-
   window.scrollCarousel = scrollCarousel;
 </script>

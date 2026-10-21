@@ -1,10 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
 ---
-<BaseLayout title={'404 Error - Héctor Pascual Marín | FullStack Developer'}>
-  <div style={{ marginTop: "50px", paddingBottom: "50px", textAlign: "center"}}>
-      <h1>404 - Página no encontrada</h1>
-      <p>Lo siento, la página que buscas no existe.</p>
-      <a href="/" title="Volver a inicio" class="primary-button button">Volver al inicio</a>
-      </div>
+<BaseLayout title={'Página no encontrada - Héctor Pascual Marín'} noindex>
+  <section class="not-found" aria-labelledby="nf-title">
+    <p class="not-found-code" aria-hidden="true">404</p>
+    <h2 id="nf-title">Esta página no existe</h2>
+    <p>Puede que el enlace esté mal escrito o que la página se haya movido. Desde el inicio llegas a todo lo demás.</p>
+    <div class="action-row">
+      <a href="/" class="primary-button button">Volver al inicio</a>
+      <a href="/projects" class="secondary-button button">Ver proyectos</a>
+    </div>
+  </section>
 </BaseLayout>

@@ -1,47 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import { FeaturedLanguages } from '../data';
+const unique = FeaturedLanguages.filter((lang, i, arr) => arr.findIndex(l => l.Name === lang.Name) === i);
 ---
 
-<section id="languages-carousel" class="languages-carousel" aria-label="Lenguajes y tecnologías conocidas">
-  <div class="carousel-viewport">
-    <ul class="carousel-track" id="carousel-track">
-        {
-          FeaturedLanguages.map(lang => (
-      <li class="carousel-slide">
-        <a href={lang.Link.Href} title={lang.Link.Title} 
-        target={lang.Link.Target ? '_blank' : '_self'} rel={lang.Link.Target ? 'noopener noreferrer' : undefined}>
-            <Image loading="eager" src={lang.Logo.Image} alt={lang.Logo.Alt} format="webp" title={lang.Name} />
-        </a>
-      </li>
-          ))
-        }
-    </ul>
+<section id="languages-carousel" class="stack-band" aria-label="Tecnologías con las que trabajo">
+  <div class="stack-track">
+    {[0, 1].map(copy => (
+      <ul class="stack-list" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {unique.map(lang => (
+          <li>
+            <a href={lang.Link.Href} title={lang.Link.Title} tabindex={copy === 1 ? -1 : undefined}
+              target={lang.Link.Target ? '_blank' : '_self'} rel={lang.Link.Target ? 'noopener noreferrer' : undefined}>
+              <Image loading="lazy" src={lang.Logo.Image} alt="" height={64} format="webp" />
+              <span>{lang.Name}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ))}
   </div>
 </section>
-
-<script>
-  const track = document.getElementById('carousel-track')!;
-  const visibleItems = 5;
-  const totalItems = track?.children.length;
-  let currentIndex = 0;
-
-  function updateCarousel() {
-    const slideWidth = (track.children[0] as HTMLElement).offsetWidth;
-    const offset = currentIndex * slideWidth;
-    track.style.transform = `translateX(-${offset}px)`;
-  }
-
-  function autoSlide() {
-    currentIndex = (currentIndex + 1) % totalItems;
-    if (currentIndex > totalItems - visibleItems) {
-      currentIndex = 0;
-    }
-    updateCarousel();
-  }
-
-  window.addEventListener('load', () => {
-    updateCarousel();
-    setInterval(autoSlide, 3000);
-  });
-</script>

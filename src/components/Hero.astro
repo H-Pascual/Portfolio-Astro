@@ -2,18 +2,33 @@
 import { Image } from 'astro:assets'
 import HectorSuitPicture from '../assets/content/hector-suit-picture.webp'
 ---
-<section id='inicio' class="hero" aria-label="¿Buscas un FullStack Developer? Contáctame">
+<section id="inicio" class="hero" aria-labelledby="hero-title">
     <div class="hero-content">
-        <h2 class="hero-title">¿Buscas un FullStack Developer?</h2>
-        <p class="hero-description">Soy Héctor Pascual, <span class="bold">FullStack Developer</span> en Alicante especializado en la creación de páginas web de calidad. Cuento con experiencia en tecnologías como <span class="bold">React</span> y <span class="bold">TypeScript</span> en el Frontend y <span class="bold">C#</span> en el Backend.</p>
-        <div id="action-buttons">
-        <a href="#contacto" title="Contáctame" class="hero-button primary-button button">Contáctame</a>
-        <a href="/curriculum" title="Ver Currículum" class="secondary-button button">Ver Curriculum</a>
+        <p class="hero-status"><span class="status-dot" aria-hidden="true"></span>Disponible para proyectos y nuevas oportunidades</p>
+        <h2 id="hero-title" class="hero-title">
+            <span class="hero-kicker">Desarrollador FullStack en Alicante</span>
+            Construyo software que llega a producción y se mantiene en pie.
+        </h2>
+        <p class="hero-description">Soy Héctor Pascual. Desarrollo aplicaciones web completas: interfaces en <strong>React</strong> y <strong>TypeScript</strong>, backend en <strong>C# y .NET</strong> y la arquitectura que lo sostiene todo. Trabajo con empresas que necesitan algo más que una web bonita: un producto que funcione, se entienda y pueda crecer.</p>
+        <div class="action-row">
+            <a href="#contacto" class="primary-button button">Hablemos de tu proyecto</a>
+            <a href="/curriculum" class="secondary-button button">Ver currículum</a>
         </div>
+        <dl class="hero-facts">
+            <div><dt>Ahora</dt><dd>FullStack Developer en Eurobanan</dd></div>
+            <div><dt>Antes</dt><dd>Microservicios .NET para sanidad en Inetum</dd></div>
+            <div><dt>Por mi cuenta</dt><dd><a href="#proyectos">Aulaventura, CodeSano y Renta Norte</a></dd></div>
+        </dl>
     </div>
+    <figure class="hero-portrait">
         <Image src={HectorSuitPicture}
-        class="hero-image"
-        format="webp"
-        loading="eager"
-        alt="Héctor Pascual Marín en traje posando" />
+            class="hero-image"
+            format="webp"
+            loading="eager"
+            fetchpriority="high"
+            widths={[360, 560, 720]}
+            sizes="(max-width: 988px) 70vw, 440px"
+            alt="Héctor Pascual Marín, desarrollador FullStack en Alicante" />
+        <figcaption>Alicante, España</figcaption>
+    </figure>
 </section>
