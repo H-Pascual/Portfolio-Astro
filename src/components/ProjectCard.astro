@@ -5,9 +5,11 @@ import type { Project } from '../entities'
 
 interface Props { project: Project; lang?: 'es' | 'en'; eager?: boolean }
 const { project, lang = 'es', eager = false } = Astro.props
-const levels = lang === 'es' ? ['Básico', 'Intermedio', 'Avanzado'] : ['Basic', 'Intermediate', 'Advanced']
+const t = lang === 'es'
+    ? { levels: ['Básico', 'Intermedio', 'Avanzado'], complexity: 'Complejidad', kinds: { professional: 'Corporativo', personal: 'Propio', academic: 'Formación' } }
+    : { levels: ['Basic', 'Intermediate', 'Advanced'], complexity: 'Complexity', kinds: { professional: 'Corporate', personal: 'Own product', academic: 'Training' } }
 ---
-<a href={project.DetailsLink.Href} class="project-card" title={project.DetailsLink.Title}>
+<a href={project.DetailsLink.Href} class="project-card" title={project.DetailsLink.Title} data-category={project.Category}>
     <div class="project-card-media">
         <Image
             src={project.CoverImage.Image}
@@ -19,12 +21,16 @@ const levels = lang === 'es' ? ['Básico', 'Intermedio', 'Avanzado'] : ['Basic',
         />
     </div>
     <div class="project-card-body">
+        <p class="project-card-meta"><span class={`case-kind kind-${project.Category}`}>{t.kinds[project.Category]}</span>{project.Period}</p>
         <h3 class="project-card-title">{project.Name}</h3>
         {project.Tagline && <p class="project-card-tagline">{project.Tagline}</p>}
+        {project.Metrics && project.Metrics.length > 0 && (
+            <p class="project-card-metric"><strong>{project.Metrics[0].Value}</strong> {project.Metrics[0].Label}</p>
+        )}
         <div class="project-card-foot">
-            <span class="project-card-level" title={lang === 'es' ? 'Complejidad' : 'Complexity'}>
+            <span class="project-card-level" title={t.complexity}>
                 <TriangleDifficulty difficulty={project.Difficulty + 1}></TriangleDifficulty>
-                {levels[project.Difficulty]}
+                {t.levels[project.Difficulty]}
             </span>
             <span class="project-card-stack">
                 {project.Languages.map(l => <Image src={l.Logo.Image} alt={l.Name} title={l.Name} height={40} format="webp" loading="lazy" />)}

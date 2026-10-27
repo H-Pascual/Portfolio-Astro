@@ -9,7 +9,7 @@ const { project } = Astro.props;
 
 const levels = ['Basic', 'Intermediate', 'Advanced']
 const host = (href?: string) => href ? new URL(href).hostname.replace(/^www\./, '') : ''
-const year = project.EndDate.getFullYear()
+const kinds: Record<string, string> = { professional: 'Corporate project', personal: 'Own product', academic: 'Training project' }
 const metaDescription = `${project.Name}: ${project.Tagline ?? ''} A project by Héctor Pascual Marín, FullStack Developer in Alicante.`.replace(/\s+/g, ' ')
 const og = await getImage({ src: project.CoverImage.Image, width: 1200, format: 'jpg' })
 const ogImage = new URL(og.src, 'https://www.hectorpascual.com').href
@@ -25,7 +25,10 @@ const others = ProjectListEn.filter(proj => proj.ID != project.ID).slice(0, 3)
                 {project.Tagline && <p class="details-tagline">{project.Tagline}</p>}
             </div>
             <dl class="details-meta">
-                <div><dt>Year</dt><dd>{year}</dd></div>
+                <div><dt>Period</dt><dd>{project.Period}</dd></div>
+                {project.Role && <div><dt>My role</dt><dd>{project.Role}</dd></div>}
+                {project.Team && <div><dt>Team</dt><dd>{project.Team}</dd></div>}
+                <div><dt>Type</dt><dd>{kinds[project.Category]}</dd></div>
                 <div><dt>Complexity</dt><dd class="details-level"><TriangleDifficulty difficulty={project.Difficulty + 1}></TriangleDifficulty>{levels[project.Difficulty]}</dd></div>
                 <div><dt>Stack</dt><dd class="details-stack">
                     {project.Languages.map(lang => (
@@ -33,11 +36,17 @@ const others = ProjectListEn.filter(proj => proj.ID != project.ID).slice(0, 3)
                     ))}
                 </dd></div>
             </dl>
+            {project.Metrics && project.Metrics.length > 0 && (
+                <dl class="details-metrics" aria-label="Results">
+                    {project.Metrics.map((m: { Value: string; Label: string }) => <div><dt>{m.Label}</dt><dd>{m.Value}</dd></div>)}
+                </dl>
+            )}
             <div class="details-action-buttons action-row">
                 {project.HasDemo && project.DemoLink?.Href && <a target="_blank" rel="noopener noreferrer" title={project.DemoLink.Title} href={project.DemoLink.Href} class="primary-button button">Visit {host(project.DemoLink.Href)}</a>}
                 {project.GithubLink?.Href && <a target="_blank" rel="noopener noreferrer" title={project.GithubLink.Title} href={project.GithubLink.Href} class="github button">View code on GitHub</a>}
             </div>
         </header>
+
 
         {project.Video && (
             <figure class="details-video">

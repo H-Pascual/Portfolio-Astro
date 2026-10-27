@@ -4,13 +4,13 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { ProjectList } from '../data';
 import Filter from "../components/Filter.astro";
 ---
-<BaseLayout title="Proyectos - Héctor Pascual Marín | FullStack Developer" description="Proyectos de Héctor Pascual Marín, desarrollador FullStack en Alicante: Aulaventura, CodeSano, Renta Norte, Brokey y más, con React, TypeScript, Astro, Angular y C#.">
+<BaseLayout title="Proyectos - Héctor Pascual Marín | FullStack Developer" description="Proyectos de Héctor Pascual Marín, desarrollador FullStack en Alicante: aplicaciones corporativas en C#, .NET y React, y productos propios como Aulaventura, CodeSano y Renta Norte.">
     <section class="all-projects" id="all-projects" aria-labelledby="all-projects-title">
         <header class="page-head">
             <h2 id="all-projects-title">Proyectos</h2>
-            <p>Desde productos propios en producción hasta los primeros proyectos con los que aprendí el oficio. Ordenados del más reciente al más antiguo.</p>
+            <p>Aplicaciones corporativas que he diseñado y liderado, productos propios en producción y los proyectos con los que aprendí el oficio. Del más reciente al más antiguo.</p>
         </header>
-        <Filter></Filter>
+        <Filter projects={ProjectList} lang="es" />
         <div class="projects-container">
             {ProjectList.map((project, i) => <ProjectCard project={project} lang="es" eager={i < 3} />)}
         </div>

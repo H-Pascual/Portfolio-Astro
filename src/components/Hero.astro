@@ -1,23 +1,33 @@
 ---
 import { Image } from 'astro:assets'
 import HectorSuitPicture from '../assets/content/hector-suit-picture.webp'
+import CvPdf from '../assets/content/Curriculum.pdf'
+import { ProjectList } from '../data'
+
+// Cifras calculadas a partir de los datos para que siempre estén al día
+const corporate = ProjectList.filter(p => p.Category === 'professional').length
+const total = ProjectList.length
+const firstJob = new Date('2024-03-01')
+const years = Math.floor(((Date.now() - firstJob.getTime()) / (365.25 * 24 * 3600 * 1000)) * 2) / 2
+const yearsLabel = Number.isInteger(years) ? `+${years}` : `+${String(years).replace('.', ',')}`
 ---
 <section id="inicio" class="hero" aria-labelledby="hero-title">
     <div class="hero-content">
-        <p class="hero-status"><span class="status-dot" aria-hidden="true"></span>Disponible para proyectos y nuevas oportunidades</p>
+        <p class="hero-status"><span class="status-dot" aria-hidden="true"></span>Abierto a nuevas oportunidades: FullStack, IA o Tech Lead · remoto o en Alicante</p>
         <h2 id="hero-title" class="hero-title">
             <span class="hero-kicker">Desarrollador FullStack en Alicante</span>
-            Construyo software que llega a producción y se mantiene en pie.
+            Diseño, construyo y lidero el software que una empresa usa cada día.
         </h2>
-        <p class="hero-description">Soy Héctor Pascual. Desarrollo aplicaciones web completas: interfaces en <strong>React</strong> y <strong>TypeScript</strong>, backend en <strong>C# y .NET</strong> y la arquitectura que lo sostiene todo. Trabajo con empresas que necesitan algo más que una web bonita: un producto que funcione, se entienda y pueda crecer.</p>
+        <p class="hero-description">Soy Héctor Pascual. Llevo proyectos de principio a fin: arquitectura, backend en <strong>C# y .NET</strong>, frontend en <strong>React y TypeScript</strong> y la coordinación del equipo. Formo parte del comité de inteligencia artificial de mi empresa, imparto formación interna sobre IA y, en mi tiempo libre, lanzo productos propios.</p>
         <div class="action-row">
-            <a href="#contacto" class="primary-button button">Hablemos de tu proyecto</a>
-            <a href="/curriculum" class="secondary-button button">Ver currículum</a>
+            <a href="#contacto" class="primary-button button">Contactar</a>
+            <a href={CvPdf} class="secondary-button button" download="CV-Hector-Pascual-Marin.pdf">Descargar CV</a>
         </div>
-        <dl class="hero-facts">
-            <div><dt>Ahora</dt><dd>FullStack Developer en Eurobanan</dd></div>
-            <div><dt>Antes</dt><dd>Microservicios .NET para sanidad en Inetum</dd></div>
-            <div><dt>Por mi cuenta</dt><dd><a href="#proyectos">Aulaventura, CodeSano y Renta Norte</a></dd></div>
+        <dl class="hero-stats">
+            <div><dt>años de experiencia profesional</dt><dd>{yearsLabel}</dd></div>
+            <div><dt>aplicaciones corporativas diseñadas</dt><dd>{corporate}</dd></div>
+            <div><dt>desarrolladores a mi cargo</dt><dd>2</dd></div>
+            <div><dt>proyectos en el portfolio</dt><dd>{total}</dd></div>
         </dl>
     </div>
     <figure class="hero-portrait">
