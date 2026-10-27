@@ -8,6 +8,8 @@ for (const p of FeaturedProjectsList) {
     if (p.Video) posters[p.ID] = (await getImage({ src: p.CoverImage.Image, width: 1280, format: 'webp' })).src
 }
 
+const kinds: Record<string, string> = { professional: 'Proyecto corporativo', personal: 'Producto propio', academic: 'Formación' }
+
 const host = (href?: string) => href ? new URL(href).hostname.replace(/^www\./, '') : ''
 ---
 
@@ -15,7 +17,7 @@ const host = (href?: string) => href ? new URL(href).hostname.replace(/^www\./, 
     <div class="projects-inner">
         <header class="projects-head">
             <h2 id="projects-title" class="projects-title">Proyectos destacados</h2>
-            <p>Tres productos propios que he diseñado, desarrollado y publicado. Están en producción: puedes visitarlos.</p>
+            <p>Dos aplicaciones corporativas que he liderado y un producto propio. Para cada una: qué problema resolvía, cuál fue mi papel y qué cambió.</p>
         </header>
 
         <ul class="case-list">
@@ -54,8 +56,15 @@ const host = (href?: string) => href ? new URL(href).hostname.replace(/^www\./, 
                     </div>
                     <div class="case-body">
                         <h3 class="case-title"><a href={project.DetailsLink.Href} title={project.DetailsLink.Title}>{project.Name}</a></h3>
+                        <p class="case-meta"><span class={`case-kind kind-${project.Category}`}>{kinds[project.Category]}</span> {project.Period}</p>
                         <p class="case-tagline">{project.Tagline}</p>
-                        {project.Highlights && (
+                        {project.Role && <p class="case-role">{project.Role}{project.Team ? ` · ${project.Team}` : ''}</p>}
+                        {project.Metrics && (
+                            <dl class="case-metrics">
+                                {project.Metrics.map(m => <div><dt>{m.Label}</dt><dd>{m.Value}</dd></div>)}
+                            </dl>
+                        )}
+                        {project.Highlights && !project.Metrics && (
                             <ul class="case-highlights">
                                 {project.Highlights.map(h => <li>{h}</li>)}
                             </ul>

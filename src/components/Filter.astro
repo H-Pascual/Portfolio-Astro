@@ -1,6 +1,32 @@
 ---
-
+import type { Project } from '../entities'
+interface Props { projects: Project[]; lang?: 'es' | 'en' }
+const { projects, lang = 'es' } = Astro.props
+const count = (c?: string) => c ? projects.filter(p => p.Category === c).length : projects.length
+const options = lang === 'es'
+    ? [{ id: 'all', label: 'Todos' }, { id: 'professional', label: 'Corporativos' }, { id: 'personal', label: 'Productos propios' }, { id: 'academic', label: 'Formación' }]
+    : [{ id: 'all', label: 'All' }, { id: 'professional', label: 'Corporate' }, { id: 'personal', label: 'Own products' }, { id: 'academic', label: 'Training' }]
 ---
-<section id="filter" class="project-filter" aria-label="Filtrado de proyectos">
+<div id="filter" class="project-filter" role="group" aria-label={lang === 'es' ? 'Filtrar proyectos por tipo' : 'Filter projects by type'}>
+    {options.map((o, i) => (
+        <button type="button" class="filter-chip" data-filter={o.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+            {o.label} <span class="filter-count">{count(o.id === 'all' ? undefined : o.id)}</span>
+        </button>
+    ))}
+</div>
 
-</section>
+<script>
+    const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chip');
+    const cards = document.querySelectorAll<HTMLElement>('.projects-container .project-card');
+    const apply = (filter: string) => {
+        chips.forEach(c => c.setAttribute('aria-pressed', String(c.dataset.filter === filter)));
+        cards.forEach(card => { card.hidden = filter !== 'all' && card.dataset.category !== filter; });
+    };
+    chips.forEach(chip => chip.addEventListener('click', () => {
+        const f = chip.dataset.filter || 'all';
+        apply(f);
+        history.replaceState(null, '', f === 'all' ? location.pathname : `${location.pathname}#${f}`);
+    }));
+    const initial = location.hash.slice(1);
+    if (['professional', 'personal', 'academic'].includes(initial)) apply(initial);
+</script>

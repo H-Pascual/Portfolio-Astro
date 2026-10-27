@@ -1,5 +1,30 @@
 import type { Language, Project } from "../entities"
 import { DifficultyTypes } from "../types"
+import { sortProjects } from "./sortProjects"
+
+import CadenaCoverImage from '../assets/projects/cadena-alimentaria/cadena_cover.png'
+import CadenaImage1 from '../assets/projects/cadena-alimentaria/cadena_1.png'
+import CadenaImage2 from '../assets/projects/cadena-alimentaria/cadena_2.png'
+import CadenaImage3 from '../assets/projects/cadena-alimentaria/cadena_3.png'
+
+import AgoraCoverImage from '../assets/projects/agora/agora_cover.png'
+import AgoraImage1 from '../assets/projects/agora/agora_1.png'
+import AgoraImage2 from '../assets/projects/agora/agora_2.png'
+import AgoraImage3 from '../assets/projects/agora/agora_3.png'
+
+import ReportingCoverImage from '../assets/projects/reporting/reporting_cover.png'
+import ReportingImage1 from '../assets/projects/reporting/reporting_1.png'
+
+import DevDashboardCoverImage from '../assets/projects/dev-dashboard/dev_cover.png'
+import DevDashboardImage1 from '../assets/projects/dev-dashboard/dev_1.png'
+
+import ListaCompraImage1 from '../assets/projects/lista-compra/lista_compra_1.png'
+import ListaCompraImage2 from '../assets/projects/lista-compra/lista_compra_2.png'
+import ListaCompraImage3 from '../assets/projects/lista-compra/lista_compra_3.png'
+
+import PythonLogo from '../assets/languages/python.png'
+import SqlLogo from '../assets/languages/sql.webp'
+import DockerLogo from '../assets/languages/docker-logo.png'
 
 import AulaventuraCoverImage from '../assets/projects/aulaventura/aulaventura_cover.png'
 import AulaventuraImage2 from '../assets/projects/aulaventura/aulaventura_2.png'
@@ -114,9 +139,167 @@ const CSharpDotNet: Language = {
     Link: { Href: "https://dotnet.microsoft.com/", Title: "C# y .NET - Backend de Aulaventura", Target: true },
 }
 
+const Python: Language = {
+    ID: "8c3a51e2-7b44-4f0e-9d1a-6e2f3b9c0a17",
+    Name: "Python",
+    Link: { Href: "https://www.python.org/", Title: "Python - Lenguaje de programación", Target: true },
+    Logo: { Image: PythonLogo, Alt: "Logo de Python" }
+}
+const Sql: Language = {
+    ID: "1f7d2c90-3e5b-4a68-8b2c-9a0e4d6f1b35",
+    Name: "SQL",
+    Link: { Href: "https://es.wikipedia.org/wiki/SQL", Title: "SQL - Lenguaje de consulta de bases de datos", Target: true },
+    Logo: { Image: SqlLogo, Alt: "Logo de SQL" }
+}
+const Docker: Language = {
+    ID: "5b9e0d43-2a71-4c86-a3f5-7d1e8b2c6f90",
+    Name: "Docker",
+    Link: { Href: "https://www.docker.com/", Title: "Docker - Contenedores", Target: true },
+    Logo: { Image: DockerLogo, Alt: "Logo de Docker" }
+}
+
 const NoRepo = { Href: "", Title: "", Target: true }
 
-export const ProjectList : Project[] = [
+const projects : Project[] = [
+    {
+        ID: "c4d1a7e8-2f39-4b60-9e15-8a3c6d2b7f41",
+        Name: "Cadena Alimentaria",
+        Tagline: "Plataforma corporativa para cumplir la Ley de la Cadena Alimentaria sin Excel ni carpetas.",
+        Description: "Plataforma web para gestionar los contratos con proveedores que exige la Ley de la Cadena Alimentaria (Ley 12/2013, modificada por la Ley 16/2021) en todas las sociedades del grupo. Antes, el equipo administrativo lo llevaba en hojas de Excel y carpetas: se perdían documentos, era difícil saber qué contrato vencía y un error podía acabar en sanciones de cifras millonarias. Ahora todo vive en una sola aplicación: alta y ficha de proveedores, contratos con su estado y ley asociada, plantillas de contrato, adjuntos con certificados, envío de correos desde la propia plataforma, alertas de proveedores y contratos a renovar, auditoría y trazabilidad completa de cada documento, y un panel de control con la evolución del trabajo. Hoy lo usan unas 10 personas en 4 centros. Dirigí el proyecto de principio a fin: arquitectura, backend en C# y .NET, frontend en React y TypeScript, y la coordinación de las dos personas de mi equipo.",
+        Highlights: [
+            "Trazabilidad completa de contratos y documentos para evitar sanciones",
+            "Alertas de vencimiento y panel de control por centro",
+            "Envío de correos y plantillas de contrato desde la propia web",
+        ],
+        Difficulty: DifficultyTypes.Hard,
+        Category: "professional",
+        StartDate: new Date("2025-06-01"),
+        EndDate: new Date("2026-03-31"),
+        Period: "Jun 2025 – Mar 2026",
+        Role: "Responsable técnico: arquitectura, backend, frontend y dirección del equipo",
+        Team: "Dirigí a 2 desarrolladores",
+        Metrics: [{ Value: "4", Label: "centros en producción" }, { Value: "2", Label: "desarrolladores a mi cargo" }, { Value: "+1.150", Label: "commits en el proyecto" }],
+        HasDemo: false,
+        DetailsLink: { Href: "/projects/cadena-alimentaria", Title: "Detalles del proyecto Cadena Alimentaria", Target: false },
+        GithubLink: NoRepo,
+        Languages: [CSharpDotNet, React, TypeScript],
+        CoverImage: { Image: CadenaCoverImage, Alt: "Panel de control de Cadena Alimentaria con acciones, proveedores en alerta y contratos a renovar" },
+        Images: [
+            { Image: CadenaCoverImage, Alt: "Panel de control con la evolución de acciones, proveedores con contrato vigente y contratos a renovar" },
+            { Image: CadenaImage1, Alt: "Ficha de proveedor con sus contratos, estado, fechas y ley asociada (datos de ejemplo)" },
+            { Image: CadenaImage2, Alt: "Adjuntos del proveedor: certificados, altas y contratos con su tipo" },
+            { Image: CadenaImage3, Alt: "Gestión de comerciales con importación y edición (datos de ejemplo)" },
+        ]},
+    {
+        ID: "a9e3f5b2-6c18-4d47-b0a2-5f7e1c9d3a86",
+        Name: "Ágora",
+        Tagline: "La aplicación de venta y almacén para mercados mayoristas de fruta: del pedido en tablet al pesaje.",
+        Description: "Ágora es la aplicación completa para la operativa diaria en mercados mayoristas de fruta y verdura, como Mercabarna, Mercamadrid, Mercasevilla o Mercaalicante. Sustituye a los escribientes y a las notas en papel: los comerciales toman los pedidos de los clientes en tablet con un catálogo visual por familias, consultan stock, costes y últimos precios, y el almacén recibe los pedidos para la preparación (picking) por prioridad y pasillo, el pesaje con bruto, tara y neto, y la impresión de etiquetas. Está pensada para varios centros y empresas a la vez y para gestionar miles de pedidos diarios. Me encargué sobre todo de la arquitectura y del backend en C# y .NET, y de parte del frontend en React y TypeScript. Primera versión prevista para noviembre de 2026.",
+        Highlights: [
+            "Pedidos en tablet con catálogo visual, stock y últimos precios",
+            "Preparación de pedidos por prioridad y pasillo, pesaje y etiquetas",
+            "Multicentro y multiempresa, diseñada para miles de pedidos diarios",
+        ],
+        Difficulty: DifficultyTypes.Hard,
+        Category: "professional",
+        StartDate: new Date("2025-07-01"),
+        EndDate: new Date("2026-11-30"),
+        Ongoing: true,
+        Period: "Jul 2025 – actualidad (despliegue en nov 2026)",
+        Role: "Arquitectura y backend; parte del frontend",
+        Metrics: [{ Value: "+4", Label: "mercados mayoristas previstos" }, { Value: "Miles", Label: "de pedidos diarios previstos" }],
+        HasDemo: false,
+        DetailsLink: { Href: "/projects/agora", Title: "Detalles del proyecto Ágora", Target: false },
+        GithubLink: NoRepo,
+        Languages: [CSharpDotNet, React, TypeScript],
+        CoverImage: { Image: AgoraImage1, Alt: "Catálogo visual de productos de Ágora para tomar pedidos en tablet" },
+        Images: [
+            { Image: AgoraCoverImage, Alt: "Introducción de pesos de un pedido: cantidad, kilos brutos, tara y netos" },
+            { Image: AgoraImage1, Alt: "Catálogo visual de productos por familia para tomar pedidos en tablet" },
+            { Image: AgoraImage2, Alt: "Ficha de producto con cantidad, precio, estándar de producto y stock disponible" },
+            { Image: AgoraImage3, Alt: "Lista de preparación de pedidos con prioridad, pasillo e impresión" },
+        ]},
+    {
+        ID: "e2b8c6d1-9a54-4f3e-8c71-3d6a0f5b9e24",
+        Name: "Reporting",
+        Tagline: "Servicio central de informes para todas las aplicaciones de la empresa.",
+        Description: "Reporting centraliza todos los informes que usa la empresa sobre DevExpress Reporting. Las demás aplicaciones no generan sus propios informes: se conectan a él a través de una API, piden el informe que necesitan y lo reciben generado. El frontend sirve para crear, editar y versionar los informes de forma sencilla, organizarlos por proyecto, gestionar usuarios y hacer copias de seguridad. Desarrollé yo solo todo el backend y diseñé la arquitectura y la lógica interna; el frontend lo construyeron dos personas de mi equipo bajo mi dirección.",
+        Highlights: [
+            "Un único servicio de informes consumido por API desde el resto de aplicaciones",
+            "Editor visual para modificar informes sin tocar código",
+            "Organización por proyectos y copias de seguridad",
+        ],
+        Difficulty: DifficultyTypes.Hard,
+        Category: "professional",
+        StartDate: new Date("2025-01-01"),
+        EndDate: new Date("2026-07-31"),
+        Period: "Ene 2025 – Jun 2025 · nuevo frontend Abr – Jul 2026",
+        Role: "Arquitectura y backend completo; dirección del frontend",
+        Team: "Dirigí a 2 desarrolladores",
+        Metrics: [{ Value: "+20", Label: "informes centralizados" }, { Value: "1", Label: "API para todas las aplicaciones" }, { Value: "2", Label: "desarrolladores a mi cargo" }],
+        HasDemo: false,
+        DetailsLink: { Href: "/projects/reporting", Title: "Detalles del proyecto Reporting", Target: false },
+        GithubLink: NoRepo,
+        Languages: [CSharpDotNet, React, TypeScript],
+        CoverImage: { Image: ReportingCoverImage, Alt: "Listado de informes de Reporting por proyecto con acciones" },
+        Images: [
+            { Image: ReportingCoverImage, Alt: "Listado de informes con proyecto, fechas y acciones de edición y descarga" },
+            { Image: ReportingImage1, Alt: "Editor visual de informes basado en DevExpress Reporting" },
+        ]},
+    {
+        ID: "f7a2d9c3-1e86-4b5a-9d30-6c8e2b4f1a75",
+        Name: "Dev Dashboard",
+        Tagline: "Métricas del equipo de desarrollo, gamificadas y en tiempo real.",
+        Description: "Dashboard en Python con Dash que recoge los datos de Azure DevOps (commits, pull requests, revisiones, user stories y líneas de código) y los convierte en métricas del equipo por día, semana, mes o año. Incluye una fórmula de puntuación que gamifica el trabajo, la actividad de las últimas 12 semanas, la comparativa entre programadores, el estado de cada proyecto y exportación a Excel. Lo usan los responsables para hacer seguimiento del equipo. Lo ideé y lo desarrollé yo solo, de cero a producción, en un mes.",
+        Highlights: [
+            "Integración con la API de Azure DevOps",
+            "Puntuación gamificada por commits, PR, revisiones y user stories",
+            "Vista por proyecto y por programador, con exportación a Excel",
+        ],
+        Difficulty: DifficultyTypes.Medium,
+        Category: "professional",
+        StartDate: new Date("2026-08-01"),
+        EndDate: new Date("2026-08-31"),
+        Period: "Ago 2026",
+        Role: "Idea, diseño y desarrollo completo",
+        Team: "En solitario",
+        Metrics: [{ Value: "1 mes", Label: "de la idea a producción" }, { Value: "+20", Label: "proyectos monitorizados" }, { Value: "7", Label: "desarrolladores en el panel" }],
+        HasDemo: false,
+        DetailsLink: { Href: "/projects/dev-dashboard", Title: "Detalles del proyecto Dev Dashboard", Target: false },
+        GithubLink: NoRepo,
+        Languages: [Python],
+        CoverImage: { Image: DevDashboardCoverImage, Alt: "Dashboard del equipo con commits, pull requests, user stories y puntuación" },
+        Images: [
+            { Image: DevDashboardCoverImage, Alt: "Resumen del último mes: commits, PR, user stories, líneas y fórmula de puntuación" },
+            { Image: DevDashboardImage1, Alt: "Vista de proyectos con actividad, commits, PR y user stories (nombres ocultos)" },
+        ]},
+    {
+        ID: "b5c0e8a4-7d29-4f61-a3b8-2e9f6d1c4b07",
+        Name: "Lista de la compra",
+        Tagline: "Mi lista de la compra con NFC, autoalojada en una Raspberry Pi.",
+        Description: "Aplicación personal para gestionar la compra de casa. Los productos se organizan por categorías (supermercado, ropa, hogar, farmacia…), con cantidad, unidad y descripción, y la lista se envía por correo a hasta 10 personas desde una cuenta de Gmail. Se abre acercando el móvil a una etiqueta NFC. Está hecha con Astro y una pequeña base de datos SQL, y desplegada con Docker en mi propia Raspberry Pi 5 con Linux.",
+        Highlights: [
+            "Acceso instantáneo con una etiqueta NFC",
+            "Envío de la lista por correo a varias personas",
+            "Autoalojada con Docker en una Raspberry Pi 5",
+        ],
+        Difficulty: DifficultyTypes.Easy,
+        Category: "personal",
+        StartDate: new Date("2026-09-01"),
+        EndDate: new Date("2026-09-30"),
+        Period: "Sep 2026",
+        Role: "Proyecto personal: desarrollo e infraestructura",
+        Team: "En solitario",
+        HasDemo: false,
+        DetailsLink: { Href: "/projects/lista-compra", Title: "Detalles del proyecto Lista de la compra", Target: false },
+        GithubLink: NoRepo,
+        Languages: [Astro, Sql, Docker],
+        CoverImage: { Image: ListaCompraImage1, Alt: "Lista de la compra con categorías y productos" },
+        Images: [
+            { Image: ListaCompraImage1, Alt: "Lista de la compra con categorías y productos" },
+            { Image: ListaCompraImage2, Alt: "Formulario para añadir un producto con cantidad, unidad y categoría" },
+            { Image: ListaCompraImage3, Alt: "Configuración de los destinatarios a los que se envía la lista" },
+        ]},
     {
         ID: "7c1d2f0e-5a3b-4e8f-9b61-2d4a8c3e9f10",
         Name: "Aulaventura",
@@ -128,7 +311,13 @@ export const ProjectList : Project[] = [
             "Panel de clase con XP, oro, tienda e intercambios",
         ],
         Difficulty: DifficultyTypes.Hard,
-        EndDate: new Date("2026-10-20"),
+        Category: "personal",
+        StartDate: new Date("2026-10-01"),
+        Period: "Oct 2026 – actualidad",
+        Ongoing: true,
+        Role: "Producto propio: idea, diseño, backend y frontend",
+        Team: "En solitario",
+        EndDate: new Date("2026-10-27"),
         HasDemo: true,
         DemoLink: { Href: "https://aulaventura.dev", Title: "Visitar la web de Aulaventura", Target: true },
         DetailsLink: { Href: "/projects/aulaventura", Title: "Detalles del proyecto Aulaventura", Target: false },
@@ -155,7 +344,14 @@ export const ProjectList : Project[] = [
             "Diagnóstico, precio cerrado y pago por fases",
         ],
         Difficulty: DifficultyTypes.Medium,
-        EndDate: new Date("2026-07-05"),
+        Category: "personal",
+        StartDate: new Date("2026-06-01"),
+        Period: "Jun 2026 – actualidad",
+        Ongoing: true,
+        Role: "Servicio propio: web, captación y desarrollo",
+        Team: "En solitario",
+        Metrics: [{ Value: "4,5/5", Label: "valoración media de clientes" }, { Value: "4 fases", Label: "diagnóstico, presupuesto, hitos y entrega" }],
+        EndDate: new Date("2026-10-27"),
         HasDemo: true,
         DemoLink: { Href: "https://codesano.com", Title: "Visitar la web de CodeSano", Target: true },
         DetailsLink: { Href: "/projects/code-sano", Title: "Detalles del proyecto CodeSano", Target: false },
@@ -180,7 +376,13 @@ export const ProjectList : Project[] = [
             "Datos propios de 141 municipios de la provincia",
         ],
         Difficulty: DifficultyTypes.Medium,
-        EndDate: new Date("2026-04-21"),
+        Category: "personal",
+        StartDate: new Date("2026-04-01"),
+        Period: "Abr 2026 – Sep 2026",
+        Role: "Producto propio: web, datos y contenido",
+        Team: "En solitario",
+        Metrics: [{ Value: "+60", Label: "suscriptores" }, { Value: "141", Label: "municipios en la base de datos" }],
+        EndDate: new Date("2026-09-30"),
         HasDemo: true,
         DemoLink: { Href: "https://rentanorte.com", Title: "Visitar la web de Renta Norte", Target: true },
         DetailsLink: { Href: "/projects/renta-norte", Title: "Detalles del proyecto Renta Norte", Target: false },
@@ -200,7 +402,11 @@ export const ProjectList : Project[] = [
         Tagline: "Plataforma de inversión para quien nunca ha invertido.",
         Description: "Brokey es una aplicación web desarrollada con Angular y TypeScript que acerca la inversión a usuarios sin experiencia. Permite comprar, vender y seguir acciones, criptomonedas y materias primas desde una interfaz sencilla, con carteras personalizadas, gráficos interactivos, autenticación segura y datos reales de mercado a través de una API espejo.",
         Difficulty: DifficultyTypes.Hard,
-        EndDate: new Date("2024-05-13"),
+        Category: "academic",
+        StartDate: new Date("2024-03-01"),
+        Period: "Jun 2024",
+        Role: "Proyecto final del ciclo de Desarrollo de Aplicaciones Web",
+        EndDate: new Date("2024-06-30"),
         HasDemo: false,
         DetailsLink: { Href: "/projects/brokey", Title: "Detalles del proyecto Brokey", Target: false },
         GithubLink: { Href: "https://github.com/H-Pascual/Brokey_FrontEnd", Title: "Repositorio de Brokey FrontEnd en GitHub", Target: true },
@@ -225,7 +431,11 @@ export const ProjectList : Project[] = [
         Tagline: "Tienda online de cerveza artesanal con carrito y filtros.",
         Description: "Cervezas Marín es una tienda online ficticia de cerveza artesanal construida con TypeScript, SCSS y Vite. Incluye catálogo con filtros por tipo y precio, productos más vendidos, carrito de compra y diseño responsive. Un ejercicio de frontend limpio, preparado para conectarse a un backend real.",
         Difficulty: DifficultyTypes.Medium,
-        EndDate: new Date("2024-02-05"),
+        Category: "academic",
+        StartDate: new Date("2024-04-01"),
+        Period: "Abr 2024",
+        Role: "Proyecto de formación",
+        EndDate: new Date("2024-04-30"),
         HasDemo: false,
         DetailsLink: { Href: "/projects/cervezas", Title: "Detalles del proyecto Cervezas Marín", Target: false },
         GithubLink: { Href: "https://github.com/H-Pascual/CervezasMarin", Title: "Repositorio de Cervezas Marín en GitHub", Target: true },
@@ -244,7 +454,11 @@ export const ProjectList : Project[] = [
         Tagline: "Juego de escritorio en C# con un modo tipo Akinator.",
         Description: "Aplicación de escritorio en C# y Windows Forms inspirada en Akinator y en el clásico ¿Quién es Quién?, con personajes de League of Legends. Tiene dos modos: la máquina adivina tu personaje con preguntas dinámicas y filtrado progresivo, o dos jugadores se enfrentan entre sí. Proyecto educativo, sin afiliación con Riot Games.",
         Difficulty: DifficultyTypes.Medium,
-        EndDate: new Date("2023-05-17"),
+        Category: "academic",
+        StartDate: new Date("2023-12-01"),
+        Period: "Dic 2023",
+        Role: "Proyecto de formación",
+        EndDate: new Date("2023-12-31"),
         HasDemo: false,
         DetailsLink: { Href: "/projects/quien-es-quien", Title: "Detalles del proyecto ¿Quién es Quién?", Target: false },
         GithubLink: { Href: "https://github.com/H-Pascual/QuienEsQuienLOL", Title: "Repositorio de ¿Quién es Quién? LoL en GitHub", Target: true },
@@ -264,7 +478,11 @@ export const ProjectList : Project[] = [
         Tagline: "Visor interactivo de personajes en JavaScript puro.",
         Description: "Visor web de personajes de Brawl Stars hecho con HTML, CSS y JavaScript, sin dependencias. Permite explorar fichas con arrastrar y soltar y filtrar por tipo de personaje. Uno de mis primeros proyectos, centrado en manipular el DOM con soltura.",
         Difficulty: DifficultyTypes.Easy,
-        EndDate: new Date("2023-03-23"),
+        Category: "academic",
+        StartDate: new Date("2023-06-01"),
+        Period: "Jun 2023",
+        Role: "Proyecto de formación",
+        EndDate: new Date("2023-06-30"),
         HasDemo: false,
         DetailsLink: { Href: "/projects/brawl-stars", Title: "Detalles del proyecto Brawl Stars", Target: false },
         GithubLink: { Href: "https://github.com/H-Pascual/BrawlStars", Title: "Repositorio de Brawl Stars en GitHub", Target: true },
@@ -276,3 +494,5 @@ export const ProjectList : Project[] = [
         ],
     },
 ]
+
+export const ProjectList : Project[] = sortProjects(projects)
