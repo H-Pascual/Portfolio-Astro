@@ -109,6 +109,9 @@ const others = ProjectListEn.filter(proj => proj.ID != project.ID).slice(0, 3)
         <div class="projects-container">
             {others.map(p => <ProjectCard project={p} lang="en" />)}
         </div>
+        <div class="recommended-more">
+            <a href="/en/projects/" class="secondary-button button" title="See all projects">See more</a>
+        </div>
     </section>
 </BaseLayoutEn>
 
