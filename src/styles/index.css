@@ -365,6 +365,7 @@ a.menu-cta:hover { background: var(--accent-strong); color: var(--on-dark); }
 .summary-head h2,
 .projects-title,
 .contact-aside h2,
+.page-head h1,
 .page-head h2 {
     font-size: clamp(2rem, 3.8vw, 3rem);
     font-weight: 720;
@@ -1061,7 +1062,7 @@ a.browser-url:hover { color: var(--on-dark); background: rgba(238, 232, 220, 0.1
 }
 
 .details-heading { grid-area: heading; }
-.details-heading h2 { font-size: clamp(2.4rem, 5vw, 3.75rem); font-weight: 750; letter-spacing: -0.035em; line-height: 1; }
+.details-heading h1 { font-size: clamp(2.4rem, 5vw, 3.75rem); font-weight: 750; letter-spacing: -0.035em; line-height: 1; }
 .details-tagline { margin-top: 1rem; font-size: 1.2rem; color: var(--ink-soft); max-width: 46ch; }
 
 .details-meta { grid-area: meta; align-self: start; }
@@ -1258,7 +1259,7 @@ a.browser-url:hover { color: var(--on-dark); background: rgba(238, 232, 220, 0.1
     line-height: 0.9;
     color: var(--accent);
 }
-.not-found h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1rem 0; }
+.not-found h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1rem 0; }
 .not-found p { color: var(--ink-soft); margin-bottom: 2rem; }
 
 /* Vídeo de demo dentro del marco de navegador (destacados) */
@@ -1654,3 +1655,5 @@ html.lightbox-open { overflow: hidden; }
     line-height: 1;
 }
 .details-metrics dt { color: var(--muted); font-size: 0.95rem; }
+
+.recommended-more { display: flex; justify-content: center; margin-top: clamp(1.75rem, 4vw, 2.5rem); }

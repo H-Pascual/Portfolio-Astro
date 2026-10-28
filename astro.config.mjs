@@ -11,6 +11,9 @@ export default defineConfig({
     sitemap({
       // Fuera del sitemap: páginas de error y el CV en PDF (bloqueado en robots.txt)
       filter: (page) => !/\/404\/?$/.test(page) && !/\/curriculum\/?$/.test(page),
+      // Fecha de última modificación y versiones de idioma enlazadas entre sí
+      lastmod: new Date(),
+      i18n: { defaultLocale: 'es', locales: { es: 'es', en: 'en' } },
     }),
   ],
 });
