@@ -12,18 +12,21 @@ interface Props {
 	image?: string
 	type?: 'website' | 'article'
 	noindex?: boolean
+	/** Nodos JSON-LD extra para esta página (proyecto, migas de pan…) */
+	schema?: Record<string, unknown>[]
 }
 
 const SITE = 'https://www.hectorpascual.com'
 const DEFAULT_TITLE = 'Héctor Pascual Marín - FullStack Developer | Alicante Programmer'
-const DEFAULT_DESCRIPTION = 'Héctor Pascual Marín, FullStack Developer based in Alicante, Spain. I build custom web applications with React, TypeScript and C# .NET, from idea to production.'
+const DEFAULT_DESCRIPTION = 'Héctor Pascual Marín, FullStack Developer in Alicante, Spain. I design and lead web apps with C#/.NET, React, TypeScript and AI. Open to new roles.'
 
 const {
 	title = DEFAULT_TITLE,
 	description = DEFAULT_DESCRIPTION,
-	image = `${SITE}/images/preview.png`,
+	image = `${SITE}/images/og-hector-pascual-marin.jpg`,
 	type = 'website',
 	noindex = false,
+	schema = [],
 } = Astro.props
 
 // Canonical URL per page
@@ -32,6 +35,7 @@ const canonical = new URL(path, SITE).href
 const esPath = path.replace(/^\/en(\/|$)/, '/')
 const enPath = esPath === '/' ? '/en/' : `/en${esPath}`
 const year = new Date().getFullYear()
+const isHome = (path === "/en/" || path === "/en")
 
 const personSchema = {
 	"@context": "https://schema.org",
@@ -43,9 +47,16 @@ const personSchema = {
 			"alternateName": ["Héctor Pascual", "Hector Pascual Marin"],
 			"givenName": "Héctor",
 			"familyName": "Pascual Marín",
-			"url": SITE,
+			"url": `${SITE}/`,
+			"mainEntityOfPage": `${SITE}/`,
 			"image": `${SITE}/images/hector-suit-picture.webp`,
 			"jobTitle": "FullStack Developer",
+			"hasOccupation": {
+				"@type": "Occupation",
+				"name": "FullStack Developer",
+				"occupationLocation": { "@type": "City", "name": "Alicante" },
+				"skills": "C#, .NET, React, TypeScript, SQL, Clean Architecture, Artificial Intelligence, technical leadership"
+			},
 			"description": DEFAULT_DESCRIPTION,
 			"email": "mailto:hector.pascual.marin@gmail.com",
 			"address": {
@@ -67,12 +78,23 @@ const personSchema = {
 		{
 			"@type": "WebSite",
 			"@id": `${SITE}/#website`,
-			"url": SITE,
+			"url": `${SITE}/`,
 			"name": "Héctor Pascual Marín",
 			"alternateName": "Héctor Pascual - FullStack Developer in Alicante",
 			"inLanguage": "en-GB",
 			"publisher": { "@id": `${SITE}/#person` }
-		}
+		},
+		...(isHome ? [{
+			"@type": "ProfilePage",
+			"@id": `${canonical}#profile`,
+			"url": canonical,
+			"name": title,
+			"inLanguage": "en-GB",
+			"dateModified": new Date().toISOString(),
+			"mainEntity": { "@id": `${SITE}/#person` },
+			"isPartOf": { "@id": `${SITE}/#website` }
+		}] : []),
+		...schema
 	]
 }
 ---
@@ -100,6 +122,8 @@ const personSchema = {
 		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet" />
 
 		<link rel="canonical" href={canonical} />
+		<link rel="me" href="https://www.linkedin.com/in/h%C3%A9ctor-pascual-mar%C3%ADn-953787232/" />
+		<link rel="me" href="https://github.com/H-Pascual" />
 		<link rel="alternate" hreflang="es" href={new URL(esPath, SITE).href} />
 		<link rel="alternate" hreflang="en" href={new URL(enPath, SITE).href} />
 		<link rel="alternate" hreflang="x-default" href={new URL(esPath, SITE).href} />
@@ -108,6 +132,7 @@ const personSchema = {
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={image} />
+		<meta property="og:image:alt" content="Héctor Pascual Marín, FullStack Developer in Alicante" />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:type" content={type} />
 		<meta property="og:site_name" content="Héctor Pascual Marín" />
@@ -124,7 +149,7 @@ const personSchema = {
 	</head>
 	<body>
 		<a class="skip-link" href="#contenido">Skip to content</a>
-		<HeaderEn></HeaderEn>
+		<HeaderEn home={isHome}></HeaderEn>
 		<main id="contenido">
 			<slot />
 		</main>

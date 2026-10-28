@@ -10,18 +10,43 @@ const { project } = Astro.props;
 const levels = ['Basic', 'Intermediate', 'Advanced']
 const host = (href?: string) => href ? new URL(href).hostname.replace(/^www\./, '') : ''
 const kinds: Record<string, string> = { professional: 'Corporate project', personal: 'Own product', academic: 'Training project' }
-const metaDescription = `${project.Name}: ${project.Tagline ?? ''} A project by Héctor Pascual Marín, FullStack Developer in Alicante.`.replace(/\s+/g, ' ')
+const metaDescription = `${project.Tagline ?? project.Name} By Héctor Pascual Marín, FullStack Developer in Alicante.`.replace(/\s+/g, ' ')
 const og = await getImage({ src: project.CoverImage.Image, width: 1200, format: 'jpg' })
 const ogImage = new URL(og.src, 'https://www.hectorpascual.com').href
+const pageUrl = new URL(project.DetailsLink.Href, 'https://www.hectorpascual.com').href
+const projectSchema = [
+    {
+        "@type": "CreativeWork",
+        "@id": `${pageUrl}#project`,
+        "name": project.Name,
+        "headline": project.Tagline ?? project.Name,
+        "description": project.Description,
+        "url": pageUrl,
+        "image": ogImage,
+        "inLanguage": "en-GB",
+        "dateCreated": project.StartDate.toISOString().slice(0, 10),
+        "author": { "@id": "https://www.hectorpascual.com/#person" },
+        "keywords": project.Languages.map((l: { Name: string }) => l.Name).join(', '),
+        ...(project.DemoLink?.Href ? { "sameAs": project.DemoLink.Href } : {}),
+    },
+    {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hectorpascual.com/en/" },
+            { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.hectorpascual.com/en/projects/" },
+            { "@type": "ListItem", "position": 3, "name": project.Name, "item": pageUrl },
+        ],
+    },
+]
 const others = ProjectListEn.filter(proj => proj.ID != project.ID).slice(0, 3)
 ---
 
-<BaseLayoutEn title={`${project.Name} - Project by Héctor Pascual Marín`} description={metaDescription} image={ogImage} type="article">
+<BaseLayoutEn title={`${project.Name} - Project by Héctor Pascual Marín`} description={metaDescription} image={ogImage} type="article" schema={projectSchema}>
     <article class="project-details" id="detalles" aria-labelledby="project-title">
-        <a href="/en/projects" class="back-link">All projects</a>
+        <a href="/en/projects/" class="back-link">All projects</a>
         <header class="details-head">
             <div class="details-heading">
-                <h2 id="project-title">{project.Name}</h2>
+                <h1 id="project-title">{project.Name}</h1>
                 {project.Tagline && <p class="details-tagline">{project.Tagline}</p>}
             </div>
             <dl class="details-meta">

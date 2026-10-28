@@ -1,11 +1,15 @@
 ---
 import SwitchLanguageEn from "./SwitchLanguageEn.astro";
+// El nombre solo es <h1> en la portada; en el resto de páginas el h1 es el título de la página
+const { home = false } = Astro.props
 ---
 
 <header class="site-header">
     <div class="header-logo">
-        <h1 class="header-title"><a title="Home: Héctor Pascual Marín - FullStack Developer in Alicante" href="/en/">Héctor Pascual Marín</a></h1>
-        <h2 class="header-subtitle">FullStack Developer in Alicante</h2>
+        {home
+            ? <h1 class="header-title"><a title="Home: Héctor Pascual Marín - FullStack Developer in Alicante" href="/en/">Héctor Pascual Marín</a></h1>
+            : <p class="header-title"><a title="Home: Héctor Pascual Marín - FullStack Developer in Alicante" href="/en/">Héctor Pascual Marín</a></p>}
+        <p class="header-subtitle">FullStack Developer in Alicante</p>
     </div>
     <nav class="header-navigation" aria-label="Main menu">
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
@@ -16,7 +20,7 @@ import SwitchLanguageEn from "./SwitchLanguageEn.astro";
             <li><a href="/en/#inicio" class="menu large-link">Home</a></li>
             <li><a href="/en/#proyectos" class="menu large-link">Projects</a></li>
             <li><a href="/en/#resumen" class="menu large-link">Experience</a></li>
-            <li><a href="/en/curriculum" class="menu large-link">Resume</a></li>
+            <li><a href="/en/curriculum/" class="menu large-link">Resume</a></li>
             <li><a href="/en/#contacto" class="menu large-link menu-cta">Contact</a></li>
         </ul>
         <SwitchLanguageEn></SwitchLanguageEn>
